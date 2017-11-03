@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+
+target 'OneToOneCallSample' do
+
+pod 'Stringee', :git => 'https://github.com/stringeecom/Stringee.git'
+
+end

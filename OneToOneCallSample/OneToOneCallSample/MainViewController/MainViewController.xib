@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="buttonCall" destination="W2f-Ne-h2h" id="vzn-56-UcU"/>
+                <outlet property="switchVideoCall" destination="Av0-33-NHA" id="Qcv-lK-SXT"/>
+                <outlet property="tfUserID" destination="7Hg-NR-AJR" id="PwO-PH-loH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the UserID you want to call and then press the Call button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzq-wF-7df">
+                    <rect key="frame" x="38" y="100" width="300" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Call to UserID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Hg-NR-AJR">
+                    <rect key="frame" x="37.5" y="166" width="300" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="JYB-Fl-Jhh"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Ne-h2h">
+                    <rect key="frame" x="112" y="286" width="150" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0gt-ne-3jM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Call">
+                        <color key="titleColor" red="0.95686274510000002" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="callTapped:" destination="-1" eventType="touchUpInside" id="zB7-bK-wHH"/>
+                    </connections>
+                </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Av0-33-NHA">
+                    <rect key="frame" x="163" y="225" width="51" height="31"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isVideoCall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wm2-jo-vho">
+                    <rect key="frame" x="38" y="230" width="84" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Av0-33-NHA" firstAttribute="centerY" secondItem="Wm2-jo-vho" secondAttribute="centerY" id="AzI-DU-6iW"/>
+                <constraint firstItem="Wm2-jo-vho" firstAttribute="top" secondItem="7Hg-NR-AJR" secondAttribute="bottom" constant="29" id="CZY-c7-vUh"/>
+                <constraint firstItem="Zzq-wF-7df" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FCG-iq-bbs"/>
+                <constraint firstItem="W2f-Ne-h2h" firstAttribute="width" secondItem="7Hg-NR-AJR" secondAttribute="width" multiplier="1:2" id="GOG-fe-h6n"/>
+                <constraint firstItem="7Hg-NR-AJR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KXs-1N-bd2"/>
+                <constraint firstItem="Zzq-wF-7df" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="SrM-7U-zVe"/>
+                <constraint firstItem="Wm2-jo-vho" firstAttribute="leading" secondItem="7Hg-NR-AJR" secondAttribute="leading" id="UdG-hU-yNG"/>
+                <constraint firstItem="7Hg-NR-AJR" firstAttribute="top" secondItem="Zzq-wF-7df" secondAttribute="bottom" constant="25" id="ZsJ-5N-Fch"/>
+                <constraint firstItem="W2f-Ne-h2h" firstAttribute="top" secondItem="Av0-33-NHA" secondAttribute="bottom" constant="30" id="ccI-Uh-Mox"/>
+                <constraint firstItem="7Hg-NR-AJR" firstAttribute="width" secondItem="Zzq-wF-7df" secondAttribute="width" id="isC-4R-MSU"/>
+                <constraint firstItem="Av0-33-NHA" firstAttribute="leading" secondItem="Wm2-jo-vho" secondAttribute="trailing" constant="41" id="oZ8-WK-jt8"/>
+                <constraint firstItem="Zzq-wF-7df" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="4:5" id="xWY-KI-Lvv"/>
+                <constraint firstItem="W2f-Ne-h2h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xjl-Nh-9SV"/>
+            </constraints>
+            <point key="canvasLocation" x="-1098" y="-469"/>
+        </view>
+    </objects>
+</document>
