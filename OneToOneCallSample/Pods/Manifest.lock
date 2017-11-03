@@ -2,20 +2,11 @@ PODS:
   - Stringee (1.0.1)
 
 DEPENDENCIES:
-  - Stringee (from `https://github.com/stringeecom/Stringee.git`)
-
-EXTERNAL SOURCES:
-  Stringee:
-    :git: https://github.com/stringeecom/Stringee.git
-
-CHECKOUT OPTIONS:
-  Stringee:
-    :commit: 9e758de2e8d48c769c3509764a2b1aef89e33bf1
-    :git: https://github.com/stringeecom/Stringee.git
+  - Stringee
 
 SPEC CHECKSUMS:
   Stringee: c67bc2365858400c899c62038b67bf7e3371a810
 
-PODFILE CHECKSUM: d60f4924d3f31416b40bc3725a370a429feafcb8
+PODFILE CHECKSUM: b65a4a4227c49aa4bfc6d06df8447bf2582b26e2
 
 COCOAPODS: 1.3.1
