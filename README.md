@@ -1,1 +1,1 @@
-To run the example project, clone the repo, and run `pod install`.
+To run the example project, clone the repo, and run `pod install --repo-update`.
