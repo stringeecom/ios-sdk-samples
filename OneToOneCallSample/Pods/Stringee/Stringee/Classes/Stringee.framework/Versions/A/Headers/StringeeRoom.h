@@ -57,7 +57,7 @@
 // MARK: - Public method
 - (void)makeRoomWithCompletionHandler:(void(^)(BOOL status, int code, NSString * message))completionHandler;
 
-- (void)joimRoomWithRoomId:(long long)roomId completionHandler:(void(^)(BOOL status, int code, NSString * message))completionHandler;
+- (void)joinRoomWithRoomId:(long long)roomId completionHandler:(void(^)(BOOL status, int code, NSString * message))completionHandler;
 
 - (void)subscribe:(StringeeRoomStream *)stream;
 

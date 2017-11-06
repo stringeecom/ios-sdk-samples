@@ -70,7 +70,7 @@ static int TIME_WINDOW = 2;
     } else {
         self.stringeeRoom = [[StringeeRoom alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient];
         self.stringeeRoom.roomDelegate = self;
-        [self.stringeeRoom joimRoomWithRoomId:self.roomId completionHandler:^(BOOL status, int code, NSString *message) {
+        [self.stringeeRoom joinRoomWithRoomId:self.roomId completionHandler:^(BOOL status, int code, NSString *message) {
             if (status) {
                 // Success
                 self.labelRoomId.text = [NSString stringWithFormat:@"%lld", self.stringeeRoom.roomId];
