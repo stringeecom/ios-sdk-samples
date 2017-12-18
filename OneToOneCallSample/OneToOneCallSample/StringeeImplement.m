@@ -11,6 +11,7 @@
 
 @implementation StringeeImplement {
     NSString *userId;
+    BOOL isBusy;
 }
 
 static StringeeImplement *sharedMyManager = nil;
@@ -38,7 +39,9 @@ static StringeeImplement *sharedMyManager = nil;
 -(void) connectToStringeeServer {
     
     // Lấy userId ngẫu nhiên để lấy về access token. Để có thể gọi được thì các máy cần đăng nhập với userId khác nhau. Sample này nhiều người sử dụng nên hãy sử dụng userId mang đấu ấn riêng của bạn để trách bị trùng nhé :)
-    userId = @"random";
+    //    userId = @"random1";
+    int r = arc4random_uniform(74);
+    userId = [NSString stringWithFormat:@"ios_%d", r];
     
     NSString *accessToken = [self getMyAccessTokenForUserId:userId];
     [self.stringeeClient connectWithAccessToken:accessToken];
@@ -93,6 +96,7 @@ static StringeeImplement *sharedMyManager = nil;
 
 - (void)incomingCallWithStringeeClient:(StringeeClient *)stringeeClient isVideoCall:(BOOL)isVideoCall callId:(NSString *)callId from:(NSString *)from to:(NSString *)to fromAlias:(NSString *)fromAlias toAlias:(NSString *)toAlias {
     
+    NSLog(@"incomingCallWithStringeeClient");
     
     CTCallCenter *objCallCenter = [[CTCallCenter alloc] init];
     
@@ -104,21 +108,35 @@ static StringeeImplement *sharedMyManager = nil;
         isSystemCalling = YES;
     }
     
-    if (![InstanceManager instance].callingViewController && !isSystemCalling) {
-        
-        CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
-        callingVC.callId = callId;
-        callingVC.username = @"Target User";
-        callingVC.from = from;
-        callingVC.isVideoCall = isVideoCall;
-        callingVC.to = to;
-        callingVC.isIncomingCall = YES;
-        
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
-    } else {
-        StringeeCall *declineCall = [[StringeeCall alloc] initWithStringeeClient:_stringeeClient isIncomingCall:YES from:from to:to callId:callId];
-        [declineCall hangup];
-    }
+    isBusy = YES;
+    
+    CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
+    callingVC.callId = callId;
+    callingVC.username = @"Target User";
+    callingVC.from = from;
+    callingVC.isVideoCall = isVideoCall;
+    callingVC.to = to;
+    callingVC.isIncomingCall = YES;
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
+    
+    
+    
+    //    if (![InstanceManager instance].callingViewController && !isSystemCalling) {
+    //
+    //        CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
+    //        callingVC.callId = callId;
+    //        callingVC.username = @"Target User";
+    //        callingVC.from = from;
+    //        callingVC.isVideoCall = isVideoCall;
+    //        callingVC.to = to;
+    //        callingVC.isIncomingCall = YES;
+    //
+    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
+    //    } else {
+    //        StringeeCall *declineCall = [[StringeeCall alloc] initWithStringeeClient:_stringeeClient isIncomingCall:YES from:from to:to callId:callId];
+    //        [declineCall hangup];
+    //    }
 }
 
 @end

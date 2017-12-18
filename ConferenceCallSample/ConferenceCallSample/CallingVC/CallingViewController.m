@@ -55,6 +55,13 @@ static int TIME_WINDOW = 2;
 
 -(void) viewWillAppear:(BOOL)animated {
     
+
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     if (self.isMakeRoom) {
         self.stringeeRoom = [[StringeeRoom alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient];
         self.stringeeRoom.roomDelegate = self;
@@ -80,7 +87,6 @@ static int TIME_WINDOW = 2;
             }
         }];
     }
-    
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -105,7 +111,7 @@ static int TIME_WINDOW = 2;
 - (void)didRoomConnect:(StringeeRoom *)stringeeRoom streams:(NSArray<StringeeRoomStream *> *)streams {
     NSLog(@"Đã kết nối tới room");
     StringeeRoomStreamConfig * config = [[StringeeRoomStreamConfig alloc] init];
-    config.streamVideoResolution = StreamVideoResolution_Normal;
+    config.streamVideoResolution = VideoResolution_Normal;
     localStream = [[StringeeRoomStream alloc] initLocalStreamWithConfig:config];
     localStream.localVideoView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     [self.view insertSubview:localStream.localVideoView atIndex:0];

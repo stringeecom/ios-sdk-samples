@@ -1,11 +1,11 @@
 PODS:
-  - Stringee (1.0.4)
+  - Stringee (1.0.9)
 
 DEPENDENCIES:
   - Stringee
 
 SPEC CHECKSUMS:
-  Stringee: 0514abd16e6cd000693df461095c583574b21575
+  Stringee: a9177757f188fa52b4bf371d3e13471aed19dc11
 
 PODFILE CHECKSUM: b65a4a4227c49aa4bfc6d06df8447bf2582b26e2
 

@@ -486,6 +486,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             } break;
                 
             case STRINGEE_CALLSTATE_END: {
+                
                 [self StopTimer];
 
                 [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
