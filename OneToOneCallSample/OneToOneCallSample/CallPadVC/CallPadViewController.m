@@ -175,7 +175,7 @@
             dtmf = CallDTMF_Pound;
         }
         
-        [self.stringeeCall callDTMF:dtmf completionHandler:^(BOOL status, int code, NSString *message) {
+        [self.stringeeCall sendDTMF:dtmf completionHandler:^(BOOL status, int code, NSString *message) {
             NSLog(@"callDTMF - status: %d - message: %@", status, message);
         }];
     } else {
