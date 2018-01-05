@@ -22,7 +22,8 @@ typedef enum {
     STRINGEE_CALLSTATE_RINGING        = 2,
     STRINGEE_CALLSTATE_STARTING       = 3,
     STRINGEE_CALLSTATE_CONNECTED      = 4,
-    STRINGEE_CALLSTATE_END            = 5
+    STRINGEE_CALLSTATE_BUSY           = 5,
+    STRINGEE_CALLSTATE_END            = 6
 } StringeeCallState;
 
 typedef enum {
@@ -75,6 +76,8 @@ typedef enum {
 @property (strong, nonatomic, readonly) NSString *callId;
 @property (strong, nonatomic, readonly) NSString *from;
 @property (strong, nonatomic, readonly) NSString *to;
+@property (strong, nonatomic, readonly) NSString *fromAlias;
+@property (strong, nonatomic, readonly) NSString *toAlias;
 @property (weak, nonatomic) id<StringeeCallStateDelegate> callStateDelegate;
 @property (weak, nonatomic) id<StringeeCallMediaDelegate> callMediaDelegate;
 @property (assign, nonatomic, readonly) CallType callType;
@@ -86,9 +89,7 @@ typedef enum {
 
 // MARK: - Init
 
-- (instancetype)initWithStringeeClient:(StringeeClient *)stringeeClient isIncomingCall:(BOOL)isIncomingCall from:(NSString *)from to:(NSString *)to;
-
-- (instancetype)initWithStringeeClient:(StringeeClient *)stringeeClient isIncomingCall:(BOOL)isIncomingCall from:(NSString *)from to:(NSString *)to callId:(NSString *)callId;
+-(instancetype) initWithStringeeClient:(StringeeClient *) stringeeClient from:(NSString *) from to:(NSString *) to;
 
 // MARK: - Public
 

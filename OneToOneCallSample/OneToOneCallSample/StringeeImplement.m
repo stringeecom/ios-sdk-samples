@@ -94,7 +94,7 @@ static StringeeImplement *sharedMyManager = nil;
     NSLog(@"didFailWithError - %@", message);
 }
 
-- (void)incomingCallWithStringeeClient:(StringeeClient *)stringeeClient isVideoCall:(BOOL)isVideoCall callId:(NSString *)callId from:(NSString *)from to:(NSString *)to fromAlias:(NSString *)fromAlias toAlias:(NSString *)toAlias {
+- (void)incomingCallWithStringeeClient:(StringeeClient *)stringeeClient stringeeCall:(StringeeCall *)stringeeCall {
     
     NSLog(@"incomingCallWithStringeeClient");
     
@@ -111,12 +111,9 @@ static StringeeImplement *sharedMyManager = nil;
     isBusy = YES;
     
     CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
-    callingVC.callId = callId;
     callingVC.username = @"Target User";
-    callingVC.from = from;
-    callingVC.isVideoCall = isVideoCall;
-    callingVC.to = to;
     callingVC.isIncomingCall = YES;
+    callingVC.stringeeCall = stringeeCall;
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
     

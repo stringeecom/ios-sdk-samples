@@ -50,8 +50,6 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     
     self.labelUsername.text = self.username;
 
-    NSString * toPhone = [NSString stringWithFormat:@"Mobile: %@", self.to];
-    self.labelPhoneNumber.text = toPhone;
     
     if (self.isVideoCall) {
         self.buttonCallPad.hidden = YES;
@@ -69,7 +67,9 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     [audioManager audioSessionSetActive:YES error:nil];
     
     if (!self.isIncomingCall) {
-        self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient isIncomingCall:NO from:self.from to:self.to];
+        self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.to];
+        
+        self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient from:self.from to:self.to];
         if (self.isVideoCall) {
             self.stringeeCall.isVideoCall = YES;
             self.stringeeCall.callMediaDelegate = self;
@@ -84,10 +84,10 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             
         }];
     } else {
-        self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient isIncomingCall:YES from:self.from to:self.to callId:self.callId];
+        self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.stringeeCall.from];
+        
         self.stringeeCall.callStateDelegate = self;
         if (self.isVideoCall) {
-            self.stringeeCall.isVideoCall = YES;
             self.stringeeCall.callMediaDelegate = self;
         }
         [self.stringeeCall initAnswerCall];
@@ -458,10 +458,12 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 
 // MARK: - Stringee CallState Delegate
 
-- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)stringeeCallState reason:(NSString *)reason {
+- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)state reason:(NSString *)reason {
+    
+    NSLog(@"*********Callstate: %d", state);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        switch (stringeeCallState) {
+        switch (state) {
                 
             case STRINGEE_CALLSTATE_INIT:
                 self.labelConnecting.text = @"Init...";
@@ -485,6 +487,14 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
                 [self beginStatsReports];
             } break;
                 
+            case STRINGEE_CALLSTATE_BUSY: {
+                
+                [self StopTimer];
+                
+                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
+                
+            } break;
+                
             case STRINGEE_CALLSTATE_END: {
                 
                 [self StopTimer];
@@ -492,7 +502,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
                 [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
                 
             } break;
-                
+
         }
     });
 }
