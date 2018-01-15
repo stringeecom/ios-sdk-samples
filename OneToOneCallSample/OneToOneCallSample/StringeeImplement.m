@@ -37,44 +37,14 @@ static StringeeImplement *sharedMyManager = nil;
 
 // Kết nối tới stringee server
 -(void) connectToStringeeServer {
-    
-    // Lấy userId ngẫu nhiên để lấy về access token. Để có thể gọi được thì các máy cần đăng nhập với userId khác nhau. Sample này nhiều người sử dụng nên hãy sử dụng userId mang đấu ấn riêng của bạn để trách bị trùng nhé :)
-    //    userId = @"random1";
-    int r = arc4random_uniform(74);
-    userId = [NSString stringWithFormat:@"ios_%d", r];
-    
-    NSString *accessToken = [self getMyAccessTokenForUserId:userId];
-    [self.stringeeClient connectWithAccessToken:accessToken];
-}
-
-// Lấy về access token với userId
-- (NSString *)getMyAccessTokenForUserId:(NSString *)myUserId {
-    NSString *strUrl = [NSString stringWithFormat:@"https://v1.stringee.com/samples/your_server/access_token/access_token-test.php?u=%@", myUserId];
-    
-    NSString *token = @"";
-    NSError *error;
-    
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:strUrl]];
-    if (data) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if (json) {
-            token = json[@"access_token"];
-        }
-    }
-    
-    if (token.length) {
-        return token;
-    }
-    
-    return @"";
+    [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
 }
 
 // MARK:- Stringee Connection Delegate
 
 // Lấy access token mới và kết nối lại đến server khi mà token cũ không có hiệu lực
 - (void)requestAccessToken:(StringeeClient *)StringeeClient {
-    NSString *accessToken = [self getMyAccessTokenForUserId:userId];
-    [self.stringeeClient connectWithAccessToken:accessToken];
+    [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
 }
 
 - (void)didConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {

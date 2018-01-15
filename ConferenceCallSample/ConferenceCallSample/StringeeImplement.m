@@ -36,41 +36,13 @@ static StringeeImplement *sharedMyManager = nil;
 
 // Kết nối tới Stringee Server
 - (void)connectToStringeeServer {
-    
-    // Lấy userId ngẫu nhiên để lấy về access token. Để có thể gọi được thì các máy cần đăng nhập với userId khác nhau. Sample này nhiều người sử dụng nên hãy sử dụng userId mang đấu ấn riêng của bạn để trách bị trùng nhé :)
-    userId = @"random1";
-    
-    NSString *accessToken = [self getMyAccessTokenForUserId:userId];
-    [self.stringeeClient connectWithAccessToken:accessToken];
-}
-
-// Get access token witk fake userId
-- (NSString *)getMyAccessTokenForUserId:(NSString *)myUserId {
-    NSString *strUrl = [NSString stringWithFormat:@"https://v1.stringee.com/samples/your_server/access_token/access_token-test.php?u=%@", myUserId];
-    
-    NSString *token = @"";
-    NSError *error;
-    
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:strUrl]];
-    if (data) {
-        NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if (json) {
-            token = json[@"access_token"];
-        }
-    }
-    
-    if (token.length) {
-        return token;
-    }
-    
-    return @"";
+    [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
 }
 
 // MARK:- Stringee Connection Delegate
 
 - (void)requestAccessToken:(StringeeClient *)StringeeClient {
-    NSString *accessToken = [self getMyAccessTokenForUserId:userId];
-    [self.stringeeClient connectWithAccessToken:accessToken];
+    [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
 }
 
 - (void)didConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
