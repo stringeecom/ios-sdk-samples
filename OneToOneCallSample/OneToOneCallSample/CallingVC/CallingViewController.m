@@ -33,6 +33,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     
     BOOL isSpeaker;
     BOOL videoIsDisable;
+    BOOL timerHasStarted;
 }
 
 - (void)viewDidLoad {
@@ -51,7 +52,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     self.labelUsername.text = self.username;
 
     
-    if (self.isVideoCall) {
+    if (self.isVideoCall || self.stringeeCall.isVideoCall) {
         self.buttonCallPad.hidden = YES;
         self.labelUsername.hidden = YES;
         self.labelPhoneNumber.hidden = YES;
@@ -87,7 +88,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
         self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.stringeeCall.from];
         
         self.stringeeCall.callStateDelegate = self;
-        if (self.isVideoCall) {
+        if (self.stringeeCall.isVideoCall) {
             self.stringeeCall.callMediaDelegate = self;
         }
         [self.stringeeCall initAnswerCall];
@@ -200,10 +201,10 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 - (IBAction)disableEnableVideoTapped:(UIButton *)sender {
     if (videoIsDisable) {
         videoIsDisable = NO;
-        [self.stringeeCall turnOnCamera:YES];
+        [self.stringeeCall enableLocalVideo:YES];
     } else {
         videoIsDisable = YES;
-        [self.stringeeCall turnOnCamera:NO];
+        [self.stringeeCall enableLocalVideo:NO];
     }
 }
 
@@ -261,8 +262,12 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     
     self.isCalling = YES;
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    if (!timerHasStarted) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        timerHasStarted = YES;
+    }
+
 }
 
 // Hàm nhảy dây

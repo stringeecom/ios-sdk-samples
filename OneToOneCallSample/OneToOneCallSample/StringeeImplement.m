@@ -117,23 +117,6 @@ static StringeeImplement *sharedMyManager = nil;
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
     
-    
-    
-    //    if (![InstanceManager instance].callingViewController && !isSystemCalling) {
-    //
-    //        CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
-    //        callingVC.callId = callId;
-    //        callingVC.username = @"Target User";
-    //        callingVC.from = from;
-    //        callingVC.isVideoCall = isVideoCall;
-    //        callingVC.to = to;
-    //        callingVC.isIncomingCall = YES;
-    //
-    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
-    //    } else {
-    //        StringeeCall *declineCall = [[StringeeCall alloc] initWithStringeeClient:_stringeeClient isIncomingCall:YES from:from to:to callId:callId];
-    //        [declineCall hangup];
-    //    }
 }
 
 @end
