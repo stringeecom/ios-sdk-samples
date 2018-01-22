@@ -64,6 +64,8 @@ typedef enum {
 
 - (void)didReceiveDtmfDigit:(StringeeCall *)stringeeCall digit:(NSString *)digit;
 
+- (void)didReceiveCallInfo:(StringeeCall *)stringeeCall info:(NSDictionary *)info;
+
 - (void)didReceiveLocalStream:(StringeeCall *)stringeeCall;
 
 - (void)didReceiveRemoteStream:(StringeeCall *)stringeeCall;
@@ -104,6 +106,8 @@ typedef enum {
 - (void)reject;
 
 - (void)sendDTMF:(CallDTMF)callDTMF completionHandler:(void(^)(BOOL status, int code, NSString * message))completionHandler;
+
+- (void)sendCallInfo:(NSDictionary *)info;
 
 - (void)switchCamera;
 
