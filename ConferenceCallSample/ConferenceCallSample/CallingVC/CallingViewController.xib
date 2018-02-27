@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -67,7 +66,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyW-AS-PNO">
                     <rect key="frame" x="149.5" y="477" width="75" height="75"/>
-                    <state key="normal" backgroundImage="ic_speaker_on"/>
+                    <state key="normal" backgroundImage="ic_speaker_off"/>
                     <connections>
                         <action selector="speakerTapped:" destination="-1" eventType="touchUpInside" id="4EK-nk-GGf"/>
                     </connections>
@@ -79,22 +78,22 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PE-Zj-RyM">
-                    <rect key="frame" x="20" y="347" width="335" height="120"/>
+                    <rect key="frame" x="5" y="347" width="365" height="120"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41m-c4-3oz">
-                            <rect key="frame" x="0.0" y="0.0" width="84" height="120"/>
+                            <rect key="frame" x="0.0" y="0.0" width="89" height="120"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5y-ae-s6h">
-                            <rect key="frame" x="84" y="0.0" width="84" height="120"/>
+                            <rect key="frame" x="92" y="0.0" width="89" height="120"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQV-yL-axD">
-                            <rect key="frame" x="168" y="0.0" width="84" height="120"/>
+                            <rect key="frame" x="184" y="0.0" width="89" height="120"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNt-3F-MzE">
-                            <rect key="frame" x="252" y="0.0" width="84" height="120"/>
+                            <rect key="frame" x="276" y="0.0" width="89" height="120"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
@@ -103,20 +102,20 @@
                         <constraint firstAttribute="height" constant="120" id="1Za-MG-ZsU"/>
                         <constraint firstItem="SNt-3F-MzE" firstAttribute="centerY" secondItem="UQV-yL-axD" secondAttribute="centerY" id="4ka-94-uNj"/>
                         <constraint firstItem="SNt-3F-MzE" firstAttribute="height" secondItem="UQV-yL-axD" secondAttribute="height" id="7D3-oM-BEi"/>
-                        <constraint firstItem="p5y-ae-s6h" firstAttribute="leading" secondItem="41m-c4-3oz" secondAttribute="trailing" id="Dfx-fU-B2d"/>
-                        <constraint firstItem="SNt-3F-MzE" firstAttribute="leading" secondItem="UQV-yL-axD" secondAttribute="trailing" id="Gc0-8z-Oqh"/>
+                        <constraint firstItem="p5y-ae-s6h" firstAttribute="leading" secondItem="41m-c4-3oz" secondAttribute="trailing" constant="3" id="Dfx-fU-B2d"/>
+                        <constraint firstItem="SNt-3F-MzE" firstAttribute="leading" secondItem="UQV-yL-axD" secondAttribute="trailing" constant="3" id="Gc0-8z-Oqh"/>
                         <constraint firstItem="41m-c4-3oz" firstAttribute="leading" secondItem="0PE-Zj-RyM" secondAttribute="leading" id="NNd-zQ-jit"/>
                         <constraint firstItem="41m-c4-3oz" firstAttribute="height" secondItem="0PE-Zj-RyM" secondAttribute="height" id="Spg-qY-VKl"/>
                         <constraint firstItem="p5y-ae-s6h" firstAttribute="width" secondItem="41m-c4-3oz" secondAttribute="width" id="Ubd-yc-K9s"/>
-                        <constraint firstItem="41m-c4-3oz" firstAttribute="width" secondItem="0PE-Zj-RyM" secondAttribute="width" multiplier="1:4" id="VvC-NV-l75"/>
                         <constraint firstItem="UQV-yL-axD" firstAttribute="centerY" secondItem="p5y-ae-s6h" secondAttribute="centerY" id="Wer-5s-1Ie"/>
                         <constraint firstItem="UQV-yL-axD" firstAttribute="height" secondItem="p5y-ae-s6h" secondAttribute="height" id="Xi8-fX-FwG"/>
                         <constraint firstItem="41m-c4-3oz" firstAttribute="centerY" secondItem="0PE-Zj-RyM" secondAttribute="centerY" id="g70-zF-SBa"/>
                         <constraint firstItem="p5y-ae-s6h" firstAttribute="centerY" secondItem="41m-c4-3oz" secondAttribute="centerY" id="iE1-ZE-5Su"/>
                         <constraint firstItem="p5y-ae-s6h" firstAttribute="height" secondItem="41m-c4-3oz" secondAttribute="height" id="ijd-CQ-wMU"/>
                         <constraint firstItem="UQV-yL-axD" firstAttribute="width" secondItem="p5y-ae-s6h" secondAttribute="width" id="o8u-Q2-U54"/>
-                        <constraint firstItem="UQV-yL-axD" firstAttribute="leading" secondItem="p5y-ae-s6h" secondAttribute="trailing" id="w4Q-gZ-qjX"/>
+                        <constraint firstItem="UQV-yL-axD" firstAttribute="leading" secondItem="p5y-ae-s6h" secondAttribute="trailing" constant="3" id="w4Q-gZ-qjX"/>
                         <constraint firstItem="SNt-3F-MzE" firstAttribute="width" secondItem="UQV-yL-axD" secondAttribute="width" id="wQ1-yJ-WJh"/>
+                        <constraint firstAttribute="trailing" secondItem="SNt-3F-MzE" secondAttribute="trailing" id="x68-Vo-1sM"/>
                     </constraints>
                 </view>
             </subviews>
@@ -131,7 +130,7 @@
                 <constraint firstItem="qvR-aO-d7I" firstAttribute="centerY" secondItem="pht-n2-qQ1" secondAttribute="centerY" id="Sta-Ag-qiT"/>
                 <constraint firstItem="0hI-3g-OnW" firstAttribute="width" secondItem="iyW-AS-PNO" secondAttribute="width" id="TwE-7J-vyz"/>
                 <constraint firstItem="pht-n2-qQ1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Vwo-Lb-dsU"/>
-                <constraint firstAttribute="trailing" secondItem="0PE-Zj-RyM" secondAttribute="trailing" constant="20" id="Wks-6o-8zt"/>
+                <constraint firstAttribute="trailing" secondItem="0PE-Zj-RyM" secondAttribute="trailing" constant="5" id="Wks-6o-8zt"/>
                 <constraint firstItem="0hI-3g-OnW" firstAttribute="leading" secondItem="iyW-AS-PNO" secondAttribute="trailing" constant="40" id="Y8e-5I-rie"/>
                 <constraint firstAttribute="trailing" secondItem="sbF-WN-GHl" secondAttribute="trailing" constant="20" id="YaI-06-ngg"/>
                 <constraint firstItem="We8-67-Px4" firstAttribute="centerY" secondItem="iyW-AS-PNO" secondAttribute="centerY" id="Ynb-RB-Fn3"/>
@@ -140,13 +139,13 @@
                 <constraint firstItem="qvR-aO-d7I" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dkl-YP-Qxr"/>
                 <constraint firstItem="iyW-AS-PNO" firstAttribute="top" secondItem="0PE-Zj-RyM" secondAttribute="bottom" constant="10" id="gju-KQ-MHW"/>
                 <constraint firstAttribute="bottom" secondItem="WOg-jY-JEW" secondAttribute="bottom" constant="20" id="h9k-GY-A2p"/>
-                <constraint firstItem="0PE-Zj-RyM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="k3b-me-BEf"/>
+                <constraint firstItem="0PE-Zj-RyM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="k3b-me-BEf"/>
                 <constraint firstItem="iyW-AS-PNO" firstAttribute="width" secondItem="WOg-jY-JEW" secondAttribute="width" id="mtp-Mk-1pt"/>
                 <constraint firstItem="iyW-AS-PNO" firstAttribute="centerX" secondItem="WOg-jY-JEW" secondAttribute="centerX" id="sgK-Xa-JQ1"/>
                 <constraint firstItem="0hI-3g-OnW" firstAttribute="centerY" secondItem="iyW-AS-PNO" secondAttribute="centerY" id="tJz-OZ-Ze5"/>
                 <constraint firstItem="WOg-jY-JEW" firstAttribute="top" secondItem="iyW-AS-PNO" secondAttribute="bottom" constant="20" id="wRI-76-4Df"/>
             </constraints>
-            <point key="canvasLocation" x="-997" y="-341"/>
+            <point key="canvasLocation" x="-1672" y="-437"/>
         </view>
     </objects>
     <resources>
@@ -154,7 +153,7 @@
         <image name="camera_switch" width="32" height="32"/>
         <image name="end_call" width="65" height="65"/>
         <image name="good" width="26" height="27"/>
-        <image name="ic_speaker_on" width="75" height="75"/>
+        <image name="ic_speaker_off" width="75" height="71"/>
         <image name="video_enable" width="65" height="65"/>
     </resources>
 </document>

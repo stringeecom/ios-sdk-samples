@@ -136,8 +136,8 @@ static int TIME_WINDOW = 2;
 // Publish and unpublish
 - (void)didStreamPublish:(StringeeRoom *)stringeeRoom stream:(StringeeRoomStream *)stream {
     NSLog(@"Publish local stream thành công - streamId: %@", stream.streamId);
-    isSpeaker = YES;
-    [[StringeeAudioManager instance] setLoudspeaker:YES];
+//    isSpeaker = YES;
+//    [[StringeeAudioManager instance] setLoudspeaker:YES];
 }
 
 - (void)didStreamPublishError:(StringeeRoom *)stringeeRoom stream:(StringeeRoomStream *)stream error:(NSString *)error {
@@ -198,8 +198,8 @@ static int TIME_WINDOW = 2;
     // By default, stringeesdk will output audio to the built-in speaker. You need to change if you want it out loud
     if (!self.buttonSpeaker.enabled) {
         self.buttonSpeaker.enabled = YES;
-        isSpeaker = YES;
-        [[StringeeAudioManager instance] setLoudspeaker:YES];
+//        isSpeaker = YES;
+//        [[StringeeAudioManager instance] setLoudspeaker:YES];
     }
 }
 

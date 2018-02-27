@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		515496FB202326DD001C4C41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 515496FA202326DD001C4C41 /* AppDelegate.m */; };
+		515496FE202326DD001C4C41 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515496FD202326DD001C4C41 /* HomeViewController.m */; };
+		51549701202326DD001C4C41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515496FF202326DD001C4C41 /* Main.storyboard */; };
+		51549703202326DD001C4C41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51549702202326DD001C4C41 /* Assets.xcassets */; };
+		51549706202326DD001C4C41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51549704202326DD001C4C41 /* LaunchScreen.storyboard */; };
+		51549709202326DD001C4C41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51549708202326DD001C4C41 /* main.m */; };
+		5154972D202327DF001C4C41 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5154972C202327DF001C4C41 /* PushKit.framework */; };
+		5154972F202327E6001C4C41 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5154972E202327E5001C4C41 /* CallKit.framework */; };
+		5154973720232970001C4C41 /* StringeeImplement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973320232970001C4C41 /* StringeeImplement.m */; };
+		5154973820232970001C4C41 /* CallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973620232970001C4C41 /* CallManager.m */; };
+		5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973A20232AB6001C4C41 /* InstanceManager.m */; };
+		51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */ = {isa = PBXBuildFile; fileRef = 51A6222A20313E2F000AB197 /* incoming_call.aif */; };
+		51AB8E90202EA531007E1A98 /* CallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AB8E8F202EA531007E1A98 /* CallingViewController.m */; };
+		C0D619648DDE05F753DA07F2 /* libPods-CallkitSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.release.xcconfig"; sourceTree = "<group>"; };
+		2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallkitSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.debug.xcconfig"; sourceTree = "<group>"; };
+		515496F6202326DD001C4C41 /* CallkitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallkitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		515496F9202326DD001C4C41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		515496FA202326DD001C4C41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		515496FC202326DD001C4C41 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		515496FD202326DD001C4C41 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		51549700202326DD001C4C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		51549702202326DD001C4C41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51549705202326DD001C4C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		51549707202326DD001C4C41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51549708202326DD001C4C41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5154972C202327DF001C4C41 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		5154972E202327E5001C4C41 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		5154973020232862001C4C41 /* CallkitSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CallkitSample.entitlements; sourceTree = "<group>"; };
+		5154973320232970001C4C41 /* StringeeImplement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringeeImplement.m; sourceTree = "<group>"; };
+		5154973420232970001C4C41 /* StringeeImplement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringeeImplement.h; sourceTree = "<group>"; };
+		5154973520232970001C4C41 /* CallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallManager.h; sourceTree = "<group>"; };
+		5154973620232970001C4C41 /* CallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallManager.m; sourceTree = "<group>"; };
+		5154973920232AB6001C4C41 /* InstanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanceManager.h; sourceTree = "<group>"; };
+		5154973A20232AB6001C4C41 /* InstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceManager.m; sourceTree = "<group>"; };
+		5162D0E52043E1910057F227 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		51A6222A20313E2F000AB197 /* incoming_call.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = incoming_call.aif; sourceTree = "<group>"; };
+		51AB8E8E202EA531007E1A98 /* CallingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallingViewController.h; sourceTree = "<group>"; };
+		51AB8E8F202EA531007E1A98 /* CallingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallingViewController.m; sourceTree = "<group>"; };
+		51B15AC82023FC0B001AA015 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		51B15ACC2023FCA0001AA015 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		51B15ACE2023FCA6001AA015 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		51B15AD02023FCAF001AA015 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		51B15AD22023FD2C001AA015 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		51B15AD42023FD32001AA015 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		515496F3202326DD001C4C41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5154972F202327E6001C4C41 /* CallKit.framework in Frameworks */,
+				5154972D202327DF001C4C41 /* PushKit.framework in Frameworks */,
+				C0D619648DDE05F753DA07F2 /* libPods-CallkitSample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		515496ED202326DD001C4C41 = {
+			isa = PBXGroup;
+			children = (
+				515496F8202326DD001C4C41 /* CallkitSample */,
+				515496F7202326DD001C4C41 /* Products */,
+				5154972B202327DF001C4C41 /* Frameworks */,
+				F572C5DF5BB4A983B2187F10 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		515496F7202326DD001C4C41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				515496F6202326DD001C4C41 /* CallkitSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		515496F8202326DD001C4C41 /* CallkitSample */ = {
+			isa = PBXGroup;
+			children = (
+				51A6222A20313E2F000AB197 /* incoming_call.aif */,
+				5154973020232862001C4C41 /* CallkitSample.entitlements */,
+				515496F9202326DD001C4C41 /* AppDelegate.h */,
+				515496FA202326DD001C4C41 /* AppDelegate.m */,
+				5154973920232AB6001C4C41 /* InstanceManager.h */,
+				5154973A20232AB6001C4C41 /* InstanceManager.m */,
+				5154973520232970001C4C41 /* CallManager.h */,
+				5154973620232970001C4C41 /* CallManager.m */,
+				5154973420232970001C4C41 /* StringeeImplement.h */,
+				5154973320232970001C4C41 /* StringeeImplement.m */,
+				515496FC202326DD001C4C41 /* HomeViewController.h */,
+				515496FD202326DD001C4C41 /* HomeViewController.m */,
+				51AB8E8E202EA531007E1A98 /* CallingViewController.h */,
+				51AB8E8F202EA531007E1A98 /* CallingViewController.m */,
+				515496FF202326DD001C4C41 /* Main.storyboard */,
+				51549702202326DD001C4C41 /* Assets.xcassets */,
+				51549704202326DD001C4C41 /* LaunchScreen.storyboard */,
+				51549707202326DD001C4C41 /* Info.plist */,
+				51549708202326DD001C4C41 /* main.m */,
+			);
+			path = CallkitSample;
+			sourceTree = "<group>";
+		};
+		5154972B202327DF001C4C41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5162D0E52043E1910057F227 /* AudioToolbox.framework */,
+				51B15AD42023FD32001AA015 /* AVFoundation.framework */,
+				51B15AD22023FD2C001AA015 /* GLKit.framework */,
+				51B15AD02023FCAF001AA015 /* CoreFoundation.framework */,
+				51B15ACE2023FCA6001AA015 /* libstdc++.tbd */,
+				51B15ACC2023FCA0001AA015 /* libicucore.tbd */,
+				51B15AC82023FC0B001AA015 /* VideoToolbox.framework */,
+				5154972E202327E5001C4C41 /* CallKit.framework */,
+				5154972C202327DF001C4C41 /* PushKit.framework */,
+				2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F572C5DF5BB4A983B2187F10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */,
+				283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		515496F5202326DD001C4C41 /* CallkitSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51549722202326DD001C4C41 /* Build configuration list for PBXNativeTarget "CallkitSample" */;
+			buildPhases = (
+				3686F2A580F62FFE6E7EBD3E /* [CP] Check Pods Manifest.lock */,
+				515496F2202326DD001C4C41 /* Sources */,
+				515496F3202326DD001C4C41 /* Frameworks */,
+				515496F4202326DD001C4C41 /* Resources */,
+				FCABC9EF1B7FEA59388EB1AC /* [CP] Embed Pods Frameworks */,
+				9BA24BDECAD1122833383414 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CallkitSample;
+			productName = CallkitSample;
+			productReference = 515496F6202326DD001C4C41 /* CallkitSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		515496EE202326DD001C4C41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Hoang Duoc";
+				TargetAttributes = {
+					515496F5202326DD001C4C41 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 515496F1202326DD001C4C41 /* Build configuration list for PBXProject "CallkitSample" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 515496ED202326DD001C4C41;
+			productRefGroup = 515496F7202326DD001C4C41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				515496F5202326DD001C4C41 /* CallkitSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		515496F4202326DD001C4C41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51549706202326DD001C4C41 /* LaunchScreen.storyboard in Resources */,
+				51549703202326DD001C4C41 /* Assets.xcassets in Resources */,
+				51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */,
+				51549701202326DD001C4C41 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3686F2A580F62FFE6E7EBD3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CallkitSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BA24BDECAD1122833383414 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCABC9EF1B7FEA59388EB1AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		515496F2202326DD001C4C41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AB8E90202EA531007E1A98 /* CallingViewController.m in Sources */,
+				515496FE202326DD001C4C41 /* HomeViewController.m in Sources */,
+				5154973820232970001C4C41 /* CallManager.m in Sources */,
+				5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */,
+				51549709202326DD001C4C41 /* main.m in Sources */,
+				5154973720232970001C4C41 /* StringeeImplement.m in Sources */,
+				515496FB202326DD001C4C41 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		515496FF202326DD001C4C41 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51549700202326DD001C4C41 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		51549704202326DD001C4C41 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51549705202326DD001C4C41 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		51549720202326DD001C4C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		51549721202326DD001C4C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		51549723202326DD001C4C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CallkitSample/CallkitSample.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8MA9F9A86E;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = CallkitSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cf8caa6b-c105-491f-b555-b0e1e0ed701a";
+				PROVISIONING_PROFILE_SPECIFIER = Callkit_develop_provision;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		51549724202326DD001C4C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CallkitSample/CallkitSample.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8MA9F9A86E;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = CallkitSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1daf5de-095e-433d-b860-02860f5990fc";
+				PROVISIONING_PROFILE_SPECIFIER = Callkit_product_provision;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		515496F1202326DD001C4C41 /* Build configuration list for PBXProject "CallkitSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51549720202326DD001C4C41 /* Debug */,
+				51549721202326DD001C4C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51549722202326DD001C4C41 /* Build configuration list for PBXNativeTarget "CallkitSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51549723202326DD001C4C41 /* Debug */,
+				51549724202326DD001C4C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 515496EE202326DD001C4C41 /* Project object */;
+}

@@ -38,7 +38,8 @@ static StringeeImplement *sharedMyManager = nil;
 - (void)connectToStringeeServer {
     
     // Lấy userId ngẫu nhiên để lấy về access token. Để có thể gọi được thì các máy cần đăng nhập với userId khác nhau. Sample này nhiều người sử dụng nên hãy sử dụng userId mang đấu ấn riêng của bạn để trách bị trùng nhé :)
-    userId = @"random1";
+    int r = arc4random_uniform(74);
+    userId = [NSString stringWithFormat:@"ios%d", r];
     
     NSString *accessToken = [self getMyAccessTokenForUserId:userId];
     [self.stringeeClient connectWithAccessToken:accessToken];
@@ -46,7 +47,8 @@ static StringeeImplement *sharedMyManager = nil;
 
 // Get access token witk fake userId
 - (NSString *)getMyAccessTokenForUserId:(NSString *)myUserId {
-    NSString *strUrl = [NSString stringWithFormat:@"https://v1.stringee.com/samples/your_server/access_token/access_token-test.php?u=%@", myUserId];
+//    NSString *strUrl = [NSString stringWithFormat:@"https://v1.stringee.com/samples/your_server/access_token/access_token-test.php?u=%@", myUserId];
+    NSString *strUrl = [NSString stringWithFormat:@"https://v1.stringee.com/samples_and_docs/access_token/gen_access_token.php?userId=%@", myUserId]; //demo viettel
     
     NSString *token = @"";
     NSError *error;
@@ -74,7 +76,7 @@ static StringeeImplement *sharedMyManager = nil;
 }
 
 - (void)didConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
-    NSLog(@"Đã kết nối tới Stringee Server");
+    NSLog(@"didConnect");
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([InstanceManager instance].mainViewController) {
             [InstanceManager instance].mainViewController.title = stringeeClient.userId;
@@ -83,11 +85,11 @@ static StringeeImplement *sharedMyManager = nil;
 }
 
 - (void)didDisConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
-    NSLog(@"Đã mất kết nối tới Stringee Server");
+    NSLog(@"didDisConnect");
 }
 
 - (void)didFailWithError:(StringeeClient *)stringeeClient code:(int)code message:(NSString *)message {
-    NSLog(@"Quá trình kết nối xảy ra lỗi - %@", message);
+    NSLog(@"didFailWithError - %@", message);
 }
 
 

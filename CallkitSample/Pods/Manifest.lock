@@ -1,0 +1,12 @@
+PODS:
+  - Stringee (1.2.2)
+
+DEPENDENCIES:
+  - Stringee
+
+SPEC CHECKSUMS:
+  Stringee: 8e606fc5e3ca90db67c469f9fd2ad422677f0fff
+
+PODFILE CHECKSUM: 3930ba01a2dea25cb657f77c9c6e6326929cfe9f
+
+COCOAPODS: 1.4.0
