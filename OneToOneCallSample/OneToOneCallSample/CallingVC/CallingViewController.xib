@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="blurView" destination="Wi2-fX-NqB" id="2WA-ri-Rst"/>
                 <outlet property="buttonAccept" destination="IOp-pU-Nqa" id="goy-co-1tp"/>
-                <outlet property="buttonCallPad" destination="r4n-em-pwf" id="GgZ-ZW-0ud"/>
+                <outlet property="buttonCallPad" destination="r4n-em-pwf" id="XUQ-WB-Ylc"/>
                 <outlet property="buttonDecline" destination="cS4-qJ-wkC" id="C7C-xs-fs7"/>
                 <outlet property="buttonDisableVideo" destination="Bs7-xP-q7A" id="jJt-Sy-Qj7"/>
                 <outlet property="buttonEndCall" destination="PrX-2e-PhU" id="cP7-Ej-5pe"/>
@@ -23,7 +23,7 @@
                 <outlet property="buttonSwitchCamera" destination="1n0-I0-tBg" id="kvU-X4-CbV"/>
                 <outlet property="containRemoteView" destination="sDX-W2-sl5" id="dok-RD-jaZ"/>
                 <outlet property="imageInternetQuality" destination="fyE-vv-SGF" id="fLU-mZ-Cle"/>
-                <outlet property="labelCallPad" destination="Vks-Yg-wqr" id="aE0-SM-6ol"/>
+                <outlet property="labelCallPad" destination="Vks-Yg-wqr" id="rej-MV-guV"/>
                 <outlet property="labelConnecting" destination="Hrc-Jy-pCI" id="Qr4-72-B51"/>
                 <outlet property="labelMute" destination="n49-7y-9aR" id="5Gh-0o-u0I"/>
                 <outlet property="labelPhoneNumber" destination="ocM-Z3-4BY" id="Zat-DA-qKY"/>
@@ -72,13 +72,13 @@
                                 <constraint firstAttribute="width" constant="55" id="hJX-dG-WqN"/>
                                 <constraint firstAttribute="width" secondItem="r4n-em-pwf" secondAttribute="height" multiplier="1:1" id="xOW-wD-9n7"/>
                             </constraints>
-                            <state key="normal" image="icon_keypad"/>
+                            <state key="normal" backgroundImage="icon_keypad"/>
                             <connections>
                                 <action selector="callpadTapped:" destination="-1" eventType="touchUpInside" id="e0a-Gs-hH0"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Callpad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vks-Yg-wqr">
-                            <rect key="frame" x="86" y="75" width="53" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vks-Yg-wqr">
+                            <rect key="frame" x="85.5" y="75" width="54.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -157,7 +157,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HoangDuoc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-Fr-9I8">
-                    <rect key="frame" x="85" y="94.5" width="152" height="32.5"/>
+                    <rect key="frame" x="85.5" y="94.5" width="149.5" height="32.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -223,7 +223,7 @@
                 <constraint firstItem="Wi2-fX-NqB" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="uWC-VA-xez"/>
                 <constraint firstItem="1n0-I0-tBg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="yS1-ge-KMd"/>
             </constraints>
-            <point key="canvasLocation" x="-6316" y="-930"/>
+            <point key="canvasLocation" x="-6842" y="-1087"/>
         </view>
     </objects>
     <resources>

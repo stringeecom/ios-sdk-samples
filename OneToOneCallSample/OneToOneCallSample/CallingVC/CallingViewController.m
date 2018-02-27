@@ -130,7 +130,9 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 
 - (IBAction)endCallTapped:(UIButton *)sender {
     [self removeVideoViews];
-    [self.stringeeCall hangup];
+    [self.stringeeCall hangupWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+        NSLog(@"%@", message);
+    }];
 }
 
 - (IBAction)muteTapped:(UIButton *)sender {
@@ -173,7 +175,9 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             
         } completion:^(BOOL finished) {
             
-            [self.stringeeCall answerCall];
+            [self.stringeeCall answerCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+                NSLog(@"%@", message);
+            }];
             
             self.buttonAccept.hidden = YES;
             self.buttonEndCall.hidden = NO;
@@ -189,7 +193,9 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 - (IBAction)declineTapped:(UIButton *)sender {
     [self stopSound];
     [self removeVideoViews];
-    [self.stringeeCall hangup];
+    [self.stringeeCall rejectWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+        NSLog(@"%@", message);
+    }];
 }
 
 - (IBAction)callpadTapped:(UIButton *)sender {
@@ -201,9 +207,11 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 - (IBAction)disableEnableVideoTapped:(UIButton *)sender {
     if (videoIsDisable) {
         videoIsDisable = NO;
+        [self.buttonDisableVideo setBackgroundImage:[UIImage imageNamed:@"video_enable"] forState:UIControlStateNormal];
         [self.stringeeCall enableLocalVideo:YES];
     } else {
         videoIsDisable = YES;
+        [self.buttonDisableVideo setBackgroundImage:[UIImage imageNamed:@"video_disable"] forState:UIControlStateNormal];
         [self.stringeeCall enableLocalVideo:NO];
     }
 }

@@ -68,18 +68,6 @@ static StringeeImplement *sharedMyManager = nil;
     
     NSLog(@"incomingCallWithStringeeClient");
     
-    CTCallCenter *objCallCenter = [[CTCallCenter alloc] init];
-    
-    BOOL isSystemCalling = NO;
-    
-    if (!objCallCenter.currentCalls || (objCallCenter.currentCalls && objCallCenter.currentCalls.count == 0)) {
-        isSystemCalling = NO;
-    } else {
-        isSystemCalling = YES;
-    }
-    
-    isBusy = YES;
-    
     CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
     callingVC.username = @"Target User";
     callingVC.isIncomingCall = YES;

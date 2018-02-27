@@ -46,7 +46,7 @@ static StringeeImplement *sharedMyManager = nil;
 }
 
 - (void)didConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
-    NSLog(@"Đã kết nối tới Stringee Server");
+    NSLog(@"didConnect");
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([InstanceManager instance].mainViewController) {
             [InstanceManager instance].mainViewController.title = stringeeClient.userId;
@@ -55,11 +55,11 @@ static StringeeImplement *sharedMyManager = nil;
 }
 
 - (void)didDisConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
-    NSLog(@"Đã mất kết nối tới Stringee Server");
+    NSLog(@"didDisConnect");
 }
 
 - (void)didFailWithError:(StringeeClient *)stringeeClient code:(int)code message:(NSString *)message {
-    NSLog(@"Quá trình kết nối xảy ra lỗi - %@", message);
+    NSLog(@"didFailWithError - %@", message);
 }
 
 
