@@ -17,7 +17,7 @@ typedef enum {
     CallingState_Ended         = 3
 } CallingState;
 
-@interface CallingViewController : UIViewController<StringeeCallStateDelegate, StringeeCallMediaDelegate, StringeeRemoteViewDelegate>
+@interface CallingViewController : UIViewController<StringeeCallDelegate, StringeeRemoteViewDelegate>
 
 // Outlet
 @property (weak, nonatomic) IBOutlet UILabel *labelPhoneNumber;

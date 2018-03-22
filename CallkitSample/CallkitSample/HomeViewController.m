@@ -31,10 +31,10 @@
 
 - (IBAction)callTapped:(UIButton *)sender {
     if ([StringeeImplement instance].stringeeClient.hasConnected && self.tfUserId.text.length) {
-        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        CallingViewController *callingVC = (CallingViewController *)[mainSB instantiateViewControllerWithIdentifier:@"CallingViewController"];
-        callingVC.isOutgoingCall = YES;
-        callingVC.strUserId = self.tfUserId.text;
+        CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
+        callingVC.isIncomingCall = NO;
+        callingVC.from = [StringeeImplement instance].stringeeClient.userId;
+        callingVC.to = self.tfUserId.text;
         [self presentViewController:callingVC animated:YES completion:nil];
     }
 }

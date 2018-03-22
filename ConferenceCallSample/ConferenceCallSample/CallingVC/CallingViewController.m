@@ -64,7 +64,7 @@ static int TIME_WINDOW = 2;
     
     if (self.isMakeRoom) {
         self.stringeeRoom = [[StringeeRoom alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient];
-        self.stringeeRoom.roomDelegate = self;
+        self.stringeeRoom.delegate = self;
         [self.stringeeRoom makeRoomWithCompletionHandler:^(BOOL status, int code, NSString *message) {
             if (status) {
                 // Sucess
@@ -76,7 +76,7 @@ static int TIME_WINDOW = 2;
         }];
     } else {
         self.stringeeRoom = [[StringeeRoom alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient];
-        self.stringeeRoom.roomDelegate = self;
+        self.stringeeRoom.delegate = self;
         [self.stringeeRoom joinRoomWithRoomId:self.roomId completionHandler:^(BOOL status, int code, NSString *message) {
             if (status) {
                 // Success

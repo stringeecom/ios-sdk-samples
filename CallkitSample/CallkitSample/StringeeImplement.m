@@ -7,13 +7,12 @@
 //
 
 #import "StringeeImplement.h"
-#import "InstanceManager.h"
 #import "CallManager.h"
 #import "CallingViewController.h"
+#import "InstanceManager.h"
 
 @implementation StringeeImplement {
     StringeeCall * seCall;
-    StringeeCallState callState;
     BOOL hasAnswered;
     BOOL hasConnected;
     BOOL audioIsActived;
@@ -50,15 +49,11 @@ static StringeeImplement *sharedMyManager = nil;
     [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
 }
 
-
-
 // MARK:- Stringee Connection Delegate
 
 // Lấy access token mới và kết nối lại đến server khi mà token cũ không có hiệu lực
 - (void)requestAccessToken:(StringeeClient *)StringeeClient {
-    NSLog(@"requestAccessToken");
     [self.stringeeClient connectWithAccessToken:@"YOUR_ACCESS_TOKEN"];
-
 }
 
 - (void)didConnect:(StringeeClient *)stringeeClient isReconnecting:(BOOL)isReconnecting {
@@ -67,6 +62,16 @@ static StringeeImplement *sharedMyManager = nil;
         if ([InstanceManager instance].homeViewController) {
             [InstanceManager instance].homeViewController.title = stringeeClient.userId;
             [InstanceManager instance].homeViewController.btCall.enabled = YES;
+        }
+        
+        // Nếu chưa đăng ký nhận push thì đăng ký hoặc khi logout sau đó conect với tài khoản khác thì cũng cần đăng ký
+        if (![InstanceManager instance].hasRegisteredToReceivePush) {
+            [self.stringeeClient registerPushForDeviceToken:[InstanceManager instance].deviceToken isProduction:NO isVoip:YES completionHandler:^(BOOL status, int code, NSString *message) {
+                NSLog(@"%@", message);
+                if (status) {
+                    [InstanceManager instance].hasRegisteredToReceivePush = YES;
+                }
+            }];
         }
     });
 }
@@ -84,27 +89,26 @@ static StringeeImplement *sharedMyManager = nil;
 
 - (void)incomingCallWithStringeeClient:(StringeeClient *)stringeeClient stringeeCall:(StringeeCall *)stringeeCall {
     
-    if (![CallManager sharedInstance].currentCall) {
+    if (![CallManager sharedInstance].currentCall && ![InstanceManager instance].callingViewController) {
+        
         seCall = stringeeCall;
-        seCall.callStateDelegate = self;
-        seCall.callMediaDelegate = self;
-        
-        callState = -1;
+        self.signalingState = -1;
         hasAnswered = NO;
-        
         
         if (@available(iOS 10, *)) {
             // Callkit
             [[CallManager sharedInstance] reportIncomingCallForUUID:[NSUUID new] phoneNumber:seCall.from completionHandler:^(NSError *error) {
                 if (!error) {
-                    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    CallingViewController *callingVC = (CallingViewController *)[mainSB instantiateViewControllerWithIdentifier:@"CallingViewController"];
-                    callingVC.isOutgoingCall = NO;
-                    callingVC.strUserId = stringeeCall.from;
-                    callingVC.seCall = stringeeCall;
-                    [[InstanceManager instance].homeViewController presentViewController:callingVC animated:YES completion:nil];
                     
-                    [seCall initAnswerCall];
+                    CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
+                    callingVC.isIncomingCall = YES;
+                    callingVC.username = stringeeCall.from;
+                    callingVC.stringeeCall = stringeeCall;
+                    
+                    [self delayCallback:^{
+                        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:NO completion:nil];
+                    } forTotalSeconds:0.5];
+                    
                 } else {
                     [seCall rejectWithCompletionHandler:^(BOOL status, int code, NSString *message) {
                         NSLog(@"***** Reject - %@", message);
@@ -115,14 +119,16 @@ static StringeeImplement *sharedMyManager = nil;
             // Local push
             [self beginBackgroundTask];
             
-            [seCall initAnswerCall];
-            [self startRingingFrom:seCall.from];
-            UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            CallingViewController *callingVC = (CallingViewController *)[mainSB instantiateViewControllerWithIdentifier:@"CallingViewController"];
-            callingVC.isOutgoingCall = NO;
-            callingVC.strUserId = stringeeCall.from;
-            callingVC.seCall = stringeeCall;
-            [[InstanceManager instance].homeViewController presentViewController:callingVC animated:YES completion:nil];
+            if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
+                [self startRinging];
+            }
+            
+            CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
+            callingVC.isIncomingCall = YES;
+            callingVC.username = stringeeCall.from;
+            callingVC.stringeeCall = stringeeCall;
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
         }
         
     } else {
@@ -130,57 +136,61 @@ static StringeeImplement *sharedMyManager = nil;
             NSLog(@"***** Reject - %@", message);
         }];
     }
-    
 }
-
-- (void)showLocalNotificationForMissCallState:(BOOL) isMissCall{
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    UILocalNotification *notification = [[UILocalNotification alloc]init];
-    notification.repeatInterval = 0;
-    if (isMissCall) {
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        [notification setAlertBody:[NSString stringWithFormat:@"You missed the call from %@", ringingTimer.userInfo]];
-    } else {
-        notification.soundName = @"incoming_call.aif";
-        [notification setAlertBody:[NSString stringWithFormat:@"%@ is Calling...", ringingTimer.userInfo]];
-
-    }
-    
-    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-    [notification setTimeZone:[NSTimeZone  defaultTimeZone]];
-    
-    [[UIApplication sharedApplication] setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
-}
-
 
 // MARK: - Private Method
 
+- (void)delayCallback:(void(^)(void))callback forTotalSeconds:(double)delayInSeconds {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if(callback){
+            callback();
+        }
+    });
+}
+
 - (void)checkAnswerCall {
     if (hasAnswered && audioIsActived) {
-        [seCall answerCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
-            NSLog(@"*****AnswercCall %@", message);
-        }];
+        [[InstanceManager instance].callingViewController answerCallWithAnimation:NO];
     }
 }
 
-- (NSTimer *)timerWithUserInfo:(NSString *)userInfo {
+- (void)startRinging {
     if (!ringingTimer) {
-        ringingTimer = [NSTimer scheduledTimerWithTimeInterval:8.0 target:self selector:@selector(showLocalNotificationForMissCallState:) userInfo:userInfo repeats:YES];
+        ringingTimer = [NSTimer scheduledTimerWithTimeInterval:8.0 target:self selector:@selector(displayRingingNotification) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:ringingTimer forMode:NSRunLoopCommonModes];
         [ringingTimer fire];
-    }
-    return ringingTimer;
+    }}
+
+
+- (void)displayRingingNotification {
+    NSString *message = [NSString stringWithFormat:@"%@ Đang gọi...", seCall.from];
+    [self displayLocalNotificationWithMessage:message soundName:@"incoming_call.aif"];
 }
 
-- (void)startRingingFrom:(NSString *)from {
-    [self timerWithUserInfo:from];
+- (void)displayLocalNotificationWithMessage:(NSString *)message soundName:(NSString *)soundName {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    notification.repeatInterval = 0;
+    notification.soundName = soundName;
+    [notification setAlertBody:message];
+    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    [notification setTimeZone:[NSTimeZone  defaultTimeZone]];
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
-- (void)stopRingingForMissCallState:(BOOL)isMissCall message:(NSString *)message {
+
+
+- (void)stopRingingWithMessage:(NSString *)message {
+    
     if (ringingTimer) {
-        if (isMissCall) {
-            [self showLocalNotificationForMissCallState:isMissCall];
+        
+        if (message.length) {
+            [self displayLocalNotificationWithMessage:message soundName:UILocalNotificationDefaultSoundName];
         }
+        
         CFRunLoopStop(CFRunLoopGetCurrent());
         [ringingTimer invalidate];
         ringingTimer = nil;
@@ -200,7 +210,6 @@ static StringeeImplement *sharedMyManager = nil;
     backgroundTaskIdentifier = UIBackgroundTaskInvalid;
 }
 
-
 // MARK: - CallManagerDelegate
 - (void)callDidAnswer {
     NSLog(@"callDidAnswer");
@@ -211,14 +220,15 @@ static StringeeImplement *sharedMyManager = nil;
 - (void)callDidEnd {
     NSLog(@"callDidEnd");
     
-    if (callState != STRINGEE_CALLSTATE_BUSY && callState != STRINGEE_CALLSTATE_END) {
+    if (self.signalingState != SignalingStateBusy && self.signalingState != SignalingStateEnded) {
         if (seCall.isIncomingCall && !hasAnswered) {
-            [seCall rejectWithCompletionHandler:^(BOOL status, int code, NSString *message) {
-                NSLog(@"*****RejectCall %@", message);
-            }];
+            [[InstanceManager instance].callingViewController decline];
         } else {
-            [seCall hangupWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+            [[InstanceManager instance].callingViewController.stringeeCall hangupWithCompletionHandler:^(BOOL status, int code, NSString *message) {
                 NSLog(@"*****HangupCall %@", message);
+                if (!status) {
+                    [[InstanceManager instance].callingViewController endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
+                }
             }];
         }
     }
@@ -231,9 +241,7 @@ static StringeeImplement *sharedMyManager = nil;
 
 - (void)callDidFail:(NSError *)error {
     NSLog(@"callDidFail");
-    [seCall hangupWithCompletionHandler:^(BOOL status, int code, NSString *message) {
-        NSLog(@"*****Hangup - %@", message);
-    }];
+    [[InstanceManager instance].callingViewController endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
 }
 
 - (void)callDidActiveAudioSession {
@@ -245,65 +253,6 @@ static StringeeImplement *sharedMyManager = nil;
 - (void)callDidDeactiveAudioSession {
     NSLog(@"callDidDeactiveAudioSession");
     audioIsActived = NO;
-}
-
-
-// MARK: - StringeeCallStateDelegate
-
-- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)state reason:(NSString *)reason {
-    NSLog(@"StringeeCallState - %@", reason);
-    callState = state;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        switch (state) {
-                
-            case STRINGEE_CALLSTATE_INIT: {
-                [InstanceManager instance].callingViewController.labelConnecting.text = @"Init";
-            } break;
-                
-            case STRINGEE_CALLSTATE_CALLING: {
-                [InstanceManager instance].callingViewController.labelConnecting.text = @"Calling";
-            } break;
-                
-            case STRINGEE_CALLSTATE_RINGING: {
-                [InstanceManager instance].callingViewController.labelConnecting.text = @"Ringing";
-            } break;
-                
-            case STRINGEE_CALLSTATE_STARTING: {
-                [InstanceManager instance].callingViewController.labelConnecting.text = @"Starting";
-            } break;
-                
-            case STRINGEE_CALLSTATE_CONNECTED: {
-                [[InstanceManager instance].callingViewController startTimer];
-            } break;
-                
-            case STRINGEE_CALLSTATE_BUSY: {
-                [[InstanceManager instance].callingViewController stopTimer];
-                [[InstanceManager instance].callingViewController dismissViewControllerAnimated:YES completion:nil];
-            } break;
-                
-            case STRINGEE_CALLSTATE_END: {
-                [[InstanceManager instance].callingViewController stopTimer];
-                [[InstanceManager instance].callingViewController dismissViewControllerAnimated:YES completion:nil];
-                if (@available(iOS 10, *)) {
-                    [[CallManager sharedInstance] endCall];
-                } else {
-                    [self stopRingingForMissCallState:YES message:nil];
-                }
-                
-            } break;
-                
-            default:
-                break;
-        }
-    });
-    
-}
-
-- (void)didAnsweredOnOtherDevice:(StringeeCall *)stringeeCall state:(StringeeCallState)state {
-    NSLog(@"didAnsweredOnOtherDevice %ld", (long)state);
-    [self stopRingingForMissCallState:YES message:@"The call has been controlled on other device"];
-    [[InstanceManager instance].callingViewController stopTimer];
-    [[InstanceManager instance].callingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

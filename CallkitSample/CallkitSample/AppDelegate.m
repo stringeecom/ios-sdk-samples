@@ -21,10 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[StringeeImplement instance] connectToStringeeServer];
-
+    
     // Local push
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
-    {
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     
@@ -42,7 +41,7 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -75,9 +74,17 @@
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"**************** Token - Voip push: %@", token);
     
-    [[StringeeImplement instance].stringeeClient registerPushForDeviceToken:token isProduction:NO isVoip:YES completionHandler:^(BOOL status, int code, NSString *message) {
-        NSLog(@"%@", message);
-    }];
+    [InstanceManager instance].deviceToken = token;
+    
+    if (![InstanceManager instance].hasRegisteredToReceivePush) {
+        // Chú ý: trước khi up lên store thì phải chuyển isProduction = YES
+        [[StringeeImplement instance].stringeeClient registerPushForDeviceToken:token isProduction:NO isVoip:YES completionHandler:^(BOOL status, int code, NSString *message) {
+            NSLog(@"%@", message);
+            if (status) {
+                [InstanceManager instance].hasRegisteredToReceivePush = YES;
+            }
+        }];
+    }
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
@@ -86,10 +93,8 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     NSLog(@"didReceiveLocalNotification");
-    [[StringeeImplement instance] stopRingingForMissCallState:NO message:nil];
-    [[InstanceManager instance].callingViewController.seCall answerCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
-        
-    }];
+    [[StringeeImplement instance] stopRingingWithMessage:@""];
+    [[InstanceManager instance].callingViewController answerCallWithAnimation:NO];
 }
 
 @end

@@ -10,16 +10,15 @@
 #import <Stringee/Stringee.h>
 #import "CallManager.h"
 
-@interface StringeeImplement : NSObject<StringeeConnectionDelegate, StringeeIncomingCallDelegate, CallManagerDelegate, StringeeCallStateDelegate, StringeeCallMediaDelegate>
+@interface StringeeImplement : NSObject<StringeeConnectionDelegate, StringeeIncomingCallDelegate, CallManagerDelegate>
 
 @property (strong, nonatomic) StringeeClient *stringeeClient;
-@property (strong, nonatomic) NSString *userId;
-
+@property (assign, nonatomic) SignalingState signalingState;
 
 + (StringeeImplement *)instance;
 
 - (void)connectToStringeeServer;
 
-- (void)stopRingingForMissCallState:(BOOL)isMissCall message:(NSString *)message;
+- (void)stopRingingWithMessage:(NSString *)message;
 
 @end

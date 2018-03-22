@@ -139,40 +139,40 @@
         CallDTMF dtmf;
         
         if ([text isEqualToString:@"0"]) {
-            dtmf = CallDTMF_Zero;
+            dtmf = CallDTMFZero;
         }
         else if ([text isEqualToString:@"1"]) {
-            dtmf = CallDTMF_One;
+            dtmf = CallDTMFOne;
         }
         else if ([text isEqualToString:@"2"]) {
-            dtmf = CallDTMF_Two;
+            dtmf = CallDTMFTwo;
         }
         else if ([text isEqualToString:@"3"]) {
-            dtmf = CallDTMF_Three;
+            dtmf = CallDTMFThree;
         }
         else if ([text isEqualToString:@"4"]) {
-            dtmf = CallDTMF_Four;
+            dtmf = CallDTMFFour;
         }
         else if ([text isEqualToString:@"5"]) {
-            dtmf = CallDTMF_Five;
+            dtmf = CallDTMFFive;
         }
         else if ([text isEqualToString:@"6"]) {
-            dtmf = CallDTMF_Six;
+            dtmf = CallDTMFSix;
         }
         else if ([text isEqualToString:@"7"]) {
-            dtmf = CallDTMF_Seven;
+            dtmf = CallDTMFSeven;
         }
         else if ([text isEqualToString:@"8"]) {
-            dtmf = CallDTMF_Eight;
+            dtmf = CallDTMFEight;
         }
         else if ([text isEqualToString:@"9"]) {
-            dtmf = CallDTMF_Nine;
+            dtmf = CallDTMFNine;
         }
         else if ([text isEqualToString:@"*"]) {
-            dtmf = CallDTMF_Star;
+            dtmf = CallDTMFStar;
         }
         else {
-            dtmf = CallDTMF_Pound;
+            dtmf = CallDTMFPound;
         }
         
         [self.stringeeCall sendDTMF:dtmf completionHandler:^(BOOL status, int code, NSString *message) {

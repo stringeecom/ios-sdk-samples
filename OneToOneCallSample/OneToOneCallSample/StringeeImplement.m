@@ -74,7 +74,6 @@ static StringeeImplement *sharedMyManager = nil;
     callingVC.stringeeCall = stringeeCall;
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
-    
 }
 
 @end

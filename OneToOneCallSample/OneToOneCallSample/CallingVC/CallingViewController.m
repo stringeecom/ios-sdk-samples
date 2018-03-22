@@ -31,9 +31,11 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     double prevAudioTimeStamp;
     long long prevAudioBytes;
     
+    BOOL hasCreatedCall;
     BOOL isSpeaker;
     BOOL videoIsDisable;
-    BOOL timerHasStarted;
+    BOOL hasAnsweredCall;
+    BOOL hasConnectedMedia;
 }
 
 - (void)viewDidLoad {
@@ -49,63 +51,61 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.labelUsername.text = self.username;
-
-    
-    if (self.isVideoCall || self.stringeeCall.isVideoCall) {
-        self.buttonCallPad.hidden = YES;
-        self.labelUsername.hidden = YES;
-        self.labelPhoneNumber.hidden = YES;
-        self.view.backgroundColor = [UIColor blackColor];
-
-    } else {
-        self.buttonDisableVideo.hidden = YES;
-        self.buttonSwitchCamera.hidden = YES;
-        self.containRemoteView.hidden = YES;
-    }
-    
-    StringeeAudioManager * audioManager = [StringeeAudioManager instance];
-    [audioManager audioSessionSetActive:YES error:nil];
-    
-    if (!self.isIncomingCall) {
-        self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.to];
+    if (!hasCreatedCall) {
+        hasCreatedCall = !hasCreatedCall;
+        self.labelUsername.text = self.username;
         
-        self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient from:self.from to:self.to];
-        if (self.isVideoCall) {
-            self.stringeeCall.isVideoCall = YES;
-            self.stringeeCall.callMediaDelegate = self;
-        }
-        self.stringeeCall.callStateDelegate = self;
-        [self.stringeeCall makeCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
-            
-            if (!status) {
-                // Nếu make call không thành công thì kết thúc cuộc gọi
-                [self endCallAndDismissWithTitle:@"Cuộc gọi không thành công"];
-            }
-            
-        }];
-    } else {
-        self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.stringeeCall.from];
-        
-        self.stringeeCall.callStateDelegate = self;
-        if (self.stringeeCall.isVideoCall) {
-            self.stringeeCall.callMediaDelegate = self;
-        }
-        [self.stringeeCall initAnswerCall];
-    }
-    
-    
-    if (!self.isCalling) {
-
-        [self startSound];
-        
-        if (self.isIncomingCall) {
-            self.buttonEndCall.hidden = YES;
-            self.optionView.hidden = YES;
+        if (self.isVideoCall || self.stringeeCall.isVideoCall) {
+            self.buttonCallPad.hidden = YES;
+            self.labelUsername.hidden = YES;
+            self.labelPhoneNumber.hidden = YES;
+            self.labelCallPad.text = @"Camera";
+            self.view.backgroundColor = [UIColor blackColor];
             
         } else {
-            self.buttonAccept.hidden = YES;
-            self.buttonDecline.hidden = YES;
+            self.buttonDisableVideo.hidden = YES;
+            self.buttonSwitchCamera.hidden = YES;
+            self.containRemoteView.hidden = YES;
+            self.labelCallPad.text = @"Keypad";
+        }
+        
+        StringeeAudioManager * audioManager = [StringeeAudioManager instance];
+        [audioManager audioSessionSetActive:YES error:nil];
+        
+        if (!self.isIncomingCall) {
+            self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.to];
+            
+            self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient from:self.from to:self.to];
+            self.stringeeCall.isVideoCall = self.isVideoCall;
+            self.stringeeCall.delegate = self;
+            [self.stringeeCall makeCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+                
+                if (!status) {
+                    // Nếu make call không thành công thì kết thúc cuộc gọi
+                    [self endCallAndDismissWithTitle:@"Cuộc gọi không thành công"];
+                }
+                
+            }];
+        } else {
+            self.labelPhoneNumber.text = [NSString stringWithFormat:@"Mobile: %@", self.stringeeCall.from];
+            
+            self.stringeeCall.delegate = self;
+            [self.stringeeCall initAnswerCall];
+        }
+        
+        
+        if (!self.isCalling) {
+            
+            [self startSound];
+            
+            if (self.isIncomingCall) {
+                self.buttonEndCall.hidden = YES;
+                self.optionView.hidden = YES;
+                
+            } else {
+                self.buttonAccept.hidden = YES;
+                self.buttonDecline.hidden = YES;
+            }
         }
     }
     
@@ -175,6 +175,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             
         } completion:^(BOOL finished) {
             
+            hasAnsweredCall = YES;
             [self.stringeeCall answerCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
                 NSLog(@"%@", message);
             }];
@@ -183,8 +184,6 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             self.buttonEndCall.hidden = NO;
             
             self.optionView.hidden = NO;
-            
-            
         }];
     });
     
@@ -236,9 +235,14 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     [self endStatsReports];
     
     [self delayCallback:^{
-        [self dismissViewControllerAnimated:YES completion:^{
+        UIViewController *vc = self.presentingViewController;
+        while (vc.presentingViewController) {
+            vc = vc.presentingViewController;
+        }
+        [vc dismissViewControllerAnimated:YES completion:^{
             [InstanceManager instance].callingViewController = nil;
         }];
+        
     } forTotalSeconds:1];
 }
 
@@ -265,35 +269,37 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 }
 
 // Bắt đầu đếm thời gian cuộc gọi
-- (void)StartTimer
-{
+- (void)startTimer {
     
     self.isCalling = YES;
     
-    if (!timerHasStarted) {
+    if (!timer) {
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-        timerHasStarted = YES;
+        [timer fire];
     }
 
 }
 
 // Hàm nhảy dây
-- (void)timerTick:(NSTimer *)timer
-{
+- (void)timerTick:(NSTimer *)timer {
     self.timeSec++;
     if (self.timeSec == 60)
     {
         self.timeSec = 0;
         self.timeMin++;
     }
-    NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", self.timeMin, self.timeSec];
+    
+    if (self.labelConnecting.hidden) {
+        self.labelConnecting.hidden = NO;
+    }
+    
+    NSString *timeNow = [NSString stringWithFormat:@"%02d:%02d", self.timeMin, self.timeSec];
     self.labelConnecting.text= timeNow;
 }
 
 // Kết thúc đếm thời gian cuộc gọi
-- (void)StopTimer
-{
+- (void)stopTimer{
     CFRunLoopStop(CFRunLoopGetCurrent());
     [timer invalidate];
     NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", self.timeMin, self.timeSec];
@@ -423,11 +429,118 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 - (void)stopSound {
     [self.ringAudioPlayer stop];
     self.ringAudioPlayer = nil;
-    
 }
 
 
-// MARK: - Stringee CallMedia Delegate
+// MARK: - Stringee Call Delegate
+
+//- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)state reason:(NSString *)reason {
+//
+//    NSLog(@"*********Callstate: %d", state);
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        switch (state) {
+//
+//            case STRINGEE_CALLSTATE_INIT:
+//                self.labelConnecting.text = @"Init...";
+//                break;
+//
+//            case STRINGEE_CALLSTATE_CALLING:
+//                self.labelConnecting.text = @"Calling...";
+//                break;
+//
+//            case STRINGEE_CALLSTATE_RINGING:
+//                self.labelConnecting.text = @"Ringing...";
+//                break;
+//
+//            case STRINGEE_CALLSTATE_STARTING: {
+//                self.labelConnecting.text = @"Starting...";
+//            } break;
+//
+//            case STRINGEE_CALLSTATE_CONNECTED: {
+//
+//                [self StartTimer];
+//                [self beginStatsReports];
+//            } break;
+//
+//            case STRINGEE_CALLSTATE_BUSY: {
+//
+//                [self StopTimer];
+//
+//                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
+//
+//            } break;
+//
+//            case STRINGEE_CALLSTATE_END: {
+//
+//                [self StopTimer];
+//
+//                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
+//
+//            } break;
+//
+//        }
+//    });
+//}
+
+- (void)didChangeSignalingState:(StringeeCall *)stringeeCall signalingState:(SignalingState)signalingState reason:(NSString *)reason sipCode:(int)sipCode sipReason:(NSString *)sipReason {
+    NSLog(@"*********Callstate: %ld", (long)signalingState);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        switch (signalingState) {
+                
+            case SignalingStateCalling:
+                self.labelConnecting.hidden = NO;
+                self.labelConnecting.text = @"Đang gọi...";
+                break;
+                
+            case SignalingStateRinging:
+                self.labelConnecting.text = @"Đang đổ chuông...";
+                break;
+                
+            case SignalingStateAnswered: {
+                hasAnsweredCall = YES;
+                if (hasConnectedMedia) {
+                    [self startTimer];
+                } else {
+                    self.labelConnecting.text = @"Đang kết nối...";
+                }
+            } break;
+                
+            case SignalingStateBusy: {
+                [self stopTimer];
+                [self endCallAndDismissWithTitle:@"Số máy bận"];
+            } break;
+                
+            case SignalingStateEnded: {
+                [self stopTimer];
+                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
+            } break;
+                
+        }
+    });
+}
+
+- (void)didChangeMediaState:(StringeeCall *)stringeeCall mediaState:(MediaState)mediaState {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        switch (mediaState) {
+            case MediaStateConnected:
+                hasConnectedMedia = YES;
+                if (hasAnsweredCall) {
+                    [self startTimer];
+                }
+                [self beginStatsReports];
+                
+                break;
+            case MediaStateDisconnected:
+                break;
+            default:
+                break;
+        }
+    });
+}
+
+
 - (void)didReceiveLocalStream:(StringeeCall *)stringeeCall {
     dispatch_async(dispatch_get_main_queue(), ^{
         [stringeeCall.localVideoView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
@@ -446,7 +559,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 // MARK: - Stringee RemoteView Delegate
 - (void)videoView:(StringeeRemoteVideoView *)videoView didChangeVideoSize:(CGSize)size {
     NSLog(@"didChangeVideoSize %f - %f", size.width, size.height);
-        
+    
     // Get width and height of superview
     CGFloat superWidth = self.containRemoteView.bounds.size.width;
     CGFloat superHeight = self.containRemoteView.bounds.size.height;
@@ -459,7 +572,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
         newHeight = newWidth * size.height / size.width;
         
         [videoView setFrame:CGRectMake(0, (superHeight - newHeight) / 2, newWidth, newHeight)];
-
+        
     } else {
         newHeight = superHeight;
         newWidth = newHeight * size.width / size.height;
@@ -468,57 +581,6 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
     }
 }
 
-
-// MARK: - Stringee CallState Delegate
-
-- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)state reason:(NSString *)reason {
-    
-    NSLog(@"*********Callstate: %d", state);
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        switch (state) {
-                
-            case STRINGEE_CALLSTATE_INIT:
-                self.labelConnecting.text = @"Init...";
-                break;
-                
-            case STRINGEE_CALLSTATE_CALLING:
-                self.labelConnecting.text = @"Calling...";
-                break;
-                
-            case STRINGEE_CALLSTATE_RINGING:
-                self.labelConnecting.text = @"Ringing...";
-                break;
-                
-            case STRINGEE_CALLSTATE_STARTING: {
-                self.labelConnecting.text = @"Starting...";
-            } break;
-                
-            case STRINGEE_CALLSTATE_CONNECTED: {
-
-                [self StartTimer];
-                [self beginStatsReports];
-            } break;
-                
-            case STRINGEE_CALLSTATE_BUSY: {
-                
-                [self StopTimer];
-                
-                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
-                
-            } break;
-                
-            case STRINGEE_CALLSTATE_END: {
-                
-                [self StopTimer];
-
-                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
-                
-            } break;
-
-        }
-    });
-}
 
 
 @end

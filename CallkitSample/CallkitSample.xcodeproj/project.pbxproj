@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512275682063A62300E10232 /* CallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 512275662063A62300E10232 /* CallingViewController.m */; };
+		512275692063A62300E10232 /* CallingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512275672063A62300E10232 /* CallingViewController.xib */; };
 		515496FB202326DD001C4C41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 515496FA202326DD001C4C41 /* AppDelegate.m */; };
 		515496FE202326DD001C4C41 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515496FD202326DD001C4C41 /* HomeViewController.m */; };
 		51549701202326DD001C4C41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515496FF202326DD001C4C41 /* Main.storyboard */; };
@@ -19,7 +21,6 @@
 		5154973820232970001C4C41 /* CallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973620232970001C4C41 /* CallManager.m */; };
 		5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973A20232AB6001C4C41 /* InstanceManager.m */; };
 		51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */ = {isa = PBXBuildFile; fileRef = 51A6222A20313E2F000AB197 /* incoming_call.aif */; };
-		51AB8E90202EA531007E1A98 /* CallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AB8E8F202EA531007E1A98 /* CallingViewController.m */; };
 		C0D619648DDE05F753DA07F2 /* libPods-CallkitSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,9 @@
 		283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.release.xcconfig"; sourceTree = "<group>"; };
 		2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallkitSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.debug.xcconfig"; sourceTree = "<group>"; };
+		512275652063A62300E10232 /* CallingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallingViewController.h; sourceTree = "<group>"; };
+		512275662063A62300E10232 /* CallingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallingViewController.m; sourceTree = "<group>"; };
+		512275672063A62300E10232 /* CallingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallingViewController.xib; sourceTree = "<group>"; };
 		515496F6202326DD001C4C41 /* CallkitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallkitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515496F9202326DD001C4C41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		515496FA202326DD001C4C41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -48,8 +52,6 @@
 		5154973A20232AB6001C4C41 /* InstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceManager.m; sourceTree = "<group>"; };
 		5162D0E52043E1910057F227 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		51A6222A20313E2F000AB197 /* incoming_call.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = incoming_call.aif; sourceTree = "<group>"; };
-		51AB8E8E202EA531007E1A98 /* CallingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallingViewController.h; sourceTree = "<group>"; };
-		51AB8E8F202EA531007E1A98 /* CallingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallingViewController.m; sourceTree = "<group>"; };
 		51B15AC82023FC0B001AA015 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		51B15ACC2023FCA0001AA015 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		51B15ACE2023FCA6001AA015 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -72,6 +74,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		512275642063A62300E10232 /* CallingVC */ = {
+			isa = PBXGroup;
+			children = (
+				512275652063A62300E10232 /* CallingViewController.h */,
+				512275662063A62300E10232 /* CallingViewController.m */,
+				512275672063A62300E10232 /* CallingViewController.xib */,
+			);
+			path = CallingVC;
+			sourceTree = "<group>";
+		};
 		515496ED202326DD001C4C41 = {
 			isa = PBXGroup;
 			children = (
@@ -105,8 +117,7 @@
 				5154973320232970001C4C41 /* StringeeImplement.m */,
 				515496FC202326DD001C4C41 /* HomeViewController.h */,
 				515496FD202326DD001C4C41 /* HomeViewController.m */,
-				51AB8E8E202EA531007E1A98 /* CallingViewController.h */,
-				51AB8E8F202EA531007E1A98 /* CallingViewController.m */,
+				512275642063A62300E10232 /* CallingVC */,
 				515496FF202326DD001C4C41 /* Main.storyboard */,
 				51549702202326DD001C4C41 /* Assets.xcassets */,
 				51549704202326DD001C4C41 /* LaunchScreen.storyboard */,
@@ -214,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				512275692063A62300E10232 /* CallingViewController.xib in Resources */,
 				51549706202326DD001C4C41 /* LaunchScreen.storyboard in Resources */,
 				51549703202326DD001C4C41 /* Assets.xcassets in Resources */,
 				51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */,
@@ -279,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51AB8E90202EA531007E1A98 /* CallingViewController.m in Sources */,
+				512275682063A62300E10232 /* CallingViewController.m in Sources */,
 				515496FE202326DD001C4C41 /* HomeViewController.m in Sources */,
 				5154973820232970001C4C41 /* CallManager.m in Sources */,
 				5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */,
@@ -419,7 +431,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CallkitSample/CallkitSample.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8MA9F9A86E;
@@ -444,7 +455,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CallkitSample/CallkitSample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

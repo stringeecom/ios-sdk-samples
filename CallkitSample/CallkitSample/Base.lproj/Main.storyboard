@@ -64,66 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-671" y="152"/>
-        </scene>
-        <!--Calling View Controller-->
-        <scene sceneID="QKf-bE-OcB">
-            <objects>
-                <viewController storyboardIdentifier="CallingViewController" id="FWD-ob-RHV" customClass="CallingViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="foa-Ot-08M"/>
-                        <viewControllerLayoutGuide type="bottom" id="qNs-Mj-4DE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tYm-gf-4US">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUA-Ac-4xi">
-                                <rect key="frame" x="125" y="186" width="125" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="aBN-fv-yhh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="Hangup">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="hangupTapped:" destination="FWD-ob-RHV" eventType="touchUpInside" id="CsG-2H-O3I"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Init" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfl-an-Pt7">
-                                <rect key="frame" x="174.5" y="135" width="25.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQm-vK-Qce">
-                                <rect key="frame" x="149" y="80" width="78" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pUA-Ac-4xi" firstAttribute="centerX" secondItem="tYm-gf-4US" secondAttribute="centerX" id="5vB-pA-Afb"/>
-                            <constraint firstItem="pUA-Ac-4xi" firstAttribute="top" secondItem="dfl-an-Pt7" secondAttribute="bottom" constant="30" id="8ab-Zs-hOp"/>
-                            <constraint firstItem="aQm-vK-Qce" firstAttribute="top" secondItem="foa-Ot-08M" secondAttribute="bottom" constant="60" id="AIM-dB-VIl"/>
-                            <constraint firstItem="aQm-vK-Qce" firstAttribute="centerX" secondItem="tYm-gf-4US" secondAttribute="centerX" id="NST-Op-gUQ"/>
-                            <constraint firstItem="pUA-Ac-4xi" firstAttribute="width" secondItem="tYm-gf-4US" secondAttribute="width" multiplier="1:3" id="b3h-Uj-LXn"/>
-                            <constraint firstItem="dfl-an-Pt7" firstAttribute="centerX" secondItem="tYm-gf-4US" secondAttribute="centerX" id="erA-DQ-mCV"/>
-                            <constraint firstItem="dfl-an-Pt7" firstAttribute="top" secondItem="aQm-vK-Qce" secondAttribute="bottom" constant="25" id="ngv-ea-4XL"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="labelConnecting" destination="dfl-an-Pt7" id="iv2-PY-VxY"/>
-                        <outlet property="lbUserId" destination="aQm-vK-Qce" id="53g-mC-Qhr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gtV-mi-ryq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6" y="153"/>
+            <point key="canvasLocation" x="-1598" y="165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xCh-5u-yGL">
@@ -141,7 +82,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSj-lf-bVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1300" y="153"/>
+            <point key="canvasLocation" x="-2226" y="166"/>
         </scene>
     </scenes>
 </document>

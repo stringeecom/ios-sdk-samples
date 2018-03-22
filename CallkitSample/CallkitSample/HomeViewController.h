@@ -13,8 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfUserId;
 @property (weak, nonatomic) IBOutlet UIButton *btCall;
 
-
-
 - (IBAction)callTapped:(UIButton *)sender;
 
 @end
