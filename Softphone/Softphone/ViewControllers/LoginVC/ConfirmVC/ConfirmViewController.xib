@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmViewController">
+            <connections>
+                <outlet property="lbDescription" destination="8Qz-bm-qLF" id="UbO-US-QOq"/>
+                <outlet property="tfPinCode" destination="Yjc-Ci-N5x" id="mah-M1-vKV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-Ci-N5x" customClass="PinCodeTextField" customModule="Softphone" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="89" width="375" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Uyc-dB-gWS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="underlineHSpacing">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="underlineVMargin">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="characterLimit">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="underlineHeight">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                            <color key="value" red="1" green="0.24379610139999999" blue="0.2841157165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                            <color key="value" red="1" green="0.24379610139999999" blue="0.2841157165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="updatedUnderlineColor">
+                            <color key="value" red="1" green="0.24379610139999999" blue="0.2841157165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhập mã kích hoạt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GK-JW-emE">
+                    <rect key="frame" x="81.5" y="34" width="211" height="30"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã kích hoạt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qz-bm-qLF">
+                    <rect key="frame" x="47" y="171" width="281" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="KfG-QB-Arc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6GK-JW-emE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GX8-Ha-fOy"/>
+                <constraint firstItem="Yjc-Ci-N5x" firstAttribute="top" secondItem="6GK-JW-emE" secondAttribute="bottom" constant="25" id="IfP-9O-S0J"/>
+                <constraint firstItem="6GK-JW-emE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="Oo9-hM-8bF"/>
+                <constraint firstItem="8Qz-bm-qLF" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="3:4" id="U3t-sq-evN"/>
+                <constraint firstItem="8Qz-bm-qLF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iVj-uT-5zB"/>
+                <constraint firstItem="Yjc-Ci-N5x" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="lA3-zg-97i"/>
+                <constraint firstItem="8Qz-bm-qLF" firstAttribute="top" secondItem="Yjc-Ci-N5x" secondAttribute="bottom" constant="42" id="twa-1w-K7n"/>
+                <constraint firstItem="Yjc-Ci-N5x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYn-Tf-d2B"/>
+            </constraints>
+            <point key="canvasLocation" x="-2004" y="-662"/>
+        </view>
+    </objects>
+</document>

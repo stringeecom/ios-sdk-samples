@@ -431,7 +431,7 @@
 					"$(PROJECT_DIR)/Stringee",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.OneToOneCallSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d01de50e-c120-42e9-aeb5-48fff752c294";
 				PROVISIONING_PROFILE_SPECIFIER = "OneToOneCallSample-dev";
@@ -460,7 +460,7 @@
 					"$(PROJECT_DIR)/Stringee",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.OneToOneCallSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e5632265-318f-4b4e-a641-31f6ce04a513";
 				PROVISIONING_PROFILE_SPECIFIER = "OneToOneCallSample-Dis";

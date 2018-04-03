@@ -1,0 +1,8 @@
+platform :ios, '8.0'
+
+target 'Softphone' do
+	pod 'AFNetworking'
+	pod 'IQKeyboardManager'
+	pod 'MBProgressHUD'
+	pod 'Stringee'
+end

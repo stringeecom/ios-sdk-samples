@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="ContactTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fMl-WQ-t1X">
+                        <rect key="frame" x="26" y="14" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="nNs-7g-Yqi"/>
+                            <constraint firstAttribute="width" secondItem="fMl-WQ-t1X" secondAttribute="height" multiplier="1:1" id="pPr-CO-I5L"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phan Hoang Anh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4Z-Up-MJ1">
+                        <rect key="frame" x="81" y="14" width="115" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0988 888 888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iex-0D-Okt">
+                        <rect key="frame" x="81" y="36" width="83.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_stringee" translatesAutoresizingMaskIntoConstraints="NO" id="I7a-3K-xPr">
+                        <rect key="frame" x="51" y="39" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="I7a-3K-xPr" secondAttribute="height" multiplier="1:1" id="rje-YQ-j1k"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGx-yo-Qqw">
+                        <rect key="frame" x="275" y="14" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="LGx-yo-Qqw" secondAttribute="height" multiplier="1:1" id="XAM-d6-Z4r"/>
+                            <constraint firstAttribute="width" constant="40" id="b0d-z0-g44"/>
+                        </constraints>
+                        <state key="normal" image="voice_call_icon"/>
+                        <connections>
+                            <action selector="voiceCallTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="M6o-Pa-oyw"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luM-sS-xlp">
+                        <rect key="frame" x="230" y="14" width="40" height="40"/>
+                        <state key="normal" image="video_call_icon"/>
+                        <connections>
+                            <action selector="videoCallTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="X5j-w9-tfJ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="luM-sS-xlp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iex-0D-Okt" secondAttribute="trailing" constant="5" id="HIz-mW-5vC"/>
+                    <constraint firstItem="F4Z-Up-MJ1" firstAttribute="top" secondItem="fMl-WQ-t1X" secondAttribute="top" id="JCr-lV-KR3"/>
+                    <constraint firstItem="luM-sS-xlp" firstAttribute="centerY" secondItem="LGx-yo-Qqw" secondAttribute="centerY" id="KHP-fw-6XS"/>
+                    <constraint firstItem="iex-0D-Okt" firstAttribute="top" secondItem="F4Z-Up-MJ1" secondAttribute="bottom" constant="4" id="KxS-eh-ZOp"/>
+                    <constraint firstItem="luM-sS-xlp" firstAttribute="width" secondItem="LGx-yo-Qqw" secondAttribute="width" id="OmR-rH-5iw"/>
+                    <constraint firstItem="LGx-yo-Qqw" firstAttribute="leading" secondItem="luM-sS-xlp" secondAttribute="trailing" constant="5" id="PNK-Ej-c7z"/>
+                    <constraint firstItem="I7a-3K-xPr" firstAttribute="trailing" secondItem="fMl-WQ-t1X" secondAttribute="trailing" constant="5" id="RaY-EA-LMa"/>
+                    <constraint firstItem="fMl-WQ-t1X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Wdx-li-Z2d"/>
+                    <constraint firstItem="fMl-WQ-t1X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eh7-mv-65L"/>
+                    <constraint firstItem="LGx-yo-Qqw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j4h-Tx-ZmD"/>
+                    <constraint firstItem="iex-0D-Okt" firstAttribute="leading" secondItem="F4Z-Up-MJ1" secondAttribute="leading" id="lNg-SO-CQg"/>
+                    <constraint firstItem="F4Z-Up-MJ1" firstAttribute="leading" secondItem="fMl-WQ-t1X" secondAttribute="trailing" constant="15" id="lTB-ZQ-xi5"/>
+                    <constraint firstItem="luM-sS-xlp" firstAttribute="height" secondItem="LGx-yo-Qqw" secondAttribute="height" id="oma-xz-kMn"/>
+                    <constraint firstItem="I7a-3K-xPr" firstAttribute="bottom" secondItem="fMl-WQ-t1X" secondAttribute="bottom" constant="5" id="qgt-4y-fYd"/>
+                    <constraint firstItem="I7a-3K-xPr" firstAttribute="width" secondItem="fMl-WQ-t1X" secondAttribute="width" multiplier="1:2" id="tr2-Or-Zv4"/>
+                    <constraint firstItem="luM-sS-xlp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F4Z-Up-MJ1" secondAttribute="trailing" constant="5" id="uXb-tt-g0E"/>
+                    <constraint firstAttribute="trailing" secondItem="LGx-yo-Qqw" secondAttribute="trailing" constant="5" id="wnC-0Z-iEx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btVideoCall" destination="luM-sS-xlp" id="3p2-MT-Kyb"/>
+                <outlet property="imageAvatar" destination="fMl-WQ-t1X" id="mNU-A4-26L"/>
+                <outlet property="imageLogo" destination="I7a-3K-xPr" id="quN-ff-FzZ"/>
+                <outlet property="labeName" destination="F4Z-Up-MJ1" id="hLY-uv-E8e"/>
+                <outlet property="labelPhone" destination="iex-0D-Okt" id="ffU-W4-p65"/>
+            </connections>
+            <point key="canvasLocation" x="-2436" y="-1583"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_stringee" width="22" height="22"/>
+        <image name="video_call_icon" width="16" height="16"/>
+        <image name="voice_call_icon" width="16" height="16"/>
+    </resources>
+</document>

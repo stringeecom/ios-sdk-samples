@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="btLogin" destination="qeC-f7-RVZ" id="urJ-3V-fMH"/>
+                <outlet property="tfPhoneNumber" destination="wty-lD-Idj" id="B8e-Tl-4I4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wty-lD-Idj">
+                    <rect key="frame" x="37.5" y="316" width="300" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="KEW-Yh-8YD"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DkN-cd-xZb">
+                    <rect key="frame" x="125" y="100" width="125" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="DkN-cd-xZb" secondAttribute="height" multiplier="1:1" id="KK2-7E-wwT"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhập số điện thoại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIa-Tw-Iw0">
+                    <rect key="frame" x="114.5" y="275" width="146.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-f7-RVZ">
+                    <rect key="frame" x="37" y="384" width="300" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.2437961014314497" blue="0.28411571649898071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <state key="normal" title="Đăng nhập">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="loginTapped:" destination="-1" eventType="touchUpInside" id="paM-AU-Tqv"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="DkN-cd-xZb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Hg-Kw-xg9"/>
+                <constraint firstItem="wty-lD-Idj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="38S-f0-ycV"/>
+                <constraint firstItem="qeC-f7-RVZ" firstAttribute="width" secondItem="wty-lD-Idj" secondAttribute="width" id="3R2-J5-Y5B"/>
+                <constraint firstItem="tIa-Tw-Iw0" firstAttribute="top" secondItem="DkN-cd-xZb" secondAttribute="bottom" constant="50" id="6la-lR-EfC"/>
+                <constraint firstItem="wty-lD-Idj" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="4:5" id="A7H-v7-KXF"/>
+                <constraint firstItem="qeC-f7-RVZ" firstAttribute="top" secondItem="wty-lD-Idj" secondAttribute="bottom" constant="23" id="E8o-y4-tD4"/>
+                <constraint firstItem="qeC-f7-RVZ" firstAttribute="height" secondItem="wty-lD-Idj" secondAttribute="height" id="FkI-4p-Aiy"/>
+                <constraint firstItem="wty-lD-Idj" firstAttribute="top" secondItem="tIa-Tw-Iw0" secondAttribute="bottom" constant="20" id="S2W-fU-nlz"/>
+                <constraint firstItem="tIa-Tw-Iw0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UVj-Ve-ePf"/>
+                <constraint firstItem="DkN-cd-xZb" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1:3" id="o9U-DR-3qs"/>
+                <constraint firstItem="DkN-cd-xZb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="q0W-Th-2fY"/>
+                <constraint firstItem="qeC-f7-RVZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uT6-kI-xe1"/>
+            </constraints>
+            <point key="canvasLocation" x="-2023" y="-210"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="341" height="341"/>
+    </resources>
+</document>
