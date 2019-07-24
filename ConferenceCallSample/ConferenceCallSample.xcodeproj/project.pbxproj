@@ -165,8 +165,6 @@
 				518DA1061FA2C5EC00C2D22B /* Sources */,
 				518DA1071FA2C5EC00C2D22B /* Frameworks */,
 				518DA1081FA2C5EC00C2D22B /* Resources */,
-				F1B011F49843C757C55A6CD3 /* [CP] Embed Pods Frameworks */,
-				91637C77A436381F0DBAFAAF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,7 +186,7 @@
 				TargetAttributes = {
 					518DA1091FA2C5EC00C2D22B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8MA9F9A86E;
+						DevelopmentTeam = 9L439MV268;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -232,21 +230,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		91637C77A436381F0DBAFAAF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConferenceCallSample/Pods-ConferenceCallSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A7F642A8FD8A6F2C6B44105B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,21 +246,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1B011F49843C757C55A6CD3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConferenceCallSample/Pods-ConferenceCallSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -417,7 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8MA9F9A86E;
+				DEVELOPMENT_TEAM = 9L439MV268;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -431,10 +399,10 @@
 					"$(PROJECT_DIR)/Stringee",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d01de50e-c120-42e9-aeb5-48fff752c294";
-				PROVISIONING_PROFILE_SPECIFIER = "OneToOneCallSample-dev";
+				PROVISIONING_PROFILE = "e7b216f2-79e3-4d0c-a08c-8178780c89ac";
+				PROVISIONING_PROFILE_SPECIFIER = ConferenceCallSample_dev;
 			};
 			name = Debug;
 		};
@@ -460,7 +428,7 @@
 					"$(PROJECT_DIR)/Stringee",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.ConferenceCallSample2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e5632265-318f-4b4e-a641-31f6ce04a513";
 				PROVISIONING_PROFILE_SPECIFIER = "OneToOneCallSample-Dis";

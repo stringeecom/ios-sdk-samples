@@ -403,11 +403,11 @@ static int TIME_WINDOW = 2;
     if (localStream) {
         if (cameraIsOff) {
             cameraIsOff = NO;
-            [localStream turnOnCammera:YES];
+            [localStream turnOnCamera:YES];
             [self.buttonCamera setBackgroundImage:[UIImage imageNamed:@"video_enable"] forState:UIControlStateNormal];
         } else {
             cameraIsOff = YES;
-            [localStream turnOnCammera:NO];
+            [localStream turnOnCamera:NO];
             [self.buttonCamera setBackgroundImage:[UIImage imageNamed:@"video_disable"] forState:UIControlStateNormal];
             
         }

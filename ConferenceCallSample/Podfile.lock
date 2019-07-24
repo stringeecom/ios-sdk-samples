@@ -1,12 +1,16 @@
 PODS:
-  - Stringee (1.2.4)
+  - Stringee (1.3.6)
 
 DEPENDENCIES:
   - Stringee
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Stringee
+
 SPEC CHECKSUMS:
-  Stringee: 5c5081606f293ff95e14a6d14c02844954adb324
+  Stringee: 2d2ee4bc9632bb2e46b452d833ca794d15e92a55
 
 PODFILE CHECKSUM: bfafc5c9cd7744dd0d87cca52c55ca044a72c618
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
