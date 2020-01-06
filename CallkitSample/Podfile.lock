@@ -1,12 +1,20 @@
 PODS:
-  - Stringee (1.2.4)
+  - GoogleWebRTC (1.1.27828)
+  - Stringee (1.4.4):
+    - GoogleWebRTC (= 1.1.27828)
 
 DEPENDENCIES:
   - Stringee
 
+SPEC REPOS:
+  trunk:
+    - GoogleWebRTC
+    - Stringee
+
 SPEC CHECKSUMS:
-  Stringee: 5c5081606f293ff95e14a6d14c02844954adb324
+  GoogleWebRTC: 55e46bee9ac2a4961542e9571bea589b64493f45
+  Stringee: f07a234ca29d17924d78b9c98b4b5d6fbd140a16
 
-PODFILE CHECKSUM: 3930ba01a2dea25cb657f77c9c6e6326929cfe9f
+PODFILE CHECKSUM: 9ec9fdc6c5b4f05f89a5e5117148e830828324c1
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.8.4
