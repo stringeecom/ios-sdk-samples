@@ -16,6 +16,8 @@
 		D429423423F10A1800A6F707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D429423323F10A1800A6F707 /* Assets.xcassets */; };
 		D429423723F10A1800A6F707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D429423523F10A1800A6F707 /* LaunchScreen.storyboard */; };
 		D429423F23F112CC00A6F707 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429423E23F112CC00A6F707 /* HomeViewController.swift */; };
+		D46325B1241F2346007A0082 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46325AF241F2345007A0082 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D46325B2241F2346007A0082 /* Stringee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46325B0241F2346007A0082 /* Stringee.framework */; };
 		D499243523F25BAF004E0405 /* SystemCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499243423F25BAF004E0405 /* SystemCallManager.swift */; };
 		D4A8C3AA23F6989F00548E24 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8C3A923F6989F00548E24 /* Reporter.swift */; };
 		D4AFA12F23F16BD200A54631 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AFA12E23F16BD200A54631 /* PushKit.framework */; };
@@ -36,6 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D46325B1241F2346007A0082 /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +59,8 @@
 		D429423623F10A1800A6F707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D429423823F10A1800A6F707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D429423E23F112CC00A6F707 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D46325AF241F2345007A0082 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		D46325B0241F2346007A0082 /* Stringee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Stringee.framework; sourceTree = "<group>"; };
 		D499243323F25235004E0405 /* CallkitSample-Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CallkitSample-Swift.entitlements"; sourceTree = "<group>"; };
 		D499243423F25BAF004E0405 /* SystemCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCallManager.swift; sourceTree = "<group>"; };
 		D4A8C3A923F6989F00548E24 /* Reporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F4902B240384090060FF68 /* libc++.tbd in Frameworks */,
+				D46325B2241F2346007A0082 /* Stringee.framework in Frameworks */,
 				D4F49029240383FE0060FF68 /* libicucore.tbd in Frameworks */,
 				D4F49027240383DC0060FF68 /* GLKit.framework in Frameworks */,
 				D4F49025240383D40060FF68 /* AudioToolbox.framework in Frameworks */,
@@ -144,6 +150,8 @@
 		D429422B23F10A1500A6F707 /* CallkitSample-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				D46325B0241F2346007A0082 /* Stringee.framework */,
+				D46325AF241F2345007A0082 /* WebRTC.framework */,
 				D429422C23F10A1500A6F707 /* AppDelegate.swift */,
 				D4D1C11023FBCB60006D40B4 /* StringeeCallCenter.swift.swift */,
 				D499243423F25BAF004E0405 /* SystemCallManager.swift */,
@@ -427,6 +435,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CallkitSample-Swift",
+					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = "CallkitSample-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -434,6 +443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = CallkitProDev;
@@ -458,6 +468,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CallkitSample-Swift",
+					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = "CallkitSample-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -465,6 +476,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = CallkitProDev;
