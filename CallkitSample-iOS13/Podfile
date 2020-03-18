@@ -7,6 +7,4 @@ target 'CallkitSample-Swift' do
 
   # Pods for CallkitSample-Swift
 
-  pod 'StringeeChat'
-
 end
