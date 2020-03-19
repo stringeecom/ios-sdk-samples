@@ -9,10 +9,11 @@ target 'ChatSampleSwift' do
   pod 'MBProgressHUD', '~> 1.1'
   pod 'AXPhotoViewer/SDWebImage'
   pod 'AXPhotoViewer/Core'
-  pod 'Parchment'
+  pod 'Parchment', '~> 1.6.0'
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SSZipArchive'
   pod 'KafkaRefresh'
+  pod ‘StringeeChat’
 
 end
