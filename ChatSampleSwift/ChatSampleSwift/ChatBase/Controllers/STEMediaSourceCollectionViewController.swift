@@ -60,7 +60,7 @@ class STEMediaSourceCollectionViewController: UICollectionViewController, UIColl
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchResults.count
+        return fetchResults == nil ? 0 : fetchResults.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -70,8 +70,8 @@ class STEMediaSourceCollectionViewController: UICollectionViewController, UIColl
                 guard let self = self else { return }
                 cell.representedAssetIdentifier = asset.localIdentifier
                 self.imageManger.requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .default, options: nil) { (image, infos) in
-                    if cell.representedAssetIdentifier == asset.localIdentifier || cell.ivMediaContent.image == nil {
-                        DispatchQueue.main.async {
+                    DispatchQueue.main.async {
+                        if cell.representedAssetIdentifier == asset.localIdentifier || cell.ivMediaContent.image == nil {
                             cell.present(asset: asset, image: image)
                         }
                     }

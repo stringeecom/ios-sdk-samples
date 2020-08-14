@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import MapKit
+import SwiftyJSON
 
 let STEMaxCellWidth: CGFloat = 215.0
 let STEMaxCellHeight: CGFloat = 300.0
@@ -232,10 +233,9 @@ func STEDisplayTextForLastMessage(conversation: StringeeConversation) -> String 
         return "Group đã được tạo"
     case .renameGroup:
         return "Group đã được đổi tên"
-    case .text:
-        return conversation.lastMsg.content ?? ""
-    case .link:
-        return conversation.lastMsg.content
+    case .text, .link:
+        let lastMsgContent = JSON(parseJSON: conversation.lastMsg.content ?? "")
+        return lastMsgContent["content"].stringValue
     case .notify:
         return "Notification"
     case .sticker:

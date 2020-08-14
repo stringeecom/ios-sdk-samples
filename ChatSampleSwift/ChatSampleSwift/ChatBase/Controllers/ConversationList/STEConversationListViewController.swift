@@ -100,6 +100,7 @@ class STEConversationListViewController: UITableViewController {
     
     func configureCell(cell: STEConversationPresenting, indexPath: IndexPath) {
         if let conversation: StringeeConversation = self.dataManager.objectAtIndexPath(indexPath: indexPath) as? StringeeConversation {
+            print(conversation.lastMsg.content)
             cell.presentConversation(conversation: conversation)
         }
     }

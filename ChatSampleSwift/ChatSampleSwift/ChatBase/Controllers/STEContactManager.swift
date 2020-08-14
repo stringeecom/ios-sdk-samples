@@ -81,10 +81,10 @@ class STEContactManager {
                         try contactStore.enumerateContacts(with: request, usingBlock: { (contact, stop) in
                             let vcard = STEVCard(contact: contact)
                             self.addContact(contact: vcard, keys: &self.localKeys, sections: &self.localSections)
-                            
-                            // Bắn notifications
-                            NotificationCenter.default.post(name: Notification.Name.STELocalContactLoadedNotification, object: nil)
                         })
+                        
+                        // Bắn notifications
+                        NotificationCenter.default.post(name: Notification.Name.STELocalContactLoadedNotification, object: nil)
                     } catch {
                         print("Get Contacts failed iOS 9")
                     }

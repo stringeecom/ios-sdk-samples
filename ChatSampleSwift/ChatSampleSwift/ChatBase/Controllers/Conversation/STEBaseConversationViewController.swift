@@ -220,7 +220,11 @@ extension STEBaseConversationViewController {
             if isShow && keyboardEndFrameIntersectingView.minY < (viewFrame.maxY - 150) {
                 inputWrapViewOriginY = viewFrame.maxY - (self.keyboardHeight - (STEMessageInputViewDefaultHeight + safeAreaInsets.bottom)) - self.messageInputView.frame.height
             } else {
-                inputWrapViewOriginY = viewFrame.maxY - (self.keyboardHeight - (STEMessageInputViewDefaultHeight + safeAreaInsets.bottom)) - (self.messageInputView.frame.height + safeAreaInsets.bottom)
+//                inputWrapViewOriginY = viewFrame.maxY - (self.keyboardHeight - (STEMessageInputViewDefaultHeight + safeAreaInsets.bottom)) - (self.messageInputView.frame.height + safeAreaInsets.bottom)
+                let defBottom = self.keyboardHeight - (STEMessageInputViewDefaultHeight + safeAreaInsets.bottom)
+                let bottom = self.messageInputView.frame.height + safeAreaInsets.bottom
+                inputWrapViewOriginY = viewFrame.maxY - defBottom - bottom
+
             }
 
 //            UIView.animate(withDuration: animationDuration, delay: 0, options: animationOption, animations: {

@@ -554,12 +554,14 @@ extension STEConversationViewController: STEMessageInputToolbarDelegate {
         let contactAction = UIAlertAction(title: "Contact", style: .default) { (action) in
             let contactVC = STEContactTableViewController()
             let navi = UINavigationController(rootViewController: contactVC)
+            navi.modalPresentationStyle = .fullScreen
             self.present(navi, animated: true, completion: nil)
         }
         
         let locationAction = UIAlertAction(title: "Location", style: .default) { (action) in
             let locationVC = STELocationViewController(isSendingMode: true)
             let navi = UINavigationController(rootViewController: locationVC)
+            navi.modalPresentationStyle = .fullScreen
             self.present(navi, animated: true, completion: nil)
         }
         
@@ -571,6 +573,7 @@ extension STEConversationViewController: STEMessageInputToolbarDelegate {
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+                picker.modalPresentationStyle = .fullScreen
                 self.present(picker, animated: true, completion: nil)
             }
         }
@@ -583,6 +586,7 @@ extension STEConversationViewController: STEMessageInputToolbarDelegate {
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+                picker.modalPresentationStyle = .fullScreen
                 self.present(picker, animated: true, completion: nil)
             }
         }
@@ -665,6 +669,7 @@ extension STEConversationViewController: STEMessageCellDelegate {
         
         let photosViewController = AXPhotosViewController(dataSource: dataSource, pagingConfig: nil, transitionInfo: transitionInfo)
         photosViewController.delegate = self
+        photosViewController.modalPresentationStyle = .fullScreen
         self.present(photosViewController, animated: true)
     }
 
