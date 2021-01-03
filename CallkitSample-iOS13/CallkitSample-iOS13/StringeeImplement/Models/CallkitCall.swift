@@ -25,9 +25,9 @@ class CallKitCall {
     var timer: Timer?
     var counter = 0
     
-    init(isIncoming: Bool) {
+    init(isIncoming: Bool, enableTimer: Bool = false) {
         self.isIncoming = isIncoming
-        if isIncoming {
+        if enableTimer {
             startTimer()
         }
     }

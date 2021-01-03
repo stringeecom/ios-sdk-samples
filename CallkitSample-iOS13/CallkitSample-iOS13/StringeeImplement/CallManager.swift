@@ -200,7 +200,7 @@ extension CallManager {
         
         // Show 1 cuộc gọi chưa có đủ thông tin hiển thị => Update khi nhận được incoming call
         print("INCOMING PUSH -- SERIAL \(callSerial)")
-        call = CallKitCall(isIncoming: true)
+        call = CallKitCall(isIncoming: true, enableTimer: true)
         call?.callId = callId
         call?.serial = callSerial
         trackCall(call!)
@@ -255,7 +255,7 @@ extension CallManager {
         
         func showCallKitFor(stringeeCall: StringeeCall) {
             print("INCOMING CALL - SHOW CALLKIT")
-            call = CallKitCall(isIncoming: true)
+            call = CallKitCall(isIncoming: true, enableTimer: true)
             call?.callId = stringeeCall.callId
             call?.stringeeCall = stringeeCall
             call?.serial = Int(stringeeCall.serial)
