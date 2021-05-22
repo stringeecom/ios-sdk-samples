@@ -78,7 +78,7 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
             self.stringeeCall = [[StringeeCall alloc] initWithStringeeClient:[StringeeImplement instance].stringeeClient from:self.from to:self.to];
             self.stringeeCall.isVideoCall = self.isVideoCall;
             self.stringeeCall.delegate = self;
-            [self.stringeeCall makeCallWithCompletionHandler:^(BOOL status, int code, NSString *message) {
+            [self.stringeeCall makeCallWithCompletionHandler:^(BOOL status, int code, NSString *message, NSString *data) {
                 
                 if (!status) {
                     // Nếu make call không thành công thì kết thúc cuộc gọi
