@@ -434,55 +434,6 @@ static int TIME_WINDOW = 2; // Thời gian delay để tính chất lượng m�
 
 // MARK: - Stringee Call Delegate
 
-//- (void)didChangeState:(StringeeCall *)stringeeCall stringeeCallState:(StringeeCallState)state reason:(NSString *)reason {
-//
-//    NSLog(@"*********Callstate: %d", state);
-//
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        switch (state) {
-//
-//            case STRINGEE_CALLSTATE_INIT:
-//                self.labelConnecting.text = @"Init...";
-//                break;
-//
-//            case STRINGEE_CALLSTATE_CALLING:
-//                self.labelConnecting.text = @"Calling...";
-//                break;
-//
-//            case STRINGEE_CALLSTATE_RINGING:
-//                self.labelConnecting.text = @"Ringing...";
-//                break;
-//
-//            case STRINGEE_CALLSTATE_STARTING: {
-//                self.labelConnecting.text = @"Starting...";
-//            } break;
-//
-//            case STRINGEE_CALLSTATE_CONNECTED: {
-//
-//                [self StartTimer];
-//                [self beginStatsReports];
-//            } break;
-//
-//            case STRINGEE_CALLSTATE_BUSY: {
-//
-//                [self StopTimer];
-//
-//                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
-//
-//            } break;
-//
-//            case STRINGEE_CALLSTATE_END: {
-//
-//                [self StopTimer];
-//
-//                [self endCallAndDismissWithTitle:@"Kết thúc cuộc gọi"];
-//
-//            } break;
-//
-//        }
-//    });
-//}
-
 - (void)didChangeSignalingState:(StringeeCall *)stringeeCall signalingState:(SignalingState)signalingState reason:(NSString *)reason sipCode:(int)sipCode sipReason:(NSString *)sipReason {
     NSLog(@"*********Callstate: %ld", (long)signalingState);
     
