@@ -47,6 +47,7 @@
     callingVC.from = [StringeeImplement instance].stringeeClient.userId;
     callingVC.to = self.tfUserID.text;
     callingVC.isIncomingCall = NO;
+    callingVC.modalPresentationStyle = UIModalPresentationFullScreen;
     if (self.switchVideoCall.isOn) {
         callingVC.isVideoCall = YES;
     } else {
