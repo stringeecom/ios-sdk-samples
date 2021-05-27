@@ -72,6 +72,7 @@ static StringeeImplement *sharedMyManager = nil;
     callingVC.username = @"Target User";
     callingVC.isIncomingCall = YES;
     callingVC.stringeeCall = stringeeCall;
+    callingVC.modalPresentationStyle = UIModalPresentationFullScreen;
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:callingVC animated:YES completion:nil];
 }
