@@ -9,6 +9,9 @@
 #import "StringeeImplement.h"
 #import "InstanceManager.h"
 
+#define user1 @""
+#define user2 @""
+
 @implementation StringeeImplement {
     NSString *userId;
     BOOL isBusy;
