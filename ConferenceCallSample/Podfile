@@ -1,7 +1,0 @@
-platform :ios, '10.0'
-
-target 'ConferenceCallSample' do
-
-	pod 'Stringee'
-
-end
