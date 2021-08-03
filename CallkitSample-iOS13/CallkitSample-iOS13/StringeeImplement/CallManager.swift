@@ -130,6 +130,17 @@ class CallManager: NSObject {
         }
     }
     
+    func answerCallkitCall() {
+        Print("========= ANSWERED CALLKIT FUNCTION IS CALLED")
+        if let uuid = self.call?.uuid {
+            provider.updateConfiguration(includesCallsInRecents: true)
+            let endCallAction = CXAnswerCallAction(call: uuid)
+            let transaction = CXTransaction()
+            transaction.addAction(endCallAction)
+            requestTransaction(transaction: transaction)
+        }
+    }
+    
     func holdCall(hold: Bool) {
         if let uuid = self.call?.uuid {
             let holdCallAction = CXSetHeldCallAction(call: uuid, onHold: hold)

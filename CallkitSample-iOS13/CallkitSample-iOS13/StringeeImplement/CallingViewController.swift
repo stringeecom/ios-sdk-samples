@@ -176,7 +176,11 @@ class CallingViewController: UIViewController {
     }
     
     @IBAction func answerTapped(_ sender: Any) {
-        CallManager.shared.answer()
+        if #available(iOS 14, *) {
+            CallManager.shared.answerCallkitCall()
+        } else {
+            CallManager.shared.answer()
+        }
     }
     
     @IBAction func muteTapped(_ sender: Any) {
