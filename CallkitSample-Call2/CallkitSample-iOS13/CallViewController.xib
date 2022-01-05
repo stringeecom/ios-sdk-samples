@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallViewController" customModule="StirngeeCall2" customModuleProvider="target">
+            <connections>
+                <outlet property="switchVideoMode" destination="25Z-oT-bSz" id="LdJ-qJ-nOu"/>
+                <outlet property="tfUserId" destination="60b-dQ-oVk" id="3V9-a9-phm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserId of callee" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="60b-dQ-oVk">
+                    <rect key="frame" x="41.5" y="104" width="331" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="9XS-fa-Hdu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1Z-Qm-6dO">
+                    <rect key="frame" x="141" y="225" width="132" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.24313725489999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Call">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="callTapped:" destination="-1" eventType="touchUpInside" id="J96-8M-CMY"/>
+                    </connections>
+                </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25Z-oT-bSz">
+                    <rect key="frame" x="182.5" y="164" width="51" height="31"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Call" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab0-nu-BbM">
+                    <rect key="frame" x="241.5" y="169" width="79" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="60b-dQ-oVk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="3XD-Dj-Kfc"/>
+                <constraint firstItem="60b-dQ-oVk" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="BiZ-lq-8uW"/>
+                <constraint firstItem="25Z-oT-bSz" firstAttribute="top" secondItem="60b-dQ-oVk" secondAttribute="bottom" constant="20" id="IUW-qZ-wQs"/>
+                <constraint firstItem="L1Z-Qm-6dO" firstAttribute="height" secondItem="60b-dQ-oVk" secondAttribute="height" id="NT8-Us-eJy"/>
+                <constraint firstItem="L1Z-Qm-6dO" firstAttribute="top" secondItem="25Z-oT-bSz" secondAttribute="bottom" constant="30" id="NcL-66-XTg"/>
+                <constraint firstItem="ab0-nu-BbM" firstAttribute="centerY" secondItem="25Z-oT-bSz" secondAttribute="centerY" id="dhr-p5-Zq4"/>
+                <constraint firstItem="L1Z-Qm-6dO" firstAttribute="width" secondItem="60b-dQ-oVk" secondAttribute="width" multiplier="0.4" id="eeV-zI-i1b"/>
+                <constraint firstItem="L1Z-Qm-6dO" firstAttribute="centerX" secondItem="60b-dQ-oVk" secondAttribute="centerX" id="ksa-os-dxX"/>
+                <constraint firstItem="60b-dQ-oVk" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="o4X-En-ecb"/>
+                <constraint firstItem="25Z-oT-bSz" firstAttribute="centerX" secondItem="60b-dQ-oVk" secondAttribute="centerX" id="sjp-L2-AbS"/>
+                <constraint firstItem="ab0-nu-BbM" firstAttribute="leading" secondItem="25Z-oT-bSz" secondAttribute="trailing" constant="10" id="vBO-2v-p7K"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-1716" y="-285"/>
+        </view>
+    </objects>
+</document>
