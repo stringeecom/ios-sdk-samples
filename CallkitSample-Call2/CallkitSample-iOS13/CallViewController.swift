@@ -45,8 +45,7 @@ class CallViewController: UIViewController {
         callControl.isVideo = switchVideoMode.isOn
         
         let callingVC = CallingViewController.init(control: callControl, call: nil)
-        callingVC.modalPresentationStyle = .fullScreen
-        present(callingVC, animated: true, completion: nil)
+        InstanceManager.shared.showOverlayWindow(vc: callingVC)
     }
     
     func show(msg: String, inVC: UIViewController) {

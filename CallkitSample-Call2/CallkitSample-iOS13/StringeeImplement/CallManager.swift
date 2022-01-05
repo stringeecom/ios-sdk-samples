@@ -130,6 +130,16 @@ class CallManager: NSObject {
         }
     }
     
+    func answerCallkitCall() {
+        if let uuid = self.call?.uuid {
+            provider.updateConfiguration(includesCallsInRecents: true)
+            let endCallAction = CXAnswerCallAction(call: uuid)
+            let transaction = CXTransaction()
+            transaction.addAction(endCallAction)
+            requestTransaction(transaction: transaction)
+        }
+    }
+    
     func holdCall(hold: Bool) {
         if let uuid = self.call?.uuid {
             let holdCallAction = CXSetHeldCallAction(call: uuid, onHold: hold)
@@ -286,8 +296,7 @@ extension CallManager {
             DispatchQueue.main.async {
                 let callControl = CallControl()
                 let callingVC = CallingViewController.init(control: callControl, call: stringeeCall)
-                callingVC.modalPresentationStyle = .fullScreen
-                UIApplication.shared.keyWindow?.rootViewController?.present(callingVC, animated: true, completion: nil)
+                InstanceManager.shared.showOverlayWindow(vc: callingVC)
             }
         }
         

@@ -183,7 +183,11 @@ class CallingViewController: UIViewController {
     }
     
     @IBAction func answerTapped(_ sender: Any) {
-        CallManager.shared.answer()
+        if #available(iOS 14, *) {
+            CallManager.shared.answerCallkitCall()
+        } else {
+            CallManager.shared.answer()
+        }
     }
     
     @IBAction func muteTapped(_ sender: Any) {
@@ -236,7 +240,7 @@ class CallingViewController: UIViewController {
             self.stopTimeoutTimer()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-                self.dismiss(animated: true, completion: nil)
+                InstanceManager.shared.hideOverlayWindow()
                 InstanceManager.shared.callingVC = nil
             })
         }
