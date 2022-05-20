@@ -13,25 +13,25 @@ class InstanceManager {
 
     var callVC: CallViewController?
     var callingVC: CallingViewController?
-    
+
     /*
      Fix bug không thể present ViewController trong background trên iOS 15. Trong trường hợp show màn hình CallingViewController khi có cuộc gọi đến
      Cách fix: Tạo UIWindow với rootViewController là ViewController cần present
      **/
     var overlayWindow: UIWindow?
-    
+
     func showOverlayWindow(vc: UIViewController) {
         overlayWindow = createWindow()
         overlayWindow?.windowLevel = .statusBar + 1
         overlayWindow?.rootViewController = vc
         overlayWindow?.isHidden = false
     }
-    
+
     func hideOverlayWindow() {
         overlayWindow?.isHidden = true
         overlayWindow = nil
     }
-    
+
     func createWindow() -> UIWindow {
         if #available(iOS 13.0, *) {
             if let scene = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).first as? UIWindowScene {
@@ -44,3 +44,4 @@ class InstanceManager {
         }
     }
 }
+

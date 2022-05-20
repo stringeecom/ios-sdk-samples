@@ -9,7 +9,7 @@
 import UIKit
 
 class CallingViewController1: UIViewController {
-    
+
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbStatus: UILabel!
     @IBOutlet weak var ivQuality: UIImageView!
@@ -21,16 +21,16 @@ class CallingViewController1: UIViewController {
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var remoteView: UIView!
     @IBOutlet weak var localView: UIView!
-    
+
     var callControl: CallControl!
     var call: StringeeCall!
-    
+
     var callTimer: Timer?
     lazy var timeCounter = TimeCounter()
-    
+
     var timeoutTimer: Timer?
     var callInterval: Int = 0
-    
+
     // MARK: - Init
     init(control: CallControl, call: StringeeCall?) {
         super.init(nibName: "CallingViewController1", bundle: nil)
@@ -38,7 +38,7 @@ class CallingViewController1: UIViewController {
         self.call = call
         call?.delegate = self
         InstanceManager.shared.callingVC1 = self
-        
+
         // Lưu thông tin vào call control
         if let call = call {
             self.callControl.isIncoming = call.isIncomingCall
@@ -48,38 +48,38 @@ class CallingViewController1: UIViewController {
             self.callControl.username = call.fromAlias
             self.callControl.isAppToPhone = call.callType == .callIn || call.callType == .callOut
         }
-        
+
         // Nếu là videoCall thì cho ra loa ngoài
         StringeeAudioManager.instance()?.setLoudspeaker(self.callControl.isVideo)
         self.callControl.isSpeaker = self.callControl.isVideo
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(CallingViewController1.handleSessionRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
-        
+
         // UI
         setupUI()
-        
+
         // Check timeout for call
         timeoutTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(CallingViewController1.checkCallTimeout), userInfo: nil, repeats: true)
         RunLoop.current.add(timeoutTimer!, forMode: .default)
-        
+
         if call == nil {
             call = StringeeCall(stringeeClient: StringeeImplement.shared.stringeeClient, from: callControl.from, to: callControl.to)
             call.delegate = self
             call.isVideoCall = callControl.isVideo
-            
+
             call.make { [weak self] (status, code, message, data) in
                 guard let self = self else { return }
                 if (!status) {
@@ -90,9 +90,9 @@ class CallingViewController1: UIViewController {
             call.initAnswer()
         }
     }
-    
+
     // MARK: - Outlet Actions
-    
+
     @IBAction func endTapped(_ sender: Any) {
         call.hangup { (status, code, message) in
             if (!status) {
@@ -100,7 +100,7 @@ class CallingViewController1: UIViewController {
             }
         }
     }
-    
+
     @IBAction func rejectTapped(_ sender: Any) {
         call.reject { (status, code, message) in
             if (!status) {
@@ -108,7 +108,7 @@ class CallingViewController1: UIViewController {
             }
         }
     }
-    
+
     @IBAction func answerTapped(_ sender: Any) {
         call.answer { (status, code, message) in
             if (!status) {
@@ -118,43 +118,43 @@ class CallingViewController1: UIViewController {
         callControl.signalingState = .answered
         updateScreen()
     }
-    
+
     @IBAction func muteTapped(_ sender: Any) {
         if call == nil { return }
-        
+
         callControl.isMute = !callControl.isMute
         call.mute(callControl.isMute)
         let imageName = callControl.isMute ? "icon_mute_selected" : "icon_mute"
         btMute.setBackgroundImage(UIImage(named: imageName), for: .normal)
     }
-    
+
     @IBAction func speakerTapped(_ sender: Any) {
         callControl.isSpeaker = !callControl.isSpeaker
         StringeeAudioManager.instance()?.setLoudspeaker(callControl.isSpeaker)
         let imageName = callControl.isSpeaker ? "icon_speaker_selected" : "icon_speaker"
         btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
     }
-    
+
     // MARK: - Public Actions
-    
+
     func endCallAndDismis(description: String = "Call ended") {
         DispatchQueue.main.async {
             UIDevice.current.isProximityMonitoringEnabled = false
             UIApplication.shared.isIdleTimerDisabled = false
             self.view.isUserInteractionEnabled = false
             self.lbStatus.text = description
-            
+
             // Ngừng timer
             self.stopCallTimer()
             self.stopTimeoutTimer()
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
                 self.dismiss(animated: true, completion: nil)
                 InstanceManager.shared.callingVC1 = nil
             })
         }
     }
-    
+
     func updateScreen() {
         DispatchQueue.main.async {
             let screenType = self.screenType()
@@ -178,7 +178,7 @@ class CallingViewController1: UIViewController {
         }
     }
     // MARK: - Private Actions
-    
+
     private func screenType() -> CallScreenType {
         var screenType: CallScreenType!
         if (callControl.signalingState == .answered) {
@@ -186,56 +186,56 @@ class CallingViewController1: UIViewController {
         } else {
             screenType = callControl.isIncoming ? .incoming : .outgoing
         }
-        
+
         return screenType
     }
-    
+
     private func setupUI() {
         UIDevice.current.isProximityMonitoringEnabled = true
         UIApplication.shared.isIdleTimerDisabled = callControl.isVideo
-        
+
         // Fill data
         self.lbStatus.text = callControl.isIncoming ? "Incoming Call" : "Outgoing Call"
         self.lbName.text = callControl.displayName
-        
+
         updateScreen()
     }
-    
+
     // MARK: - Timer
-    
+
     private func startCallTimer() {
         if callControl.signalingState != .answered || callControl.mediaState != .connected {
             return
         }
-        
+
         if callTimer == nil {
             // Bắt đầu đếm giây
             callTimer = Timer(timeInterval: 1, target: self, selector: #selector(CallingViewController1.timeTick(timer:)), userInfo: nil, repeats: true)
             RunLoop.current.add(callTimer!, forMode: .default)
             callTimer?.fire()
-            
+
             // => Ko check timeout nữa
             self.stopTimeoutTimer()
         }
     }
-    
+
     @objc private func timeTick(timer: Timer) {
         let timeNow = timeCounter.timeNow()
         self.lbStatus.text = timeNow
     }
-    
+
     private func stopCallTimer() {
         CFRunLoopStop(CFRunLoopGetCurrent())
         callTimer?.invalidate()
         callTimer = nil
     }
-    
+
     private func stopTimeoutTimer() {
         CFRunLoopStop(CFRunLoopGetCurrent())
         timeoutTimer?.invalidate()
         timeoutTimer = nil
     }
-    
+
     @objc private func checkCallTimeout() {
         print("checkCallTimeout")
         callInterval += 10
@@ -280,7 +280,7 @@ extension CallingViewController1: StringeeCallDelegate {
             }
         }
     }
-    
+
     func didChangeMediaState(_ stringeeCall: StringeeCall!, mediaState: MediaState) {
         print("didChangeMediaState \(mediaState.rawValue)")
         DispatchQueue.main.async {
@@ -296,13 +296,13 @@ extension CallingViewController1: StringeeCallDelegate {
             }
         }
     }
-    
+
     func didHandle(onAnotherDevice stringeeCall: StringeeCall!, signalingState: SignalingState, reason: String!, sipCode: Int32, sipReason: String!) {
         if signalingState == .answered || signalingState == .busy || signalingState == .ended {
             endCallAndDismis(description: "The call is handled on another device")
         }
     }
-    
+
     func didReceiveLocalStream(_ stringeeCall: StringeeCall!) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -310,7 +310,7 @@ extension CallingViewController1: StringeeCallDelegate {
             self.localView.addSubview(stringeeCall.localVideoView)
         }
     }
-    
+
     func didReceiveRemoteStream(_ stringeeCall: StringeeCall!) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -334,4 +334,5 @@ extension CallingViewController1 {
         }
     }
 }
+
 

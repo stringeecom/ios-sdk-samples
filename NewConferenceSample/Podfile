@@ -6,3 +6,4 @@ target 'NewConferenceSample' do
   pod 'Stringee'
 
 end
+

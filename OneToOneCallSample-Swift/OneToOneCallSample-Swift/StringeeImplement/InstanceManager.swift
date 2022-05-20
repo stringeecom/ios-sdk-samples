@@ -15,3 +15,4 @@ class InstanceManager {
     var callingVC1: CallingViewController1?
     var callingVC2: CallingViewController2?
 }
+
