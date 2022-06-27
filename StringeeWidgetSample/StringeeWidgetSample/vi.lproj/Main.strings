@@ -1,0 +1,15 @@
+
+/* Class = "UITextField"; placeholder = "To"; ObjectID = "Kl0-kD-Syp"; */
+"Kl0-kD-Syp.placeholder" = "To";
+
+/* Class = "UIButton"; configuration.title = "Voice Call"; ObjectID = "ZvP-fl-IVc"; */
+"ZvP-fl-IVc.configuration.title" = "Voice Call";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ZvP-fl-IVc"; */
+"ZvP-fl-IVc.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Video Call"; ObjectID = "ePi-RL-o6A"; */
+"ePi-RL-o6A.configuration.title" = "Video Call";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ePi-RL-o6A"; */
+"ePi-RL-o6A.normalTitle" = "Button";
