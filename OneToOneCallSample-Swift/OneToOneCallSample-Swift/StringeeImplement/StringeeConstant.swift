@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum AudioOutputMode {
+    case iphone // loa trong
+    case speaker // loa ngoai
+    case bluetooth // ket noi cac thiet bi khac
+}
+
 struct CallControl {
     var isIncoming = false
     var isAppToPhone = false
@@ -24,7 +30,8 @@ struct CallControl {
     }
 
     var isMute = false
-    var isSpeaker = false
+//    var isSpeaker = false
+    var audioOutputMode = AudioOutputMode.iphone
     var localVideoEnabled = true
     var signalingState: SignalingState = .calling
     var mediaState: MediaState = .disconnected

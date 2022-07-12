@@ -399,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.OneToOneCallSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = CallkitSampleDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "OneToOneCallSample-Swift/StringeeImplement/OneToOneCallSample-Bridging-Header.h";
@@ -458,4 +458,3 @@
 	};
 	rootObject = 51CB310D2668B16600DFB057 /* Project object */;
 }
-

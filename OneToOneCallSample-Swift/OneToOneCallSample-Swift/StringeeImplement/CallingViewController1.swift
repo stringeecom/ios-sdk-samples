@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class CallingViewController1: UIViewController {
 
@@ -30,6 +31,11 @@ class CallingViewController1: UIViewController {
 
     var timeoutTimer: Timer?
     var callInterval: Int = 0
+    
+    // Handle Audio Ouput
+    var mpVolumeView: MPVolumeView!
+    var airplayRouteButton: UIButton?
+    var mediaFirstTimeConnected = false
 
     // MARK: - Init
     init(control: CallControl, call: StringeeCall?) {
@@ -49,9 +55,9 @@ class CallingViewController1: UIViewController {
             self.callControl.isAppToPhone = call.callType == .callIn || call.callType == .callOut
         }
 
-        // Nếu là videoCall thì cho ra loa ngoài
-        StringeeAudioManager.instance()?.setLoudspeaker(self.callControl.isVideo)
-        self.callControl.isSpeaker = self.callControl.isVideo
+        // if call's type is video then route audio to speaker
+//        StringeeAudioManager.instance()?.setLoudspeaker(self.callControl.isVideo)
+//        self.callControl.isSpeaker = self.callControl.isVideo
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -88,6 +94,18 @@ class CallingViewController1: UIViewController {
             }
         } else {
             call.initAnswer()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if (airplayRouteButton == nil) {
+            mpVolumeView = MPVolumeView(frame: self.view.bounds)
+            mpVolumeView.showsRouteButton = false
+            mpVolumeView.showsVolumeSlider = false
+            mpVolumeView.isUserInteractionEnabled = false
+            self.view.addSubview(mpVolumeView)
+            airplayRouteButton = mpVolumeView.subviews.filter { $0 is UIButton }.first as? UIButton
         }
     }
 
@@ -129,10 +147,22 @@ class CallingViewController1: UIViewController {
     }
 
     @IBAction func speakerTapped(_ sender: Any) {
-        callControl.isSpeaker = !callControl.isSpeaker
-        StringeeAudioManager.instance()?.setLoudspeaker(callControl.isSpeaker)
-        let imageName = callControl.isSpeaker ? "icon_speaker_selected" : "icon_speaker"
-        btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
+        let isBluetoothConnected = isBluetoothConnected()
+        if (isBluetoothConnected) {
+            airplayRouteButton?.sendActions(for: .touchUpInside)
+        } else {
+            var imageName = ""
+            if (callControl.audioOutputMode == .iphone) {
+                callControl.audioOutputMode = .speaker
+                StringeeAudioManager.instance()?.setLoudspeaker(true)
+                imageName = "icon_speaker_selected"
+            } else {
+                callControl.audioOutputMode = .iphone
+                StringeeAudioManager.instance()?.setLoudspeaker(false)
+                imageName = "icon_speaker"
+            }
+            btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
+        }
     }
 
     // MARK: - Public Actions
@@ -289,6 +319,12 @@ extension CallingViewController1: StringeeCallDelegate {
                 self.callControl.mediaState = mediaState
                 self.lbStatus.text = self.callControl.isIncoming ? "Incoming Call" : "Outgoing Call"
                 self.startCallTimer()
+                
+                // if call's type is video then route audio to speaker
+                if self.callControl.isVideo && !self.mediaFirstTimeConnected {
+                    self.mediaFirstTimeConnected = !self.mediaFirstTimeConnected
+                    self.routeToSpeakerIfNeeded()
+                }
             case .disconnected:
                 break
             @unknown default:
@@ -320,18 +356,56 @@ extension CallingViewController1: StringeeCallDelegate {
     }
 }
 
-// MARK: - Notifications
+// MARK: - Handle Audio Output
 
 extension CallingViewController1 {
     @objc private func handleSessionRouteChange() {
         DispatchQueue.main.async {
             let route = AVAudioSession.sharedInstance().currentRoute
             if let portDes = route.outputs.first {
-                self.callControl.isSpeaker = portDes.portType == .builtInSpeaker
-                let imageName = self.callControl.isSpeaker ? "icon_speaker_selected" : "icon_speaker"
+                var imageName = ""
+                if (portDes.portType == .builtInSpeaker) {
+                    self.callControl.audioOutputMode = .speaker
+                    imageName = "icon_speaker_selected"
+                } else if (portDes.portType == .headphones || portDes.portType == .builtInReceiver) {
+                    self.callControl.audioOutputMode = .iphone
+                    imageName = "icon_speaker"
+                } else {
+                    self.callControl.audioOutputMode = .bluetooth
+                    imageName = "ic-bluetooth"
+                }
+                
                 self.btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
             }
         }
+    }
+    
+    private func routeToSpeakerIfNeeded() {
+        DispatchQueue.main.async {
+            let route = AVAudioSession.sharedInstance().currentRoute
+            if let portDes = route.outputs.first {
+                // if headphone is not plugged in and bluetooth is not connected then route audio to speaker in case call's type is video
+                if portDes.portType != .headphones && !self.isBluetoothConnected() {
+                    StringeeAudioManager.instance()?.setLoudspeaker(true)
+                    self.callControl.audioOutputMode = .speaker
+                }
+            }
+        }
+    }
+    
+    // Check if device is connected to any bluetooth device or not
+    func isBluetoothConnected() -> Bool {
+        guard let availableInputs = AVAudioSession.sharedInstance().availableInputs else {
+            return false
+        }
+        
+        for availableInput in availableInputs {
+            if availableInput.portType == .bluetoothHFP || availableInput.portType == .bluetoothLE || availableInput.portType == .bluetoothA2DP {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 
