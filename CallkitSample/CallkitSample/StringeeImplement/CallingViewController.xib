@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallingViewController">
+            <connections>
+                <outlet property="blurView" destination="Wi2-fX-NqB" id="2WA-ri-Rst"/>
+                <outlet property="btAccept" destination="IOp-pU-Nqa" id="goy-co-1tp"/>
+                <outlet property="btCamera" destination="Cie-ZJ-Ewh" id="ai9-BF-4iZ"/>
+                <outlet property="btEnd" destination="PrX-2e-PhU" id="cP7-Ej-5pe"/>
+                <outlet property="btMute" destination="vrR-Cu-mLm" id="47a-2D-cY3"/>
+                <outlet property="btReject" destination="cS4-qJ-wkC" id="C7C-xs-fs7"/>
+                <outlet property="btSpeaker" destination="Fz0-ha-c4m" id="Bfg-EI-sjq"/>
+                <outlet property="btVideo" destination="fr6-lZ-QAF" id="CZ1-CG-1NV"/>
+                <outlet property="btVideoEnd" destination="qnW-X2-gkb" id="Q39-yI-9n8"/>
+                <outlet property="btVideoMute" destination="5Ja-bU-M6t" id="Pjv-GL-JQM"/>
+                <outlet property="lbStatus" destination="Hrc-Jy-pCI" id="Qr4-72-B51"/>
+                <outlet property="lbUsername" destination="JLY-Fr-9I8" id="qxY-Qq-lNq"/>
+                <outlet property="localContainer" destination="xnj-hG-v5a" id="aQd-cz-mej"/>
+                <outlet property="stackCallAction" destination="jV3-ON-hnA" id="XkC-1L-tQr"/>
+                <outlet property="stackVideoCallAction" destination="NdW-tm-alm" id="8PF-Wo-lIx"/>
+                <outlet property="stackVoiceCallAction" destination="BBx-sR-Tcu" id="kjJ-9t-BKH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnj-hG-v5a">
+                    <rect key="frame" x="274" y="84" width="120" height="150"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="Vu0-7q-CDa"/>
+                        <constraint firstAttribute="width" constant="120" id="mZV-QQ-apa"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HoangDuoc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-Fr-9I8">
+                    <rect key="frame" x="146.5" y="267.5" width="121.5" height="26.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrc-Jy-pCI">
+                    <rect key="frame" x="177.5" y="344" width="59.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="0.8416898544520548" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="BBx-sR-Tcu">
+                    <rect key="frame" x="83" y="498" width="248" height="70"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrR-Cu-mLm">
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="vrR-Cu-mLm" secondAttribute="height" id="xhQ-UA-p9O"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-mute-new"/>
+                            <connections>
+                                <action selector="muteTapped:" destination="-1" eventType="touchUpInside" id="3bN-IE-vZr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz0-ha-c4m">
+                            <rect key="frame" x="178" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Fz0-ha-c4m" secondAttribute="height" id="SnP-QI-0wn"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-speaker-new"/>
+                            <connections>
+                                <action selector="speakerTapped:" destination="-1" eventType="touchUpInside" id="bZM-p8-Yy7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="m3W-07-PEV"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="jV3-ON-hnA">
+                    <rect key="frame" x="41.5" y="742" width="331" height="70"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS4-qJ-wkC">
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="cS4-qJ-wkC" secondAttribute="height" id="J3x-4Z-lWD"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-end-call-new"/>
+                            <connections>
+                                <action selector="rejectTapped:" destination="-1" eventType="touchUpInside" id="IJM-xZ-eRe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrX-2e-PhU">
+                            <rect key="frame" x="130.5" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="PrX-2e-PhU" secondAttribute="height" id="LT0-bO-59m"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-end-call-new"/>
+                            <connections>
+                                <action selector="endCallTapped:" destination="-1" eventType="touchUpInside" id="3Tz-e0-pEd"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOp-pU-Nqa">
+                            <rect key="frame" x="261" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="IOp-pU-Nqa" secondAttribute="height" id="6QP-xg-iyi"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-answer-new"/>
+                            <connections>
+                                <action selector="acceptTapped:" destination="-1" eventType="touchUpInside" id="fRQ-rV-SVA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="JpQ-SD-3Gx"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="NdW-tm-alm">
+                    <rect key="frame" x="20.5" y="742" width="373" height="70"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fr6-lZ-QAF">
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="fr6-lZ-QAF" secondAttribute="height" id="2TD-Wm-anv"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-video-new"/>
+                            <connections>
+                                <action selector="videoTapped:" destination="-1" eventType="touchUpInside" id="454-YX-FZ2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ja-bU-M6t">
+                            <rect key="frame" x="101" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="5Ja-bU-M6t" secondAttribute="height" id="Tfo-vF-e5Z"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-mute-new"/>
+                            <connections>
+                                <action selector="videoMuteTapped:" destination="-1" eventType="touchUpInside" id="JYU-7N-yJu"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cie-ZJ-Ewh">
+                            <rect key="frame" x="202" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Cie-ZJ-Ewh" secondAttribute="height" id="8Q0-T7-R0C"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-switch-camera-new"/>
+                            <connections>
+                                <action selector="cameraTapped:" destination="-1" eventType="touchUpInside" id="kzf-wC-l5D"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnW-X2-gkb">
+                            <rect key="frame" x="303" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="qnW-X2-gkb" secondAttribute="height" id="vqH-FV-KMx"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="ic-end-call-new"/>
+                            <connections>
+                                <action selector="videoEndTapped:" destination="-1" eventType="touchUpInside" id="zWi-If-eke"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="s7R-Jg-FQn"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Q5n-OT-ckx"/>
+                    </constraints>
+                </stackView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-fX-NqB">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="yxj-xz-RLo"/>
+            <color key="backgroundColor" red="0.031372549019607843" green="0.1803921568627451" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="yxj-xz-RLo" firstAttribute="trailing" secondItem="xnj-hG-v5a" secondAttribute="trailing" constant="20" id="0qV-99-7jG"/>
+                <constraint firstItem="jV3-ON-hnA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0ze-dh-H6a"/>
+                <constraint firstItem="Wi2-fX-NqB" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="8q4-pg-j9R"/>
+                <constraint firstItem="NdW-tm-alm" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="DDh-ks-YcA"/>
+                <constraint firstItem="NdW-tm-alm" firstAttribute="centerY" secondItem="jV3-ON-hnA" secondAttribute="centerY" id="EPn-vQ-MAa"/>
+                <constraint firstItem="Wi2-fX-NqB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ET9-CX-al4"/>
+                <constraint firstItem="BBx-sR-Tcu" firstAttribute="centerX" secondItem="yxj-xz-RLo" secondAttribute="centerX" id="Jhg-4O-krD"/>
+                <constraint firstItem="jV3-ON-hnA" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="LPV-Ow-1Z5"/>
+                <constraint firstItem="BBx-sR-Tcu" firstAttribute="centerY" secondItem="yxj-xz-RLo" secondAttribute="centerY" constant="80" id="Lgv-f2-B1v"/>
+                <constraint firstItem="Hrc-Jy-pCI" firstAttribute="top" secondItem="JLY-Fr-9I8" secondAttribute="bottom" constant="50" id="OgT-FE-nby"/>
+                <constraint firstItem="NdW-tm-alm" firstAttribute="centerX" secondItem="yxj-xz-RLo" secondAttribute="centerX" id="Qyp-M9-gz4"/>
+                <constraint firstItem="JLY-Fr-9I8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W2t-PI-zIz"/>
+                <constraint firstItem="Wi2-fX-NqB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WDq-IM-dlQ"/>
+                <constraint firstItem="BBx-sR-Tcu" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.6" id="bYc-BZ-cee"/>
+                <constraint firstItem="Hrc-Jy-pCI" firstAttribute="centerY" secondItem="yxj-xz-RLo" secondAttribute="centerY" constant="-100" id="ek9-6A-5I0"/>
+                <constraint firstItem="xnj-hG-v5a" firstAttribute="top" secondItem="yxj-xz-RLo" secondAttribute="top" constant="40" id="gzg-jH-Y6d"/>
+                <constraint firstItem="yxj-xz-RLo" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jV3-ON-hnA" secondAttribute="bottom" priority="750" constant="50" id="jjf-bm-wpU"/>
+                <constraint firstAttribute="bottom" secondItem="jV3-ON-hnA" secondAttribute="bottom" priority="250" constant="45" id="lNz-ah-qFL"/>
+                <constraint firstItem="Hrc-Jy-pCI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rcU-29-EXJ"/>
+                <constraint firstItem="Wi2-fX-NqB" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="uWC-VA-xez"/>
+            </constraints>
+            <point key="canvasLocation" x="-13223" y="-1473"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic-answer-new" width="98" height="98"/>
+        <image name="ic-end-call-new" width="83" height="83"/>
+        <image name="ic-mute-new" width="87" height="87"/>
+        <image name="ic-speaker-new" width="87" height="87"/>
+        <image name="ic-switch-camera-new" width="211" height="211"/>
+        <image name="ic-video-new" width="87" height="87"/>
+    </resources>
+</document>

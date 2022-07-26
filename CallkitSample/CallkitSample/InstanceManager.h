@@ -14,10 +14,7 @@
 
 + (InstanceManager *)instance;
 
-@property(strong, nonatomic) CallingViewController *callingViewController;
-@property(strong, nonatomic) HomeViewController *homeViewController;
-
-@property (strong, nonatomic) NSString *deviceToken;
-@property (assign, nonatomic) BOOL hasRegisteredToReceivePush;
+@property(strong, nonatomic) CallingViewController *callingVC;
+@property(strong, nonatomic) HomeViewController *homeVC;
 
 @end

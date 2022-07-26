@@ -20,13 +20,14 @@
 		5154973720232970001C4C41 /* StringeeImplement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973320232970001C4C41 /* StringeeImplement.m */; };
 		5154973820232970001C4C41 /* CallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973620232970001C4C41 /* CallManager.m */; };
 		5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154973A20232AB6001C4C41 /* InstanceManager.m */; };
-		51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */ = {isa = PBXBuildFile; fileRef = 51A6222A20313E2F000AB197 /* incoming_call.aif */; };
-		C0D619648DDE05F753DA07F2 /* libPods-CallkitSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */; };
+		5154E333287FC9E800F8AFD2 /* CallkitCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154E332287FC9E800F8AFD2 /* CallkitCall.m */; };
+		5154E337287FCEF400F8AFD2 /* WeakTimerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154E335287FCEF400F8AFD2 /* WeakTimerTarget.m */; };
+		9B55E2CD702BD988A99AFD5B /* Pods_CallkitSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A742A7F0A0A7CB357DD53E /* Pods_CallkitSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16A742A7F0A0A7CB357DD53E /* Pods_CallkitSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallkitSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		283E4FBDB996BFDA1F047BAB /* Pods-CallkitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.release.xcconfig"; sourceTree = "<group>"; };
-		2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallkitSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49127B89164DFEA35D28DC9C /* Pods-CallkitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallkitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallkitSample/Pods-CallkitSample.debug.xcconfig"; sourceTree = "<group>"; };
 		512275652063A62300E10232 /* CallingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallingViewController.h; sourceTree = "<group>"; };
 		512275662063A62300E10232 /* CallingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallingViewController.m; sourceTree = "<group>"; };
@@ -50,8 +51,11 @@
 		5154973620232970001C4C41 /* CallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallManager.m; sourceTree = "<group>"; };
 		5154973920232AB6001C4C41 /* InstanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanceManager.h; sourceTree = "<group>"; };
 		5154973A20232AB6001C4C41 /* InstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceManager.m; sourceTree = "<group>"; };
+		5154E331287FC9E800F8AFD2 /* CallkitCall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallkitCall.h; sourceTree = "<group>"; };
+		5154E332287FC9E800F8AFD2 /* CallkitCall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallkitCall.m; sourceTree = "<group>"; };
+		5154E335287FCEF400F8AFD2 /* WeakTimerTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakTimerTarget.m; sourceTree = "<group>"; };
+		5154E336287FCEF400F8AFD2 /* WeakTimerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakTimerTarget.h; sourceTree = "<group>"; };
 		5162D0E52043E1910057F227 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		51A6222A20313E2F000AB197 /* incoming_call.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = incoming_call.aif; sourceTree = "<group>"; };
 		51B15AC82023FC0B001AA015 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		51B15ACC2023FCA0001AA015 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		51B15ACE2023FCA6001AA015 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -67,21 +71,24 @@
 			files = (
 				5154972F202327E6001C4C41 /* CallKit.framework in Frameworks */,
 				5154972D202327DF001C4C41 /* PushKit.framework in Frameworks */,
-				C0D619648DDE05F753DA07F2 /* libPods-CallkitSample.a in Frameworks */,
+				9B55E2CD702BD988A99AFD5B /* Pods_CallkitSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		512275642063A62300E10232 /* CallingVC */ = {
+		512275642063A62300E10232 /* StringeeImplement */ = {
 			isa = PBXGroup;
 			children = (
+				5154E330287FC9AC00F8AFD2 /* Models */,
+				5154973420232970001C4C41 /* StringeeImplement.h */,
+				5154973320232970001C4C41 /* StringeeImplement.m */,
 				512275652063A62300E10232 /* CallingViewController.h */,
 				512275662063A62300E10232 /* CallingViewController.m */,
 				512275672063A62300E10232 /* CallingViewController.xib */,
 			);
-			path = CallingVC;
+			path = StringeeImplement;
 			sourceTree = "<group>";
 		};
 		515496ED202326DD001C4C41 = {
@@ -105,19 +112,14 @@
 		515496F8202326DD001C4C41 /* CallkitSample */ = {
 			isa = PBXGroup;
 			children = (
-				51A6222A20313E2F000AB197 /* incoming_call.aif */,
 				5154973020232862001C4C41 /* CallkitSample.entitlements */,
 				515496F9202326DD001C4C41 /* AppDelegate.h */,
 				515496FA202326DD001C4C41 /* AppDelegate.m */,
 				5154973920232AB6001C4C41 /* InstanceManager.h */,
 				5154973A20232AB6001C4C41 /* InstanceManager.m */,
-				5154973520232970001C4C41 /* CallManager.h */,
-				5154973620232970001C4C41 /* CallManager.m */,
-				5154973420232970001C4C41 /* StringeeImplement.h */,
-				5154973320232970001C4C41 /* StringeeImplement.m */,
 				515496FC202326DD001C4C41 /* HomeViewController.h */,
 				515496FD202326DD001C4C41 /* HomeViewController.m */,
-				512275642063A62300E10232 /* CallingVC */,
+				512275642063A62300E10232 /* StringeeImplement */,
 				515496FF202326DD001C4C41 /* Main.storyboard */,
 				51549702202326DD001C4C41 /* Assets.xcassets */,
 				51549704202326DD001C4C41 /* LaunchScreen.storyboard */,
@@ -139,9 +141,22 @@
 				51B15AC82023FC0B001AA015 /* VideoToolbox.framework */,
 				5154972E202327E5001C4C41 /* CallKit.framework */,
 				5154972C202327DF001C4C41 /* PushKit.framework */,
-				2B599B273647F859AB7BEE99 /* libPods-CallkitSample.a */,
+				16A742A7F0A0A7CB357DD53E /* Pods_CallkitSample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5154E330287FC9AC00F8AFD2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5154E336287FCEF400F8AFD2 /* WeakTimerTarget.h */,
+				5154E335287FCEF400F8AFD2 /* WeakTimerTarget.m */,
+				5154E331287FC9E800F8AFD2 /* CallkitCall.h */,
+				5154E332287FC9E800F8AFD2 /* CallkitCall.m */,
+				5154973520232970001C4C41 /* CallManager.h */,
+				5154973620232970001C4C41 /* CallManager.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F572C5DF5BB4A983B2187F10 /* Pods */ = {
@@ -227,7 +242,6 @@
 				512275692063A62300E10232 /* CallingViewController.xib in Resources */,
 				51549706202326DD001C4C41 /* LaunchScreen.storyboard in Resources */,
 				51549703202326DD001C4C41 /* Assets.xcassets in Resources */,
-				51A6222B20313E2F000AB197 /* incoming_call.aif in Resources */,
 				51549701202326DD001C4C41 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,10 +275,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CallkitSample/Pods-CallkitSample-frameworks.sh",
 				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/NSTEasyJSON/NSTEasyJSON.framework",
+				"${PODS_ROOT}/Stringee/Stringee/Classes/Stringee.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSTEasyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stringee.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -278,12 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5154E333287FC9E800F8AFD2 /* CallkitCall.m in Sources */,
 				512275682063A62300E10232 /* CallingViewController.m in Sources */,
 				515496FE202326DD001C4C41 /* HomeViewController.m in Sources */,
 				5154973820232970001C4C41 /* CallManager.m in Sources */,
 				5154973B20232AB7001C4C41 /* InstanceManager.m in Sources */,
 				51549709202326DD001C4C41 /* main.m in Sources */,
 				5154973720232970001C4C41 /* StringeeImplement.m in Sources */,
+				5154E337287FCEF400F8AFD2 /* WeakTimerTarget.m in Sources */,
 				515496FB202326DD001C4C41 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,20 +440,20 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CallkitSample/CallkitSample.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8MA9F9A86E;
+				DEVELOPMENT_TEAM = 9L439MV268;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CallkitSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cf8caa6b-c105-491f-b555-b0e1e0ed701a";
-				PROVISIONING_PROFILE_SPECIFIER = Callkit_develop_provision;
+				PROVISIONING_PROFILE_SPECIFIER = CallkitSampleDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -452,10 +472,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CallkitSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c1daf5de-095e-433d-b860-02860f5990fc";
 				PROVISIONING_PROFILE_SPECIFIER = Callkit_product_provision;

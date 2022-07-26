@@ -1,20 +1,24 @@
 PODS:
-  - GoogleWebRTC (1.1.27828)
-  - Stringee (1.4.4):
-    - GoogleWebRTC (= 1.1.27828)
+  - GoogleWebRTC (1.1.31999)
+  - NSTEasyJSON (1.0.6)
+  - Stringee (1.8.3):
+    - GoogleWebRTC (= 1.1.31999)
 
 DEPENDENCIES:
+  - NSTEasyJSON
   - Stringee
 
 SPEC REPOS:
   trunk:
     - GoogleWebRTC
+    - NSTEasyJSON
     - Stringee
 
 SPEC CHECKSUMS:
-  GoogleWebRTC: 55e46bee9ac2a4961542e9571bea589b64493f45
-  Stringee: f07a234ca29d17924d78b9c98b4b5d6fbd140a16
+  GoogleWebRTC: b39a78c4f5cc6b0323415b9233db03a2faa7b0f0
+  NSTEasyJSON: 71399a97a84f35e31a7caa98e1385764d66d5e6d
+  Stringee: ac1cd3ad613cfcf8486f5d79eb96d5616884a0fc
 
-PODFILE CHECKSUM: 9ec9fdc6c5b4f05f89a5e5117148e830828324c1
+PODFILE CHECKSUM: 3a51c12235791adf2e50812d04ed9fd3426064f0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

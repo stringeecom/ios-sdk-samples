@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [InstanceManager instance].homeViewController = self;
+    [InstanceManager instance].homeVC = self;
 }
 
 
@@ -29,12 +29,16 @@
 }
 
 
-- (IBAction)callTapped:(UIButton *)sender {
+- (IBAction)voiceCallTapped:(UIButton *)sender {
     if ([StringeeImplement instance].stringeeClient.hasConnected && self.tfUserId.text.length) {
-        CallingViewController *callingVC = [[CallingViewController alloc] initWithNibName:@"CallingViewController" bundle:nil];
-        callingVC.isIncomingCall = NO;
-        callingVC.from = [StringeeImplement instance].stringeeClient.userId;
-        callingVC.to = self.tfUserId.text;
+        CallingViewController *callingVC = [[CallingViewController alloc] initFrom:[StringeeImplement instance].stringeeClient.userId to:self.tfUserId.text isVideo:false];
+        [self presentViewController:callingVC animated:YES completion:nil];
+    }
+}
+
+- (IBAction)videoCapTapped:(id)sender {
+    if ([StringeeImplement instance].stringeeClient.hasConnected && self.tfUserId.text.length) {
+        CallingViewController *callingVC = [[CallingViewController alloc] initFrom:[StringeeImplement instance].stringeeClient.userId to:self.tfUserId.text isVideo:true];
         [self presentViewController:callingVC animated:YES completion:nil];
     }
 }
