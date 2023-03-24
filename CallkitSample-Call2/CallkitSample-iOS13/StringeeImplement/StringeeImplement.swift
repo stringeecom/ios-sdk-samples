@@ -12,12 +12,16 @@ class StringeeImplement: NSObject {
     static let shared = StringeeImplement()
     let stringeeClient = StringeeClient()
     
-    var token = "" // Cần generate access token cho user trên trang dashboard của Stringee
+    // Cần generate access token cho user trên trang dashboard của Stringee
+    // ProjectId = 10795, appId = 9654
+    var token = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS0xiT0Rpa3o4ZHBITGRvVU92c0lJYWdCTFZqUXNJOXdKLTE2NzgzMzQ2MjUiLCJpc3MiOiJTS0xiT0Rpa3o4ZHBITGRvVU92c0lJYWdCTFZqUXNJOXdKIiwiZXhwIjoxNjgwOTI2NjI1LCJ1c2VySWQiOiJpb3MtdW5pdC10ZXN0In0.7lk4K8wHn7R3yhyc1ru_TbKWoOWKXQMW43LvZhRr5z0"
     
     // push
-    var pushToken: String?
-    var registeredTokenForPush = false
-    
+    var voipToken: String?
+    var remoteToken: String?
+    var registeredTokenForVoipPush = false
+    var registeredTokenForRemotePush = false
+
     private override init() {
         super.init()
         stringeeClient.connectionDelegate = self
@@ -37,16 +41,29 @@ class StringeeImplement: NSObject {
         stringeeClient.connect(withAccessToken: token)
     }
     
-    func registerTokenForPush(token: String? = "") {
-        self.pushToken = token
-        guard let pushToken = self.pushToken, !pushToken.isEmpty, !registeredTokenForPush else {
+    func registerTokenForVoipPush(token: String? = "") {
+        self.voipToken = token
+        guard let pushToken = self.voipToken, !pushToken.isEmpty, !registeredTokenForVoipPush else {
             return
         }
         
         // Note: remember to pass isProduction depends on environment you are working on (development or production)
         self.stringeeClient.registerPush(forDeviceToken: pushToken, isProduction: false, isVoip: true) { (status, code, message) in
             print("registerPush: \(String(describing: message))")
-            self.registeredTokenForPush = status
+            self.registeredTokenForVoipPush = status
+        }
+    }
+    
+    func registerTokenForRemotePush(token: String? = "") {
+        self.remoteToken = token
+        guard let pushToken = self.remoteToken, !pushToken.isEmpty, !registeredTokenForRemotePush else {
+            return
+        }
+        
+        // Note: remember to pass isProduction depends on environment you are working on (development or production)
+        self.stringeeClient.registerPush(forDeviceToken: pushToken, isProduction: false, isVoip: false) { (status, code, message) in
+            print("registerPush: \(String(describing: message))")
+            self.registeredTokenForRemotePush = status
         }
     }
 }
@@ -58,7 +75,8 @@ extension StringeeImplement: StringeeConnectionDelegate {
         DispatchQueue.main.async {
             InstanceManager.shared.callVC?.title = "Connected as \(stringeeClient.userId ?? "")"
         }
-        registerTokenForPush(token: self.pushToken)
+        registerTokenForVoipPush(token: self.voipToken)
+        registerTokenForRemotePush(token: self.remoteToken);
         
         CallManager.shared.startCheckingReceivingTimeoutOfStringeeCall()
     }
