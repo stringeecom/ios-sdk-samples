@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
         StringeeImplement.shared.registerTokenForPush(token: token)
     }
     
-    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         print("didReceiveIncomingPushWith: \(payload.dictionaryPayload)")
-        CallManager.shared.handleIncomingPushEvent(payload: payload)
+        CallManager.shared.handleIncomingPushEvent(payload: payload, completion: completion)
     }
 }
 

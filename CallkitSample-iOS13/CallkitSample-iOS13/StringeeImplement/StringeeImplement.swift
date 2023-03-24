@@ -5,8 +5,8 @@
 
 import UIKit
 
-let userToken1 = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS0xIb2NCdDl6Qk5qc1pLeThZaUVkSzRsU3NBZjhCSHpyLTE1OTc2NTMwMTEiLCJpc3MiOiJTS0xIb2NCdDl6Qk5qc1pLeThZaUVkSzRsU3NBZjhCSHpyIiwiZXhwIjoxNjAwMjQ1MDExLCJ1c2VySWQiOiJ1c2VyMSJ9.xF-EeN6q_6QXgP39gq0j1LifHjlsyZjCAccgq7PUb5g"
-let userToken2 = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS0xIb2NCdDl6Qk5qc1pLeThZaUVkSzRsU3NBZjhCSHpyLTE1OTc2NTMwMjAiLCJpc3MiOiJTS0xIb2NCdDl6Qk5qc1pLeThZaUVkSzRsU3NBZjhCSHpyIiwiZXhwIjoxNjAwMjQ1MDIwLCJ1c2VySWQiOiJ1c2VyMiJ9.IF72MicpngLgX4TZI5TL6sL7R3JeeTqEAN8lu1MO4GE"
+let userToken1 = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLjVzNlBlYjlZcXpaVDRQWWoxNG1Gajhwa0hMd2dLLTE2Nzk1NjI5ODMiLCJpc3MiOiJTSy4wLjVzNlBlYjlZcXpaVDRQWWoxNG1Gajhwa0hMd2dLIiwiZXhwIjoxNjgyMTU0OTgzLCJ1c2VySWQiOiJ1c2VyMSJ9.p8ZgfYZ-deI2-F-VMzdDJRjy1i4kPLt44OZEbNPJ4eg"
+let userToken2 = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLjVzNlBlYjlZcXpaVDRQWWoxNG1Gajhwa0hMd2dLLTE2Nzk1NjI5OTMiLCJpc3MiOiJTSy4wLjVzNlBlYjlZcXpaVDRQWWoxNG1Gajhwa0hMd2dLIiwiZXhwIjoxNjgyMTU0OTkzLCJ1c2VySWQiOiJ1c2VyMiJ9.LDQzSsz2M31DUdQbCFfFXiK-fjt5zqng2wZrgEVdJOo"
 
 class StringeeImplement: NSObject {
     
@@ -14,7 +14,7 @@ class StringeeImplement: NSObject {
     let stringeeClient = StringeeClient()
     
     var token: String?
-    var connectWithToken1 = true
+    var connectWithToken1 = false
     
     // push
     var pushToken: String?

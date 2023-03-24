@@ -18,8 +18,9 @@ class CallManager: NSObject {
     
     static let shared = CallManager()
     
-    var call: CallKitCall?
+    var call: CallKitCall? // cac thao tac den call se duoc goi trong main thread
     lazy var trackedCalls = [String: CallKitCall]()
+    var audioIsActived = false
     
     private var _provider: AnyObject?
     private var provider: CXProvider {
@@ -55,6 +56,7 @@ class CallManager: NSObject {
     
     var watingForUpdateCallKit: (() -> Void)?
     var showingCallKitUUID: UUID?
+    var delayTime: Double = 0
     
     override init() {
         super.init()
@@ -65,6 +67,14 @@ class CallManager: NSObject {
     
     func hasSystemCall() -> Bool {
         return callObserver.calls.count > 0
+        
+        // Tham khao
+//        for call in CXCallObserver().calls {
+//            if call.hasEnded == false {
+//                return true
+//            }
+//        }
+//        return false
     }
     
     func reportIncomingCall(phone: String, callerName: String, isVideo: Bool, completion: @escaping (Bool, UUID) -> ()) {
@@ -73,6 +83,7 @@ class CallManager: NSObject {
         callUpdate.remoteHandle = CXHandle(type: .generic, value: phone)
         callUpdate.localizedCallerName = callerName
         let uuid = UUID()
+        print("REPORT AN INCOMING CALL \(uuid.uuidString)")
         
         showingCallKitUUID = uuid
         provider.reportNewIncomingCall(with: uuid, update: callUpdate) {[weak self] (error) in
@@ -131,7 +142,6 @@ class CallManager: NSObject {
     }
     
     func answerCallkitCall() {
-        Print("========= ANSWERED CALLKIT FUNCTION IS CALLED")
         if let uuid = self.call?.uuid {
             provider.updateConfiguration(includesCallsInRecents: true)
             let endCallAction = CXAnswerCallAction(call: uuid)
@@ -156,6 +166,7 @@ class CallManager: NSObject {
                 print("requestTransaction: \(String(describing: error?.localizedDescription))")
                 // End Callkit va xoa current call
                 self.endCall()
+                self.call?.clean()
                 self.call = nil
                 
                 // Co man hinh calling => dismiss
@@ -171,7 +182,7 @@ class CallManager: NSObject {
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .videoChat)
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .allowBluetoothA2DP])
             try audioSession.setPreferredSampleRate(44100.0)
             try audioSession.setPreferredIOBufferDuration(0.005)
         } catch  {
@@ -184,33 +195,32 @@ class CallManager: NSObject {
 
 extension CallManager {
     
-    func handleIncomingPushEvent(payload: PKPushPayload) {
+    func handleIncomingPushEvent(payload: PKPushPayload, completion: @escaping () -> Void) {
         let jsonData = JSON(payload.dictionaryPayload)
+        print("handleIncomingPushEvent: \(jsonData)")
         let payLoadData = jsonData["data"]["map"]["data"]["map"]
         guard let callStatus = payLoadData["callStatus"].string,
             let callId = payLoadData["callId"].string,
             let pushType = jsonData["data"]["map"]["type"].string,
             !callStatus.isEmpty, !callId.isEmpty, callStatus == "started", pushType == "CALL_EVENT" else {
-                
                 // Report 1 cuộc gọi fake và reject luôn => cho các trường hợp không thoả mãn
-                CallManager.shared.reportAFakeCall()
+                CallManager.shared.reportAFakeCall(completion: completion)
                 return
         }
         
         if call != nil {
-            CallManager.shared.reportAFakeCall()
+            CallManager.shared.reportAFakeCall(completion: completion)
             return
         }
         
         // Đã show rồi thì thôi
         let callSerial = jsonData["data"]["map"]["data"]["map"]["serial"].intValue
         if let _ = getTrackedCall(callId: callId, serial: callSerial) {
-            CallManager.shared.reportAFakeCall()
+            CallManager.shared.reportAFakeCall(completion: completion)
             return
         }
-        
+                
         // Show 1 cuộc gọi chưa có đủ thông tin hiển thị => Update khi nhận được incoming call
-        print("INCOMING PUSH -- SERIAL \(callSerial)")
         call = CallKitCall(isIncoming: true, enableTimer: true)
         call?.callId = callId
         call?.serial = callSerial
@@ -238,9 +248,6 @@ extension CallManager {
                 if (status) {
                     // thành công thì gán lại uuid
                     self.call?.uuid = uuid
-                    InstanceManager.shared.callingVC?.btAnswer.isEnabled = true
-                    InstanceManager.shared.callingVC?.btReject.isEnabled = true
-                    
                     if let stringeeCall = self.call?.stringeeCall {
                         self.updateCallkitInfoFor(stringeeCall: stringeeCall, uuid: uuid)
                     }
@@ -250,6 +257,8 @@ extension CallManager {
                     self.call?.clean()
                     self.call = nil
                 }
+                
+                completion()
             }
         }
         
@@ -262,10 +271,8 @@ extension CallManager {
     }
     
     func handleIncomingCallEvent(stringeeCall: StringeeCall) {
-        print("INCOMING CALLID \(String(describing: stringeeCall.callId)) -- SERIAL \(stringeeCall.serial)")
         
         func showCallKitFor(stringeeCall: StringeeCall) {
-            print("INCOMING CALL - SHOW CALLKIT")
             call = CallKitCall(isIncoming: true, enableTimer: true)
             call?.callId = stringeeCall.callId
             call?.stringeeCall = stringeeCall
@@ -274,10 +281,13 @@ extension CallManager {
             
             reportIncomingCall(phone: stringeeCall.from, callerName: stringeeCall.fromAlias, isVideo: stringeeCall.isVideoCall) { [unowned self] (status, uuid) in
                 if (status) {
+                    // thành công thì gán lại uuid
                     self.call?.uuid = uuid
-                    DispatchQueue.main.async {
-                        InstanceManager.shared.callingVC?.btAnswer.isEnabled = true
-                        InstanceManager.shared.callingVC?.btReject.isEnabled = true
+                    InstanceManager.shared.callingVC?.btAnswer.isEnabled = true
+                    InstanceManager.shared.callingVC?.btReject.isEnabled = true
+                    
+                    if let stringeeCall = self.call?.stringeeCall {
+                        self.updateCallkitInfoFor(stringeeCall: stringeeCall, uuid: uuid)
                     }
                 } else {
                     self.call?.clean()
@@ -297,7 +307,9 @@ extension CallManager {
             DispatchQueue.main.async {
                 let callControl = CallControl()
                 let callingVC = CallingViewController.init(control: callControl, call: stringeeCall)
+                stringeeCall.delegate = callingVC
                 callingVC.modalPresentationStyle = .fullScreen
+                
                 UIApplication.shared.keyWindow?.rootViewController?.present(callingVC, animated: true, completion: nil)
             }
         }
@@ -312,7 +324,7 @@ extension CallManager {
                 return
             }
             
-            if let callId = self.call?.callId, callId == stringeeCall.callId {
+            if let callId = self.call?.callId, callId == stringeeCall.callId, InstanceManager.shared.callingVC == nil {
                 if let uuid = self.call?.uuid {
                     // Nếu đã show callkit cho call này rồi => update thông tin
                     self.updateCallkitInfoFor(stringeeCall: stringeeCall, uuid: uuid)
@@ -341,18 +353,14 @@ extension CallManager {
         }
     }
     
-    func reportAFakeCall() {
-//        if call?.uuid != nil && hasSystemCall() {
-//            Print("KO CAN SHOW FAKE CALL VI DANG CO CALL ROI \(String(describing: call?.uuid?.uuidString))")
-//            return
-//        }
-        
+    func reportAFakeCall(completion: @escaping () -> Void) {
         let callUpdate = CXCallUpdate()
         callUpdate.hasVideo = false
         //        callUpdate.remoteHandle = CXHandle(type: .generic, value: "0123456789")
         callUpdate.localizedCallerName = "Expired Call"
         let uuid = UUID()
         
+        print("SHOW A FAKE CALLKIT \(uuid.uuidString)")
         provider.reportNewIncomingCall(with: uuid, update: callUpdate) {[unowned self] (error) in
             if error != nil {
                 print(error!.localizedDescription)
@@ -367,6 +375,8 @@ extension CallManager {
                         print("FAKE CALL === END CALLKIT ERROR \(error!.localizedDescription)")
                     }
                 }
+                
+                completion()
             }
         }
         
@@ -374,23 +384,66 @@ extension CallManager {
     
     // Sau 4s từ khi connected hoặc nhận push mà không nhận được incomingCall event - Trường hợp nhận được push, nhưng call bị ngắt ngay nên ko nhận được incomingCall
     func startCheckingReceivingTimeoutOfStringeeCall() {
-        perform(#selector(CallManager.checkReceivingTimeout), with: nil, afterDelay: 4)
+        print("startCheckingReceivingTimeoutOfStringeeCall")
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(CallManager.checkReceivingTimeout), object: nil)
+        perform(#selector(CallManager.checkReceivingTimeout), with: nil, afterDelay: 15)
     }
     
     func stopCheckingReceivingTimeoutOfStringeeCall() {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(CallManager.checkReceivingTimeout), object: nil)
+        print("stopCheckingReceivingTimeoutOfStringeeCall")
+        DispatchQueue.main.async {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(CallManager.checkReceivingTimeout), object: nil)
+        }
+    }
+    /*
+     Fix lỗi timeout giữa push và call ngắn dẫn đến lỗi khi mạng yếu thì cuộc gọi đến bị ngắt nhanh do chưa kết nối thành công tới Stringee Server.
+     Cách fix:
+     1. Tăng timeout giữa thời điểm nhận push và nhận incomingCall lên 15s
+     2. Sau khi kết nối tới StringeeServer thì check nếu không có call thì ngắt callkit
+     **/
+    func checkExistIncomingCallIfNeed() {
+        print("checkExistIncomingCallIfNeed")
+        DispatchQueue.main.async { [unowned self] in
+            guard let call = self.call else {
+                return
+            }
+                        
+            // Đã show callkit nhưng chưa có stringeeCall thì mới check
+            if let callId = call.callId, !callId.isEmpty, call.uuid != nil && call.stringeeCall == nil {
+                StringeeImplement.shared.stringeeClient.existIncomingCall(withCallId: callId, completion: { [unowned self] status, code, message, exist in
+                    // Neu call khong ton tai thi can end callkit
+                    if status && !exist {
+                        self.stopCheckingReceivingTimeoutOfStringeeCall()
+                        self.checkReceivingTimeout(callId: callId)
+                    }
+                })
+            }
+        }
     }
     
-    @objc private func checkReceivingTimeout() {
-        guard let call = self.call else {
-            return
-        }
-        
-        // Đã show callkit nhưng chưa có stringeeCall => End callkit
-        if call.uuid != nil && call.stringeeCall == nil {
-            self.endCall()
+    @objc private func checkReceivingTimeout(callId: String? = nil) {
+        DispatchQueue.main.async {
+            print("checkReceivingTimeout")
+            guard let call = self.call else {
+                return
+            }
+            
+            if let callId = callId, let currentCallId = call.callId, callId != currentCallId {
+                return
+            }
+            
+            // Đã show callkit nhưng chưa có stringeeCall => End callkit
+            if call.uuid != nil && call.stringeeCall == nil {
+                self.endCall()
+                // Tắt màn hình cuộc gọi luôn, fix bug trường hợp gọi hangup nhưng ko có callback từ server
+                if let callingVC = InstanceManager.shared.callingVC {
+                    callingVC.endCallAndDismis()
+                }
+            }
         }
     }
+    
+    
 }
 
 // MARK: - Call Actions
@@ -402,7 +455,7 @@ extension CallManager {
             callingVC.callControl.signalingState = .answered
             callingVC.updateScreen()
         }
-        
+                
         guard let stringeeCall = call?.stringeeCall else { return }
         
         if let answerAction = self.call?.answerAction {
@@ -416,7 +469,7 @@ extension CallManager {
                 callingVC.endCallAndDismis()
                 return
             }
-            
+
             if !status {
                 self.endCall()
             }
@@ -436,14 +489,13 @@ extension CallManager {
         }
         
         callNeedToReject?.reject { [unowned self] (status, code, message) in
-            print("====== REJECT \(String(describing: message))")
             if let callingVC = InstanceManager.shared.callingVC {
                 callingVC.endCallAndDismis()
             }
             
-            if !status {
-                self.endCall()
-            }
+//            if !status {
+                self.endCall() // cứ reject thì phải end callkit => thử để fix lỗi 486
+//            }
         }
     }
     
@@ -454,19 +506,24 @@ extension CallManager {
         } else if let seCall = call?.stringeeCall {
             callNeedToHangup = seCall
         } else {
+            // Không có cuộc gọi thì cần tắt màn hình cuộc gọi
+            if let callingVC = InstanceManager.shared.callingVC {
+                callingVC.endCallAndDismis()
+            }
             return
         }
         
         //        guard let stringeeCall = call?.stringeeCall else { return }
         
         callNeedToHangup?.hangup { [unowned self] (status, code, message) in
+            print("====== HANGUP \(String(describing: message))")
             if let callingVC = InstanceManager.shared.callingVC {
                 callingVC.endCallAndDismis()
             }
             
-            if !status {
-                self.endCall()
-            }
+//            if !status {
+                self.endCall() // cứ hangup thì phải end callkit => thử để fix lỗi 486
+//            }
         }
     }
     
@@ -494,13 +551,11 @@ extension CallManager {
 extension CallManager {
     private func trackCall(_ callNeedToTrack: CallKitCall) {
         let key = callNeedToTrack.callId! + "-" + callNeedToTrack.serial.description
-        print("===== KEY TO SAVE CALL <> \(key)")
         trackedCalls[key] = callNeedToTrack
     }
     
     private func getTrackedCall(callId: String, serial: Int) -> CallKitCall? {
         let key = callId + "-" + serial.description
-        print("===== KEY TO GET CALL <> \(key)")
         return trackedCalls[key]
     }
 }
@@ -545,6 +600,10 @@ extension CallManager: CXProviderDelegate {
         guard let callkitCall = call, let stringeeCall = callkitCall.stringeeCall else {
             action.fulfill()
             call = nil
+            // Không có cuộc gọi thì cần tắt màn hình cuộc gọi
+            if let callingVC = InstanceManager.shared.callingVC {
+                callingVC.endCallAndDismis()
+            }
             return
         }
         
@@ -580,12 +639,14 @@ extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         print("didActivate audioSession")
         call?.audioIsActived = true
+        audioIsActived = true
         answerCallWithCondition()
     }
     
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         print("didDeactivate audioSession")
         call?.audioIsActived = false
+        audioIsActived = false
     }
     
     func providerDidReset(_ provider: CXProvider) {
