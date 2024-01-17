@@ -5,7 +5,7 @@
 
 import UIKit
 
-let userToken1 = "TOKEN-FOR-USER1"
+let userToken1 = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS0UxUmRVdFVhWXhOYVFRNFdyMTVxRjF6VUp1UWRBYVZULTE3MDU0NzQ2OTQiLCJpc3MiOiJTS0UxUmRVdFVhWXhOYVFRNFdyMTVxRjF6VUp1UWRBYVZUIiwiZXhwIjoxNzA4MDY2Njk0LCJ1c2VySWQiOiJpb3MxIn0.Fpx-F-yO59oKW-cWZE1W-31lLOcVwBhkMacmsNKw5ZU"
 let userToken2 = "TOKEN-FOR-USER2"
 
 class StringeeImplement: NSObject {
