@@ -54,10 +54,6 @@ class CallingViewController2: UIViewController {
             self.callControl.username = call.fromAlias
             self.callControl.isAppToPhone = call.callType == .callIn || call.callType == .callOut
         }
-
-        // if call's type is video then route audio to speaker
-//        StringeeAudioManager.instance()?.setLoudspeaker(self.callControl.isVideo)
-//        self.callControl.isSpeaker = self.callControl.isVideo
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -95,6 +91,11 @@ class CallingViewController2: UIViewController {
         } else {
             call.initAnswer()
         }
+        
+        if (callControl.isVideo) {
+            routeToSpeakerIfNeeded()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,11 +155,9 @@ class CallingViewController2: UIViewController {
             var imageName = ""
             if (callControl.audioOutputMode == .iphone) {
                 callControl.audioOutputMode = .speaker
-                StringeeAudioManager.instance()?.setLoudspeaker(true)
                 imageName = "icon_speaker_selected"
             } else {
                 callControl.audioOutputMode = .iphone
-                StringeeAudioManager.instance()?.setLoudspeaker(false)
                 imageName = "icon_speaker"
             }
             btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
@@ -364,17 +363,16 @@ extension CallingViewController2 {
             let route = AVAudioSession.sharedInstance().currentRoute
             if let portDes = route.outputs.first {
                 var imageName = ""
-                if (portDes.portType == .builtInSpeaker) {
-                    self.callControl.audioOutputMode = .speaker
-                    imageName = "icon_speaker_selected"
-                } else if (portDes.portType == .headphones || portDes.portType == .builtInReceiver) {
-                    self.callControl.audioOutputMode = .iphone
-                    imageName = "icon_speaker"
-                } else {
+                if (self.isBluetoothConnected()) {
                     self.callControl.audioOutputMode = .bluetooth
                     imageName = "ic-bluetooth"
+                }else if portDes.portType == .builtInSpeaker || self.callControl.isVideo {
+                    imageName = "icon_speaker_selected"
+                    self.callControl.audioOutputMode = .speaker
+                } else {
+                    imageName = "icon_speaker"
+                    self.callControl.audioOutputMode = .iphone
                 }
-                
                 self.btSpeaker.setBackgroundImage(UIImage(named: imageName), for: .normal)
             }
         }
@@ -386,7 +384,6 @@ extension CallingViewController2 {
             if let portDes = route.outputs.first {
                 // if headphone is not plugged in and bluetooth is not connected then route audio to speaker in case call's type is video
                 if portDes.portType != .headphones && !self.isBluetoothConnected() {
-                    StringeeAudioManager.instance()?.setLoudspeaker(true)
                     self.callControl.audioOutputMode = .speaker
                 }
             }
