@@ -2,3 +2,6 @@
 Pods
 *.lock
 *.xcworkspace
+
+xcuserdata
+*.xcuserdatad
