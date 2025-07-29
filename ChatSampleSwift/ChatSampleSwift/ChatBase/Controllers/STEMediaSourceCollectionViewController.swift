@@ -155,8 +155,16 @@ class STEMediaSourceCollectionViewController: UICollectionViewController, UIColl
                     break
                 case .notDetermined:
                     break
+                  case .limited:
+                    break
+                  @unknown default:
+                    break
                 }
             }
+            break
+          case .limited:
+            break
+          @unknown default:
             break
         }
     }

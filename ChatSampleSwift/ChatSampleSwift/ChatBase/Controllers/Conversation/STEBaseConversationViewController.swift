@@ -24,7 +24,7 @@ class STEBaseConversationViewController: UIViewController {
     private var firstAppearance = true
     private var shouldChangeWrapViewFrame = false
     private var inputWrapView: UIView!
-    private var pagingViewController: PagingViewController<IconItem>!
+    private var pagingViewController: PagingViewController!
     private lazy var invisibleAccessoryView: STEObservingInputAccessoryView = {
         var height = STEMessageInputViewDefaultHeight
         if #available(iOS 11, *) {

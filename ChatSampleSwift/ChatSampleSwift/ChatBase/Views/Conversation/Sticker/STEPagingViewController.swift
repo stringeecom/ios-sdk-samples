@@ -11,7 +11,7 @@ import Parchment
 
 let STEPagingViewControllerDefaultIcon = "PaintStickersIcon"
 
-class STEPagingViewController: PagingViewController<IconItem> {
+class STEPagingViewController: PagingViewController {
     
     lazy var packages = [STESTickerPackage]()
     
@@ -20,7 +20,7 @@ class STEPagingViewController: PagingViewController<IconItem> {
     override func loadView() {
         super.loadView()
         
-        self.menuItemSource = .class(type: IconPagingCell.self)
+        self.register(IconPagingCell.self, for: IconItem.self)
         self.menuItemSize = .fixed(width: 45, height: 45)
         self.textColor = UIColor(red: 0.51, green: 0.54, blue: 0.56, alpha: 1)
         self.selectedTextColor = UIColor(red: 0.14, green: 0.77, blue: 0.85, alpha: 1)
@@ -56,8 +56,19 @@ class STEPagingViewController: PagingViewController<IconItem> {
 }
 
 extension STEPagingViewController: PagingViewControllerDataSource {
+  func pagingViewController(_: Parchment.PagingViewController, pagingItemAt index: Int) -> any Parchment.PagingItem {
+    if index == 0 {
+      return IconItem(icon: STEPagingViewControllerDefaultIcon, index: index) 
+    }
+    // Lấy về iconURL from local
+    let package = packages[index - 1]
+    let imageName = STEStickerDefaultPrefix + STEStickerIconSuffix
+    let localPath = URL(fileURLWithPath: STEStickerManager.shared.stickerDirectory).appendingPathComponent(package.id).appendingPathComponent(imageName).path
     
-    func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController {
+    return IconItem(icon: localPath, index: index) 
+  }
+    
+  func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController {
         if index == 0 {
             // Sticker Packages
             return stickerPackageViewController
@@ -66,19 +77,7 @@ extension STEPagingViewController: PagingViewControllerDataSource {
         return STEStickerViewController.init(package: package)
     }
     
-    func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T {
-        if index == 0 {
-            return IconItem(icon: STEPagingViewControllerDefaultIcon, index: index) as! T
-        }
-        // Lấy về iconURL from local
-        let package = packages[index - 1]
-        let imageName = STEStickerDefaultPrefix + STEStickerIconSuffix
-        let localPath = URL(fileURLWithPath: STEStickerManager.shared.stickerDirectory).appendingPathComponent(package.id).appendingPathComponent(imageName).path
-        
-        return IconItem(icon: localPath, index: index) as! T
-    }
-    
-    func numberOfViewControllers<T>(in: PagingViewController<T>) -> Int {
+    func numberOfViewControllers(in: PagingViewController) -> Int {
         return packages.count + 1
     }
     

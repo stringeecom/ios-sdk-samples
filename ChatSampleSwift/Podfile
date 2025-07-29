@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '13.0'
 
 target 'ChatSampleSwift' do
   use_frameworks!
@@ -14,6 +14,14 @@ target 'ChatSampleSwift' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SSZipArchive'
   pod 'KafkaRefresh'
-  pod 'StringeeChat'
+  pod 'Stringee'
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+  end
 end

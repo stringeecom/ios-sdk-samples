@@ -11,7 +11,6 @@
 
 #import <Stringee/Stringee.h>
 #import <UIScrollView_InfiniteScroll/UIScrollView+InfiniteScroll.h>
-#import <Stringee/Stringee.h>
 #import <SDWebImage/SDWebImage.h>
 #import <KafkaRefresh/KafkaRefresh.h>
 
