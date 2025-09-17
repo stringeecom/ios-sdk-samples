@@ -6,5 +6,9 @@
 	<array>
 		<string>audio</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) use camera</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>$(PRODUCT_NAME) use microphone</string>
 </dict>
 </plist>

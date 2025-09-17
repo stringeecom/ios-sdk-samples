@@ -139,28 +139,24 @@ extension STEStickerManager {
     private func getListStickerPackage(completion: @escaping ([STESTickerPackage]?) -> Void) {
         guard let url = URL(string: STEStickerListPackageUrl) else { return }
         
-        Alamofire.request(url, method: .get, parameters: nil, headers: nil).validate().responseJSON { (response) in
-            guard response.result.isSuccess else {
-                print("Get method error \(String(describing: response.result.error))")
+        AF.request(url, method: .get, parameters: nil, headers: nil).validate().responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                guard let packageDatas = JSON(value).array else {
+                    completion(nil)
+                    return
+                }
+                var packages = [STESTickerPackage]()
+                for packageData in packageDatas {
+                    packages.append(STESTickerPackage(data: packageData))
+                }
+                completion(packages)
+            case .failure(let error):
+                print("Get method error \(error)")
                 completion(nil)
                 return
             }
             
-            guard let value = response.result.value else {
-                print("Get action error)")
-                completion(nil)
-                return
-            }
-            guard let packageDatas = JSON(value).array else {
-                completion(nil)
-                return
-            }
-//            print("Value \(packageDatas)")
-            var packages = [STESTickerPackage]()
-            for packageData in packageDatas {
-                packages.append(STESTickerPackage(data: packageData))
-            }
-            completion(packages)
         }
         
     }
@@ -173,11 +169,11 @@ extension STEStickerManager {
         // Lấy đường dẫn tạm thời cho file zip
         let fileUrl = self.getSaveFileLocalUrl(fileUrl: package.zipUrl)
         
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+        let destination: DownloadRequest.Destination = { _, _ in
             return (fileUrl, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        Alamofire.download(package.zipUrl, to: destination).response {[unowned self] (defaultDownloadResponse) in
+        AF.download(package.zipUrl, to: destination).response {[unowned self] (defaultDownloadResponse) in
             if defaultDownloadResponse.error != nil {
                 // Fail
                 completion(false)
@@ -185,11 +181,11 @@ extension STEStickerManager {
             }
             
             // Unzip tới thư mục lưu sticker
-            SSZipArchive.unzipFile(atPath: defaultDownloadResponse.destinationURL?.path ?? "", toDestination: self.stickerDirectory)
+          SSZipArchive.unzipFile(atPath: defaultDownloadResponse.fileURL?.path ?? "", toDestination: self.stickerDirectory)
             
             // Xoá file zip
             do {
-                try FileManager.default.removeItem(atPath: defaultDownloadResponse.destinationURL?.path ?? "")
+              try FileManager.default.removeItem(atPath: defaultDownloadResponse.fileURL?.path ?? "")
             } catch {
                 print("======= Không thể xoá file \(error.localizedDescription)")
             }

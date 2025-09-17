@@ -208,7 +208,7 @@ extension STEDataManager {
         if self.managerType == DataManagerType.conversation {
             // Lấy về local conversation
             self.isLoadingData = true
-            client.getLocalConversations(withCount: conversationCountShouldLoad) { [weak self] (status, code, message, conversations) in
+          client.getLocalConversations(withCount: conversationCountShouldLoad, userId: client.userId) { [weak self] (status, code, message, conversations) in
                 if let self = self {
                     self.handleInsert(conversations: conversations)
                     self.isLoadingData = false
@@ -516,7 +516,7 @@ extension STEDataManager {
         
         if self.shouldGetLastObjects {
             // Lấy dữ liệu mới nhất từ server
-            self.conversation?.getLastMessages(withCount: messageCountShouldLoad, completionHandler: {[weak self] (status, code, message, messages) in
+          self.conversation?.getLastMessages(withCount: messageCountShouldLoad, loadDeletedMessage: false, loadDeletedMessageContent: false, completionHandler: {[weak self] (status, code, message, messages) in
                 if let self = self {
                     print("======= Lase Message Count \(String(describing: messages?.count))")
                     self.handleUpdate(messages: messages, shouldDeleteOld: true)
@@ -538,7 +538,7 @@ extension STEDataManager {
                 return
             }
 
-            self.conversation?.getMessagesAfter(lastMsg.seq, withCount: messageCountShouldLoad, completionHandler: { [weak self] (status, code, message, messages) in
+          self.conversation?.getMessagesAfter(lastMsg.seq, withCount: messageCountShouldLoad, loadDeletedMessage: false, loadDeletedMessageContent: false, completionHandler: { [weak self] (status, code, message, messages) in
                 if let self = self {
 //                    self.handleInsert(messages: messages, isLoadMore: false)
                     self.handleUpdate(messages: messages, shouldDeleteOld: false)
@@ -565,7 +565,7 @@ extension STEDataManager {
         
         self.isLoadingData = !self.isLoadingData
         
-        self.conversation?.getMessagesBefore(oldestMsg.seq, withCount: messageCountShouldLoad, completionHandler: {[weak self] (status, code, message, messages) in
+      self.conversation?.getMessagesBefore(oldestMsg.seq, withCount: messageCountShouldLoad, loadDeletedMessage: false, loadDeletedMessageContent: false, completionHandler: {[weak self] (status, code, message, messages) in
             if let self = self {
                 self.handleInsert(messages: messages, isLoadMore: true)
                 self.isLoadingData = !self.isLoadingData

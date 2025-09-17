@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45363B1EFF03B0AA87B5B899 /* Pods_ChatSampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EB685FB9D6316F69BFBAB5 /* Pods_ChatSampleSwift.framework */; };
 		513524EC21D0F6E5003ADD70 /* SampleAvatarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513524EB21D0F6E5003ADD70 /* SampleAvatarItem.swift */; };
 		5142689422C21FC7007FCA7F /* notification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 514267F922C21FC6007FCA7F /* notification.caf */; };
 		5142689522C21FC7007FCA7F /* video_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 514267FB22C21FC6007FCA7F /* video_icon@2x.png */; };
@@ -163,10 +162,12 @@
 		516CE0FF21C7BB76000D2A11 /* SampleConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516CE0FE21C7BB76000D2A11 /* SampleConversationListViewController.swift */; };
 		516CE10F21C7CF5A000D2A11 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516CE10E21C7CF5A000D2A11 /* AppStateManager.swift */; };
 		51721C5E21DCDF7100A4B550 /* SampleConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51721C5D21DCDF7100A4B550 /* SampleConversationViewController.swift */; };
+		BA9E70B0693B9C87DA9E5AE4 /* Pods_ChatSampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A92A8CE2440FF303549565 /* Pods_ChatSampleSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		34EB685FB9D6316F69BFBAB5 /* Pods_ChatSampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatSampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14A92A8CE2440FF303549565 /* Pods_ChatSampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatSampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EFDCFE2DB82490125627FEF /* Pods-ChatSampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatSampleSwift.release.xcconfig"; path = "Target Support Files/Pods-ChatSampleSwift/Pods-ChatSampleSwift.release.xcconfig"; sourceTree = "<group>"; };
 		513524EB21D0F6E5003ADD70 /* SampleAvatarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleAvatarItem.swift; sourceTree = "<group>"; };
 		514267F922C21FC6007FCA7F /* notification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notification.caf; sourceTree = "<group>"; };
 		514267FB22C21FC6007FCA7F /* video_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_icon@2x.png"; sourceTree = "<group>"; };
@@ -327,8 +328,7 @@
 		516CE0FE21C7BB76000D2A11 /* SampleConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleConversationListViewController.swift; sourceTree = "<group>"; };
 		516CE10E21C7CF5A000D2A11 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		51721C5D21DCDF7100A4B550 /* SampleConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleConversationViewController.swift; sourceTree = "<group>"; };
-		5212D5BE5A0962FF166B60E6 /* Pods-ChatSampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatSampleSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatSampleSwift/Pods-ChatSampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		F224AA948F48A0C371ADC5F1 /* Pods-ChatSampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatSampleSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatSampleSwift/Pods-ChatSampleSwift.release.xcconfig"; sourceTree = "<group>"; };
+		D2934115B608B9CE429D3602 /* Pods-ChatSampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatSampleSwift.debug.xcconfig"; path = "Target Support Files/Pods-ChatSampleSwift/Pods-ChatSampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,22 +341,13 @@
 				516CE0F721C7875D000D2A11 /* GLKit.framework in Frameworks */,
 				516CE0F521C78759000D2A11 /* libicucore.tbd in Frameworks */,
 				516CE0F321C7874E000D2A11 /* libc++.tbd in Frameworks */,
-				45363B1EFF03B0AA87B5B899 /* Pods_ChatSampleSwift.framework in Frameworks */,
+				BA9E70B0693B9C87DA9E5AE4 /* Pods_ChatSampleSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10B919DF5CDE55DDD4BFB5F0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5212D5BE5A0962FF166B60E6 /* Pods-ChatSampleSwift.debug.xcconfig */,
-				F224AA948F48A0C371ADC5F1 /* Pods-ChatSampleSwift.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		514267F722C21FC6007FCA7F /* ChatBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,7 +615,7 @@
 				516CE0D321C7808D000D2A11 /* ChatSampleSwift */,
 				516CE0D221C7808D000D2A11 /* Products */,
 				516CE0F121C7874E000D2A11 /* Frameworks */,
-				10B919DF5CDE55DDD4BFB5F0 /* Pods */,
+				98DF7B17D59BFE43870DF6A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -672,9 +663,18 @@
 				516CE0F621C7875D000D2A11 /* GLKit.framework */,
 				516CE0F421C78758000D2A11 /* libicucore.tbd */,
 				516CE0F221C7874E000D2A11 /* libc++.tbd */,
-				34EB685FB9D6316F69BFBAB5 /* Pods_ChatSampleSwift.framework */,
+				14A92A8CE2440FF303549565 /* Pods_ChatSampleSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		98DF7B17D59BFE43870DF6A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2934115B608B9CE429D3602 /* Pods-ChatSampleSwift.debug.xcconfig */,
+				1EFDCFE2DB82490125627FEF /* Pods-ChatSampleSwift.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -684,11 +684,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 516CE0E321C7808E000D2A11 /* Build configuration list for PBXNativeTarget "ChatSampleSwift" */;
 			buildPhases = (
-				C723F1FBECA824115AC023FB /* [CP] Check Pods Manifest.lock */,
+				DBF8499A9ED888447D4F8F53 /* [CP] Check Pods Manifest.lock */,
 				516CE0CD21C7808D000D2A11 /* Sources */,
 				516CE0CE21C7808D000D2A11 /* Frameworks */,
 				516CE0CF21C7808D000D2A11 /* Resources */,
-				8DD90D8855A784DA53E07432 /* [CP] Embed Pods Frameworks */,
+				2763707C131E450557C96250 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -822,7 +822,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8DD90D8855A784DA53E07432 /* [CP] Embed Pods Frameworks */ = {
+		2763707C131E450557C96250 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -839,7 +839,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatSampleSwift/Pods-ChatSampleSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C723F1FBECA824115AC023FB /* [CP] Check Pods Manifest.lock */ = {
+		DBF8499A9ED888447D4F8F53 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1083,11 +1083,12 @@
 		};
 		516CE0E421C7808E000D2A11 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5212D5BE5A0962FF166B60E6 /* Pods-ChatSampleSwift.debug.xcconfig */;
+			baseConfigurationReference = D2934115B608B9CE429D3602 /* Pods-ChatSampleSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9L439MV268;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1095,7 +1096,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ChatSampleSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1104,10 +1105,10 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.sample.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CallkitProDev;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hoangduoc/Desktop/iOS/ChatSampleSwift/ChatSampleSwift/ChatSampleSwift-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChatSampleSwift/ChatSampleSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1115,12 +1116,12 @@
 		};
 		516CE0E521C7808E000D2A11 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F224AA948F48A0C371ADC5F1 /* Pods-ChatSampleSwift.release.xcconfig */;
+			baseConfigurationReference = 1EFDCFE2DB82490125627FEF /* Pods-ChatSampleSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9L439MV268;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1128,7 +1129,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ChatSampleSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1137,10 +1138,10 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.CallkitSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stringee.sample.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CallkitDistributionPro;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hoangduoc/Desktop/iOS/ChatSampleSwift/ChatSampleSwift/ChatSampleSwift-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChatSampleSwift/ChatSampleSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

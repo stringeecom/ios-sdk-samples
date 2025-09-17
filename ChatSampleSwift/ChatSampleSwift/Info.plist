@@ -20,6 +20,18 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) muốn sử dụng camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(PRODUCT_NAME) muốn truy cập danh bạ của bạn để cho phép bạn sử dụng thông tin liên hệ để liên lạc</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) truy cập vị trí</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) sử dụng microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) truy cập thư viện ảnh</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) truy cập thư viện ảnh</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -39,25 +51,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    
-    
-    <key>NSContactsUsageDescription</key>
-    <string>$(PRODUCT_NAME) muốn truy cập danh bạ của bạn để cho phép bạn sử dụng thông tin liên hệ để liên lạc</string>
-    
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>$(PRODUCT_NAME) truy cập thư viện ảnh</string>
-    
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>$(PRODUCT_NAME) truy cập thư viện ảnh</string>
-    
-    <key>NSCameraUsageDescription</key>
-    <string>$(PRODUCT_NAME) muốn sử dụng camera</string>
-    
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>$(PRODUCT_NAME) truy cập vị trí</string>
-    
-    <key>NSMicrophoneUsageDescription</key>
-    <string>$(PRODUCT_NAME) sử dụng microphone</string>
-    
 </dict>
 </plist>
