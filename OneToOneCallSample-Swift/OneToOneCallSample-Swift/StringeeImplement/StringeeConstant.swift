@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AudioOutputMode {
+enum AudioOutputMode: String {
     case iphone // loa trong
     case speaker // loa ngoai
     case bluetooth // ket noi cac thiet bi khac
@@ -31,10 +31,23 @@ struct CallControl {
 
     var isMute = false
 //    var isSpeaker = false
-    var audioOutputMode = AudioOutputMode.iphone
+    var audioOutputMode : AudioOutputMode {
+        didSet {
+            if oldValue == .speaker && audioOutputMode != .speaker {
+                StringeeAudioManager.instance().setLoudspeaker(false)
+            } else if oldValue != .speaker && audioOutputMode == .speaker{
+                StringeeAudioManager.instance().setLoudspeaker(true)
+            }
+        }
+    }
     var localVideoEnabled = true
     var signalingState: SignalingState = .calling
     var mediaState: MediaState = .disconnected
+    
+    init() {
+        audioOutputMode = .iphone
+        StringeeAudioManager.instance().setLoudspeaker(false)
+    }
 }
 
 enum CallScreenType {
