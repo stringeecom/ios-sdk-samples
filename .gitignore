@@ -2,6 +2,11 @@
 Pods
 *.lock
 *.xcworkspace
+!StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/
+!StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/
+!StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+!StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 
 xcuserdata
 *.xcuserdatad
