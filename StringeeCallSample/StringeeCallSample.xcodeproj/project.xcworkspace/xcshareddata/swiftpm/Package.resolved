@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "stringee-ios-sdk-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stringeecom/Stringee-iOS-SDK-SPM.git",
+      "state" : {
+        "revision" : "0bd2b48c656e340106ab10821f947767dd47136e",
+        "version" : "2.0.3"
+      }
+    },
+    {
+      "identity" : "webrtc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stasel/WebRTC.git",
+      "state" : {
+        "revision" : "b85669f32ffb3f48ce3a8f18ad828c6f559a8a0c",
+        "version" : "137.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
