@@ -1,0 +1,33 @@
+{
+  "originHash" : "bbe26b7bc37a657bd4e7bef16c7992a56ca72e593165e297185d6654465f22e5",
+  "pins" : [
+    {
+      "identity" : "stringee-ios-sdk-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stringeecom/Stringee-iOS-SDK-SPM",
+      "state" : {
+        "revision" : "0bd2b48c656e340106ab10821f947767dd47136e",
+        "version" : "2.0.3"
+      }
+    },
+    {
+      "identity" : "stringeewidget-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stringeecom/StringeeWidget-iOS",
+      "state" : {
+        "revision" : "30ba2514c021c72e5a8405d527edf781faa9ee2c",
+        "version" : "0.2.2"
+      }
+    },
+    {
+      "identity" : "webrtc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stasel/WebRTC.git",
+      "state" : {
+        "revision" : "b85669f32ffb3f48ce3a8f18ad828c6f559a8a0c",
+        "version" : "137.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}

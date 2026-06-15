@@ -6,7 +6,13 @@ Pods
 !StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/
 !StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
 !StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+!StringeeWidgetSample/StringeeWidgetSample.xcodeproj/project.xcworkspace/
+!StringeeWidgetSample/StringeeWidgetSample.xcodeproj/project.xcworkspace/xcshareddata/
+!StringeeWidgetSample/StringeeWidgetSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+!StringeeWidgetSample/StringeeWidgetSample.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 StringeeCallSample/StringeeCallSample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 
 xcuserdata
 *.xcuserdatad
+
+.DS_Store
